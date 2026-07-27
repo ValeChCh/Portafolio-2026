@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagrama — Portafolio Valeria UX</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f7f5f0;
+      color: #111;
+      line-height: 1.5;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .subtitle { color: #555; font-size: 0.9rem; margin-bottom: 2rem; }
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.35rem;
+    }
+
+    /* ── Árbol de archivos ── */
+    .tree {
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      padding: 1.25rem 1.5rem;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.82rem;
+      overflow-x: auto;
+    }
+    .tree ul { list-style: none; padding-left: 1.25rem; }
+    .tree > ul { padding-left: 0; }
+    .tree li { margin: 0.15rem 0; }
+    .folder { color: #2563eb; font-weight: 700; }
+    .file { color: #374151; }
+    .file.highlight { color: #059669; font-weight: 600; }
+    .file.entry { color: #9333ea; font-weight: 600; }
+
+    /* ── Diagrama de flujo ── */
+    .flow-wrap {
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      min-width: 720px;
+    }
+    @media (min-width: 900px) {
+      .flow { grid-template-columns: 220px 1fr 220px; align-items: start; }
+    }
+
+    .box {
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 3px 3px 0 #000;
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+    }
+    .box-title {
+      font-weight: 800;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+    .box ul { font-size: 0.78rem; padding-left: 1rem; }
+    .box li { margin: 0.2rem 0; }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border: 1.5px solid #000;
+      border-radius: 999px;
+      margin: 0.1rem 0.15rem 0.1rem 0;
+    }
+    .pill.yellow { background: #fef08a; }
+    .pill.pink   { background: #fbcfe8; }
+    .pill.cyan   { background: #bae6fd; }
+    .pill.mint   { background: #a7f3d0; }
+    .pill.lilac  { background: #e9d5ff; }
+
+    /* Centro: pantallas */
+    .screens { display: flex; flex-direction: column; gap: 1rem; }
+    .screen {
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+      overflow: hidden;
+    }
+    .screen-bar {
+      background: #e2e8f0;
+      border-bottom: 2px solid #000;
+      padding: 0.35rem 0.75rem;
+      font-family: monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+    .dots span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: 1px solid #000;
+      margin-right: 3px;
+    }
+    .dots span:nth-child(1) { background: #f87171; }
+    .dots span:nth-child(2) { background: #facc15; }
+    .dots span:nth-child(3) { background: #4ade80; }
+    .screen-body { padding: 0.75rem 1rem; font-size: 0.8rem; }
+    .screen-body strong { display: block; margin-bottom: 0.35rem; }
+    .comps { color: #555; font-size: 0.75rem; margin-top: 0.35rem; }
+
+    /* Flechas SVG */
+    .arrows {
+      width: 100%;
+      height: auto;
+      margin: 1rem 0;
+    }
+    .arrow-line { stroke: #000; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .arrow-label { font-size: 11px; fill: #444; font-family: system-ui, sans-serif; }
+
+    /* Leyenda */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.5rem;
+      font-size: 0.78rem;
+      margin-top: 1rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+    .legend-swatch {
+      width: 14px; height: 14px;
+      border: 1.5px solid #000;
+    }
+
+    /* Tabla de datos */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      background: #fff;
+      border: 2px solid #000;
+      box-shadow: 4px 4px 0 #000;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #ccc;
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    .data-table th { background: #fef08a; font-weight: 700; }
+    .data-table code {
+      font-family: monospace;
+      font-size: 0.72rem;
+      background: #f1f5f9;
+      padding: 0.1rem 0.3rem;
+      border-radius: 3px;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Portafolio Valeria — Estructura y flujo de datos</h1>
+  <p class="subtitle">SPA React + Vite · Datos estáticos en <code>src/data.ts</code> · Navegación por pestañas en <code>App.tsx</code></p>
+
+  <!-- ═══ ESTRUCTURA DE ARCHIVOS ═══ -->
+  <section>
+    <h2>1. Estructura del proyecto</h2>
+    <div class="tree">
+      <ul>
+        <li><span class="folder">valeria-portfolio/</span>
+          <ul>
+            <li><span class="file entry">index.html</span> → monta React en #root</li>
+            <li><span class="file">package.json</span> · vite.config.ts · tsconfig.json</li>
+            <li><span class="folder">src/</span>
+              <ul>
+                <li><span class="file entry">main.tsx</span> → StrictMode + App</li>
+                <li><span class="file entry">App.tsx</span> → estado global (activeTab, darkMode)</li>
+                <li><span class="file highlight">data.ts</span> → datos de ejemplo (fuente única)</li>
+                <li><span class="file">types.ts</span> → Project, Experience, Skill, ActiveTab</li>
+                <li><span class="file">index.css</span> → Tailwind + estilos neo-brutalist</li>
+                <li><span class="folder">components/</span>
+                  <ul>
+                    <li><span class="file">Header.tsx</span> — nav + dark mode</li>
+                    <li><span class="file">Sidebar.tsx</span> — perfil + skills (Work)</li>
+                    <li><span class="file">Projects.tsx</span> — proyectos + modal case study</li>
+                    <li><span class="file">About.tsx</span> — bio extendida + metodologías</li>
+                    <li><span class="file">Resume.tsx</span> — CV + print()</li>
+                    <li><span class="file">Contact.tsx</span> — formulario + calendario simulado</li>
+                    <li><span class="file">Footer.tsx</span> — copyright y enlaces</li>
+                  </ul>
+                </li>
+                <li><span class="folder">assets/images/</span> — avatar y capturas de proyectos</li>
+              </ul>
+            </li>
+            <li><span class="file">design.md</span> · metadata.json</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ FLUJO DE DATOS ═══ -->
+  <section>
+    <h2>2. Flujo de datos entre capas</h2>
+
+    <svg class="arrows" viewBox="0 0 900 90" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#000"/>
+        </marker>
+      </defs>
+      <rect x="20" y="20" width="160" height="50" rx="2" fill="#a7f3d0" stroke="#000" stroke-width="2"/>
+      <text x="100" y="42" text-anchor="middle" class="arrow-label" font-weight="700">data.ts</text>
+      <text x="100" y="58" text-anchor="middle" class="arrow-label">constantes exportadas</text>
+
+      <line x1="180" y1="45" x2="310" y2="45" class="arrow-line"/>
+      <text x="245" y="38" text-anchor="middle" class="arrow-label">import</text>
+
+      <rect x="310" y="10" width="280" height="70" rx="2" fill="#fef08a" stroke="#000" stroke-width="2"/>
+      <text x="450" y="32" text-anchor="middle" class="arrow-label" font-weight="700">Componentes React</text>
+      <text x="450" y="50" text-anchor="middle" class="arrow-label">Sidebar · Projects · About · Resume · Contact</text>
+      <text x="450" y="66" text-anchor="middle" class="arrow-label">+ estado local (filtros, modal, form)</text>
+
+      <line x1="590" y1="45" x2="720" y2="45" class="arrow-line"/>
+      <text x="655" y="38" text-anchor="middle" class="arrow-label">props / render</text>
+
+      <rect x="720" y="20" width="160" height="50" rx="2" fill="#bae6fd" stroke="#000" stroke-width="2"/>
+      <text x="800" y="42" text-anchor="middle" class="arrow-label" font-weight="700">UI (pantallas)</text>
+      <text x="800" y="58" text-anchor="middle" class="arrow-label">4 pestañas SPA</text>
+    </svg>
+
+    <div class="flow-wrap">
+      <div class="flow">
+
+        <!-- Columna izquierda: datos -->
+        <div class="box">
+          <div class="box-title">📦 src/data.ts</div>
+          <ul>
+            <li><code>VALERIA_PROFILE</code></li>
+            <li><code>CORE_SKILLS</code></li>
+            <li><code>PROJECTS</code> (3 casos)</li>
+            <li><code>EXPERIENCE_HISTORY</code></li>
+            <li><code>EDUCATION_HISTORY</code></li>
+            <li><code>METHODOLOGIES</code></li>
+            <li><code>DESIGN_TOOLS</code></li>
+          </ul>
+        </div>
+
+        <!-- Centro: pantallas -->
+        <div class="screens">
+
+          <div class="screen">
+            <div class="screen-bar">
+              <span class="dots"><span></span><span></span><span></span></span>
+              <span>WORK · activeTab = 'work'</span>
+            </div>
+            <div class="screen-body">
+              <strong>Trabajos destacados</strong>
+              Layout 2 columnas: Sidebar (33%) + Projects (67%)
+              <div class="comps">
+                ← Sidebar: <code>VALERIA_PROFILE</code>, <code>CORE_SKILLS</code><br>
+                ← Projects: <code>PROJECTS</code> → filtro local → modal case study (challenge, process, metrics)
+              </div>
+            </div>
+          </div>
+
+          <div class="screen">
+            <div class="screen-bar">
+              <span class="dots"><span></span><span></span><span></span></span>
+              <span>ABOUT · activeTab = 'about'</span>
+            </div>
+            <div class="screen-body">
+              <strong>Sobre mí</strong>
+              <div class="comps">
+                ← <code>VALERIA_PROFILE.aboutDetailed</code>, avatar, location<br>
+                ← <code>METHODOLOGIES</code>, <code>DESIGN_TOOLS</code><br>
+                + valores hardcoded en el componente
+              </div>
+            </div>
+          </div>
+
+          <div class="screen">
+            <div class="screen-bar">
+              <span class="dots"><span></span><span></span><span></span></span>
+              <span>RESUME · activeTab = 'resume'</span>
+            </div>
+            <div class="screen-body">
+              <strong>CV / Resumen profesional</strong>
+              <div class="comps">
+                ← <code>EXPERIENCE_HISTORY</code>, <code>EDUCATION_HISTORY</code><br>
+                ← <code>VALERIA_PROFILE</code>, <code>CORE_SKILLS</code><br>
+                → <code>window.print()</code> (sin backend)
+              </div>
+            </div>
+          </div>
+
+          <div class="screen">
+            <div class="screen-bar">
+              <span class="dots"><span></span><span></span><span></span></span>
+              <span>CONTACT · activeTab = 'contact'</span>
+            </div>
+            <div class="screen-body">
+              <strong>Contacto y agendamiento</strong>
+              <div class="comps">
+                ← <code>VALERIA_PROFILE</code> (email, socials, location)<br>
+                + estado local: formData, selectedDate/Time → simulación (setTimeout, sin API)
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Columna derecha: estado App -->
+        <div class="box">
+          <div class="box-title">⚙️ App.tsx (estado)</div>
+          <ul>
+            <li><code>activeTab</code><br>
+              <span class="pill yellow">work</span>
+              <span class="pill pink">about</span>
+              <span class="pill cyan">resume</span>
+              <span class="pill mint">contact</span>
+            </li>
+            <li style="margin-top:0.5rem"><code>darkMode</code> → clase <code>dark</code> en &lt;html&gt;</li>
+          </ul>
+          <div style="margin-top:0.75rem;font-size:0.75rem;color:#555">
+            Header recibe <code>activeTab</code> + <code>setActiveTab</code> y cambia la vista con <code>switch</code> + animaciones motion/react
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#a7f3d0"></div> Datos estáticos</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#fef08a"></div> Componentes / lógica</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#bae6fd"></div> Pantallas renderizadas</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#fbcfe8"></div> Estado local (UI)</div>
+    </div>
+  </section>
+
+  <!-- ═══ TABLA MAPEO ═══ -->
+  <section>
+    <h2>3. Mapa dato → componente</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Constante en data.ts</th>
+          <th>Consumida por</th>
+          <th>Qué muestra</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>VALERIA_PROFILE</code></td>
+          <td>Sidebar, About, Resume, Contact, Header (avatar)</td>
+          <td>Nombre, título, bio, email, avatar, redes, ubicación</td>
+        </tr>
+        <tr>
+          <td><code>CORE_SKILLS</code></td>
+          <td>Sidebar, Resume</td>
+          <td>Badges de habilidades (Figma, Research, Design Systems…)</td>
+        </tr>
+        <tr>
+          <td><code>PROJECTS</code></td>
+          <td>Projects</td>
+          <td>3 case studies (FinDash, Vitality, Lumina) con filtro y modal detallado</td>
+        </tr>
+        <tr>
+          <td><code>EXPERIENCE_HISTORY</code></td>
+          <td>Resume</td>
+          <td>Línea de tiempo laboral (NovaPay, Curando, Arise)</td>
+        </tr>
+        <tr>
+          <td><code>EDUCATION_HISTORY</code></td>
+          <td>Resume</td>
+          <td>Formación académica (IxDF, universidad)</td>
+        </tr>
+        <tr>
+          <td><code>METHODOLOGIES</code> · <code>DESIGN_TOOLS</code></td>
+          <td>About</td>
+          <td>Listas de metodologías y stack de herramientas</td>
+        </tr>
+        <tr>
+          <td><em>(estado local, sin data.ts)</em></td>
+          <td>Contact, Projects, Header</td>
+          <td>Formulario simulado, calendario mock, filtro/modal de proyectos, menú móvil, dark mode</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    Archivo generado para revisión visual · No forma parte del código fuente del portafolio · Abrir con doble clic en el navegador.
+  </footer>
+
+</body>
+</html>

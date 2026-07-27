@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Build outputs
+build/
+dist/
+coverage/
+
+# OS / logs
+.DS_Store
+*.log
+
+# Local tooling (embedded Node used by agent)
+.tools/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

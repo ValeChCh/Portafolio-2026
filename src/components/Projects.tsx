@@ -1,0 +1,294 @@
+import { useState } from 'react';
+import { PROJECTS } from '../data';
+import { Project } from '../types';
+import { ArrowRight, Eye, Sparkles, Trophy, Settings, ChevronRight, X, Calendar } from 'lucide-react';
+
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [filter, setFilter] = useState<string>('All');
+
+  // Gather all unique categories
+  const categories = ['All', 'Fintech', 'Health', 'E-Commerce'];
+
+  const filteredProjects = filter === 'All' 
+    ? PROJECTS 
+    : PROJECTS.filter(p => p.category === filter);
+
+  return (
+    <div className="space-y-10 py-2 md:py-6" id="projects-section-container">
+      {/* Header and Filter Buttons */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4" id="projects-header-group">
+        <h2 className="font-display text-3xl font-black tracking-tight text-black dark:text-white flex items-center space-x-2" id="featured-title">
+          <span className="bg-[#fef08a] text-black px-3 py-1 rounded-full border-2 border-black text-sm font-mono">01</span>
+          <span>Trabajos destacados</span>
+        </h2>
+        
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-2" id="filter-tabs">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider transition-all cursor-pointer border-2 border-black ${
+                filter === cat
+                  ? 'bg-[#fef08a] text-black dark:bg-amber-400 dark:text-black'
+                  : 'bg-white hover:bg-slate-100 text-black dark:bg-slate-800 dark:text-white dark:border-white'
+              }`}
+              id={`filter-btn-${cat.toLowerCase()}`}
+            >
+              {cat === 'All' ? 'Todos' : cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Projects List */}
+      <div className="space-y-12" id="projects-list">
+        {filteredProjects.map((project, idx) => (
+          <div key={project.id} id={`project-wrapper-${project.id}`}>
+            {/* CTA button positioned after the second project card */}
+            {idx === 1 && filter === 'All' && (
+              <div className="flex justify-start my-8 no-print" id="middle-cta-container">
+                <button
+                  onClick={() => setFilter('All')}
+                  className="neo-btn-primary"
+                  id="middle-cta-btn"
+                >
+                  <span>Ver todos los proyectos</span>
+                  <ArrowRight size={18} />
+                </button>
+              </div>
+            )}
+
+            {/* Project Card as Window Frame */}
+            <div 
+              className="neo-window group flex flex-col"
+              id={`project-card-${project.id}`}
+            >
+              {/* Retro Window Bar */}
+              <div className="neo-window-bar">
+                <div className="flex space-x-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
+                </div>
+                <span className="truncate">{project.title.toUpperCase()} // CASE_STUDY.PDF</span>
+                <span className="font-mono text-[10px] bg-black text-white px-2 py-0.5 rounded-full">{project.category}</span>
+              </div>
+
+              {/* Image Container with Hover Zoom & Action Overlay */}
+              <div 
+                className="relative aspect-16/10 w-full overflow-hidden bg-slate-100 dark:bg-slate-900 cursor-pointer border-b-2 border-black dark:border-white"
+                onClick={() => setSelectedProject(project)}
+                id={`project-img-container-${project.id}`}
+              >
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-102"
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Overlay on Hover */}
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="bg-[#fef08a] text-black border-2 border-black px-5 py-2.5 rounded-full font-display text-xs font-black flex items-center space-x-2">
+                    <Eye size={16} />
+                    <span>Ver Caso Completo</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Text / Data Details */}
+              <div className="p-6 md:p-8 space-y-4" id={`project-info-${project.id}`}>
+                {/* Tag Badges */}
+                <div className="flex flex-wrap gap-2" id={`project-tags-${project.id}`}>
+                  {project.tags.map((tag, tIdx) => {
+                    const tagColors = ['bg-[#fbcfe8]', 'bg-[#bae6fd]', 'bg-[#a7f3d0]', 'bg-[#e9d5ff]'];
+                    const tagBg = tagColors[tIdx % tagColors.length];
+                    return (
+                      <span
+                        key={tIdx}
+                        className={`neo-pill ${tagBg}`}
+                        id={`project-tag-${project.id}-${tIdx}`}
+                      >
+                        {tag}
+                      </span>
+                    );
+                  })}
+                </div>
+
+                {/* Title */}
+                <h3 
+                  className="font-display text-2xl font-black text-black dark:text-white hover:text-amber-500 transition-colors cursor-pointer inline-block leading-tight tracking-tight"
+                  onClick={() => setSelectedProject(project)}
+                  id={`project-title-${project.id}`}
+                >
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="font-sans text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-200" id={`project-desc-${project.id}`}>
+                  {project.description}
+                </p>
+
+                {/* Interactive Detail Link */}
+                <div className="pt-2" id={`project-action-row-${project.id}`}>
+                  <button
+                    onClick={() => setSelectedProject(project)}
+                    className="neo-btn-secondary"
+                    id={`project-details-btn-${project.id}`}
+                  >
+                    <span>Explorar caso de estudio completo</span>
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Detail Modal Component */}
+      {selectedProject && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
+          onClick={() => setSelectedProject(null)}
+          id="project-detail-modal"
+        >
+          <div 
+            className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-2xl border-2 border-black dark:border-white my-8 overflow-hidden max-h-[90vh] flex flex-col animate-scale-up"
+            onClick={(e) => e.stopPropagation()}
+            id="modal-content"
+          >
+            {/* Modal Window Header */}
+            <div className="neo-window-bar sticky top-0 bg-slate-100 dark:bg-slate-800 z-10">
+              <div className="flex space-x-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block cursor-pointer" onClick={() => setSelectedProject(null)} />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
+              </div>
+              <span className="font-bold truncate">{selectedProject.title.toUpperCase()} - CASE_STUDY.WINDOW</span>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="rounded-full bg-black text-white p-1 hover:bg-red-500 transition-colors"
+                id="modal-close-btn"
+                aria-label="Cerrar modal"
+              >
+                <X size={14} />
+              </button>
+            </div>
+
+            {/* Modal Body (Scrollable) */}
+            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8" id="modal-body">
+              {/* Image & Key metrics layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" id="modal-grid-top">
+                <div className="lg:col-span-2 overflow-hidden rounded-xl border-2 border-black dark:border-white" id="modal-hero-img-wrapper">
+                  <img
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className="w-full h-auto object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                
+                {/* Meta details & KPIs */}
+                <div className="space-y-6 flex flex-col justify-between" id="modal-project-meta">
+                  <div className="space-y-4">
+                    <div>
+                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">Mi Rol</span>
+                      <span className="text-sm font-bold text-black dark:text-white bg-[#fef08a] dark:text-black border-2 border-black px-3 py-1 rounded-full inline-block">{selectedProject.role}</span>
+                    </div>
+                    <div>
+                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">Especialidades</span>
+                      <div className="flex flex-wrap gap-1.5 mt-1">
+                        {selectedProject.tags.map((tag, idx) => (
+                          <span key={idx} className="neo-pill bg-[#bae6fd]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Metrics Box */}
+                  {selectedProject.metrics && (
+                    <div className="rounded-xl bg-[#a7f3d0] border-2 border-black p-4 space-y-3 text-black" id="modal-metrics-box">
+                      <div className="flex items-center space-x-2 text-black">
+                        <Trophy size={18} />
+                        <span className="text-xs font-black uppercase tracking-wider">Resultados Medibles</span>
+                      </div>
+                      <div className="grid grid-cols-3 gap-2" id="metrics-grid">
+                        {selectedProject.metrics.map((metric, mIdx) => (
+                          <div key={mIdx} className="text-center bg-white border border-black rounded-lg p-1.5" id={`metric-cell-${mIdx}`}>
+                            <span className="block text-lg font-black text-black">{metric.value}</span>
+                            <span className="text-[10px] font-bold text-slate-700 leading-tight block">{metric.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* El Desafío */}
+              <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#fbcfe8] text-black" id="modal-challenge-section">
+                <h4 className="font-display text-lg font-black flex items-center space-x-2">
+                  <span>★ El Desafío / El Problema</span>
+                </h4>
+                <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
+                  {selectedProject.challenge}
+                </p>
+              </div>
+
+              {/* El Proceso */}
+              <div className="space-y-4" id="modal-process-section">
+                <h4 className="font-display text-lg font-black text-black dark:text-white">
+                  Metodología y Proceso de Diseño
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4" id="process-grid">
+                  {selectedProject.process.map((step, sIdx) => (
+                    <div key={sIdx} className="flex space-x-3 p-4 rounded-xl border-2 border-black bg-white dark:bg-slate-800 dark:border-white" id={`process-step-${sIdx}`}>
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#fef08a] border-2 border-black text-black text-xs font-black">
+                        {sIdx + 1}
+                      </div>
+                      <p className="text-xs md:text-sm font-semibold text-black dark:text-slate-100 leading-relaxed">
+                        {step}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* La Solución */}
+              <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#bae6fd] text-black" id="modal-solution-section">
+                <h4 className="font-display text-lg font-black flex items-center space-x-2">
+                  <span>✔ La Solución / Propuesta de Valor</span>
+                </h4>
+                <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
+                  {selectedProject.solution}
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t-2 border-black px-6 py-4 bg-slate-100 dark:bg-slate-800 flex items-center justify-between" id="modal-footer">
+              <span className="text-xs font-mono font-bold text-black dark:text-white">
+                VALERIA UX • {selectedProject.title}
+              </span>
+              <button
+                onClick={() => {
+                  setSelectedProject(null);
+                }}
+                className="neo-btn-black"
+                id="modal-cta-btn"
+              >
+                <span>Cerrar Vista</span>
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
