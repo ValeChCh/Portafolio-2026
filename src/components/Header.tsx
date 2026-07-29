@@ -43,7 +43,7 @@ export default function Header({ activeTab, setActiveTab, darkMode, setDarkMode 
             <span className="h-3 w-3 rounded-full bg-emerald-400 border border-black inline-block" />
           </div>
           <span className="font-display text-lg font-black tracking-tight text-black dark:text-white group-hover:text-amber-500 transition-colors">
-            Valeria <span className="font-mono text-xs font-normal px-2 py-0.5 rounded-full border border-black bg-[#fef08a] text-black dark:border-white">UX/Product</span>
+            Valeria <span className="font-mono text-xs font-normal px-2 py-0.5 rounded-full border border-black bg-[#fef08a] text-black dark:border-white">Product designer</span>
           </span>
         </div>
 

@@ -5,6 +5,8 @@ export interface Project {
   category: string;
   tags: string[];
   image: string;
+  /** Galería del case study (carrusel del modal). Si falta, se usa `image`. */
+  images?: string[];
   role: string;
   challenge: string;
   process: string[];

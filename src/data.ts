@@ -32,6 +32,11 @@ export const PROJECTS: Project[] = [
     category: "Fintech",
     tags: ["Fintech", "Dashboard"],
     image: "/src/assets/images/findash_global_1784586264509.jpg",
+    images: [
+      "/src/assets/images/findash_global_1784586264509.jpg",
+      "/src/assets/images/vitality_tracker_1784586273218.jpg",
+      "/src/assets/images/lumina_store_1784586282264.jpg"
+    ],
     role: "Líder de Diseño de Producto",
     challenge: "Los analistas financieros pasaban más de 25 minutos intentando compilar informes debido a una interfaz fragmentada y confusa. La plataforma original carecía de personalización y no era responsiva, lo que provocaba una tasa de abandono alta.",
     process: [
@@ -60,6 +65,11 @@ export const PROJECTS: Project[] = [
     category: "Health",
     tags: ["Health", "Mobile App"],
     image: "/src/assets/images/vitality_tracker_1784586273218.jpg",
+    images: [
+      "/src/assets/images/vitality_tracker_1784586273218.jpg",
+      "/src/assets/images/findash_global_1784586264509.jpg",
+      "/src/assets/images/lumina_store_1784586282264.jpg"
+    ],
     role: "Senior Product Designer",
     challenge: "Los usuarios que descargaban la app a menudo la abandonaban durante el primer día. El flujo de registro era demasiado largo y pedía datos de salud delicados sin explicar el valor añadido, generando desconfianza.",
     process: [
@@ -87,6 +97,11 @@ export const PROJECTS: Project[] = [
     category: "E-Commerce",
     tags: ["E-Commerce", "Web"],
     image: "/src/assets/images/lumina_store_1784586282264.jpg",
+    images: [
+      "/src/assets/images/lumina_store_1784586282264.jpg",
+      "/src/assets/images/findash_global_1784586264509.jpg",
+      "/src/assets/images/vitality_tracker_1784586273218.jpg"
+    ],
     role: "Lead UX/UI Designer",
     challenge: "Lumina, una marca de iluminación y mobiliario de alta gama, tenía visitas abundantes pero una tasa de conversión baja en móviles. El proceso de pago requería rellenar demasiados campos obligatorios en páginas sucesivas lentas.",
     process: [
