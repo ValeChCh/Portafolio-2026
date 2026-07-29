@@ -1,6 +1,39 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Calendar, ArrowRight, Sparkles } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Mail, MapPin, Send, CheckCircle, Clock, Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { VALERIA_PROFILE } from '../data';
+
+const WEEKDAYS = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+const MONTH_NAMES = [
+  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+];
+
+/** Horarios cada hora de 10:00 a 16:00 */
+const AVAILABLE_TIMES = [
+  '10:00 AM',
+  '11:00 AM',
+  '12:00 PM',
+  '01:00 PM',
+  '02:00 PM',
+  '03:00 PM',
+  '04:00 PM'
+];
+
+function toDateKey(year: number, month: number, day: number) {
+  return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+function formatDateLabel(dateKey: string) {
+  const [y, m, d] = dateKey.split('-').map(Number);
+  const date = new Date(y, m - 1, d);
+  const weekday = WEEKDAYS[(date.getDay() + 6) % 7]; // Mon-first index
+  return `${weekday} ${d} de ${MONTH_NAMES[m - 1]} ${y}`;
+}
+
+function startOfToday() {
+  const n = new Date();
+  return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,10 +45,61 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Simulated calendar picker
+  // Simulated calendar picker — month view
+  const today = useMemo(() => startOfToday(), []);
+  const [viewYear, setViewYear] = useState(today.getFullYear());
+  const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isCallBooked, setIsCallBooked] = useState(false);
+
+  const calendarCells = useMemo(() => {
+    const first = new Date(viewYear, viewMonth, 1);
+    // Monday-first offset: Sun=0 → 6, Mon=1 → 0, ...
+    const startPad = (first.getDay() + 6) % 7;
+    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+    const cells: Array<{ day: number | null; key: string | null; disabled: boolean }> = [];
+
+    for (let i = 0; i < startPad; i++) {
+      cells.push({ day: null, key: null, disabled: true });
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(viewYear, viewMonth, day);
+      const dow = date.getDay(); // 0 Sun … 6 Sat
+      const isWeekend = dow === 0 || dow === 6;
+      const isPast = date < today;
+      cells.push({
+        day,
+        key: toDateKey(viewYear, viewMonth, day),
+        disabled: isWeekend || isPast
+      });
+    }
+
+    while (cells.length % 7 !== 0) {
+      cells.push({ day: null, key: null, disabled: true });
+    }
+
+    return cells;
+  }, [viewYear, viewMonth, today]);
+
+  const goPrevMonth = () => {
+    if (viewMonth === 0) {
+      setViewMonth(11);
+      setViewYear((y) => y - 1);
+    } else {
+      setViewMonth((m) => m - 1);
+    }
+  };
+
+  const goNextMonth = () => {
+    if (viewMonth === 11) {
+      setViewMonth(0);
+      setViewYear((y) => y + 1);
+    } else {
+      setViewMonth((m) => m + 1);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -39,16 +123,10 @@ export default function Contact() {
     setIsCallBooked(true);
   };
 
-  const availableDates = [
-    { dayName: "Lun", dayNum: "27", fullDate: "Lunes, 27 de Julio" },
-    { dayName: "Mar", dayNum: "28", fullDate: "Martes, 28 de Julio" },
-    { dayName: "Mié", dayNum: "29", fullDate: "Miércoles, 29 de Julio" },
-    { dayName: "Jue", dayNum: "30", fullDate: "Jueves, 30 de Julio" },
-    { dayName: "Vie", dayNum: "31", fullDate: "Viernes, 31 de Julio" }
-  ];
-
-  const availableTimes = ["09:00 AM", "11:00 AM", "02:00 PM", "04:00 PM"];
-
+  const selectDate = (key: string) => {
+    setSelectedDate(key);
+    setSelectedTime(null);
+  };
   return (
     <div className="space-y-12 py-2 md:py-6" id="contact-section-container">
       {/* Intro info */}
@@ -211,7 +289,7 @@ export default function Contact() {
                   <p className="text-[11px] font-medium leading-relaxed">
                     Agendado para: <br />
                     <strong className="text-black font-black underline">
-                      {availableDates.find(d => d.dayNum === selectedDate)?.fullDate} a las {selectedTime}
+                      {selectedDate ? formatDateLabel(selectedDate) : ''} a las {selectedTime}
                     </strong>
                   </p>
                   <p className="text-[10px] font-mono italic">Te hemos enviado la invitación de calendario y enlace Meet.</p>
@@ -229,38 +307,97 @@ export default function Contact() {
                 </div>
               ) : (
                 <div className="space-y-4 mt-3" id="booking-picker">
-                  {/* Day selector */}
-                  <div className="space-y-1.5" id="date-picker-group">
-                    <span className="text-[11px] font-black text-black dark:text-white uppercase tracking-wider">1. Selecciona Fecha (Julio 2026)</span>
-                    <div className="grid grid-cols-5 gap-1.5" id="days-grid">
-                      {availableDates.map((date) => (
+                  {/* Month calendar */}
+                  <div className="space-y-2" id="date-picker-group">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-black text-black dark:text-white uppercase tracking-wider">
+                        1. Selecciona Fecha
+                      </span>
+                      <div className="flex items-center gap-1" id="month-nav">
                         <button
-                          key={date.dayNum}
-                          onClick={() => setSelectedDate(date.dayNum)}
-                          className={`flex flex-col items-center justify-center p-2 rounded-xl border-2 border-black text-center transition-all cursor-pointer ${
-                            selectedDate === date.dayNum
-                              ? 'bg-[#fef08a] text-black'
-                              : 'bg-white hover:bg-slate-100 text-black dark:bg-slate-800 dark:text-white dark:border-white'
-                          }`}
-                          id={`date-btn-${date.dayNum}`}
+                          type="button"
+                          onClick={goPrevMonth}
+                          className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 dark:bg-slate-800 dark:text-white dark:border-white cursor-pointer"
+                          aria-label="Mes anterior"
+                          id="calendar-prev-month"
                         >
-                          <span className={`text-[9px] uppercase font-bold ${selectedDate === date.dayNum ? 'text-black' : 'text-slate-500 dark:text-slate-400'}`}>
-                            {date.dayName}
-                          </span>
-                          <span className="text-sm font-black mt-0.5">{date.dayNum}</span>
+                          <ChevronLeft size={14} strokeWidth={2.5} />
                         </button>
-                      ))}
+                        <span className="min-w-[7.5rem] text-center text-[11px] font-black uppercase tracking-wider text-black dark:text-white">
+                          {MONTH_NAMES[viewMonth]} {viewYear}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={goNextMonth}
+                          className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 dark:bg-slate-800 dark:text-white dark:border-white cursor-pointer"
+                          aria-label="Mes siguiente"
+                          id="calendar-next-month"
+                        >
+                          <ChevronRight size={14} strokeWidth={2.5} />
+                        </button>
+                      </div>
                     </div>
+
+                    <div className="rounded-xl border-2 border-black bg-white dark:bg-slate-800 dark:border-white p-2" id="month-calendar">
+                      <div className="grid grid-cols-7 gap-1 mb-1" id="weekday-headers">
+                        {WEEKDAYS.map((wd) => (
+                          <span
+                            key={wd}
+                            className="text-center text-[9px] font-black uppercase text-slate-500 dark:text-slate-400 py-1"
+                          >
+                            {wd}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-7 gap-1" id="days-grid">
+                        {calendarCells.map((cell, idx) => {
+                          if (cell.day === null || !cell.key) {
+                            return <div key={`empty-${idx}`} className="aspect-square" />;
+                          }
+
+                          const isSelected = selectedDate === cell.key;
+                          const isToday =
+                            cell.key === toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
+
+                          return (
+                            <button
+                              key={cell.key}
+                              type="button"
+                              disabled={cell.disabled}
+                              onClick={() => selectDate(cell.key!)}
+                              className={`aspect-square rounded-lg border-2 text-[11px] font-black transition-colors ${
+                                cell.disabled
+                                  ? 'border-transparent text-slate-300 dark:text-slate-600 cursor-not-allowed'
+                                  : isSelected
+                                    ? 'border-black bg-[#fef08a] text-black cursor-pointer'
+                                    : 'border-black bg-white text-black hover:bg-slate-100 dark:bg-slate-900 dark:text-white dark:border-white dark:hover:bg-slate-700 cursor-pointer'
+                              } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
+                              id={`date-btn-${cell.key}`}
+                              aria-label={formatDateLabel(cell.key)}
+                              aria-pressed={isSelected}
+                            >
+                              {cell.day}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <p className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                      Disponible lun–vie · fines de semana bloqueados
+                    </p>
                   </div>
 
-                  {/* Time selector */}
+                  {/* Time selector 10am–4pm */}
                   {selectedDate && (
                     <div className="space-y-1.5 animate-fade-in" id="time-picker-group">
-                      <span className="text-[11px] font-black text-black dark:text-white uppercase tracking-wider">2. Selecciona Hora (UTC-4)</span>
-                      <div className="grid grid-cols-2 gap-2" id="times-grid">
-                        {availableTimes.map((time) => (
+                      <span className="text-[11px] font-black text-black dark:text-white uppercase tracking-wider">
+                        2. Selecciona Hora (UTC-4) · 10:00–16:00
+                      </span>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" id="times-grid">
+                        {AVAILABLE_TIMES.map((time) => (
                           <button
                             key={time}
+                            type="button"
                             onClick={() => setSelectedTime(time)}
                             className={`px-3 py-1.5 rounded-xl border-2 border-black text-center text-xs font-black transition-colors cursor-pointer ${
                               selectedTime === time

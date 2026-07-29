@@ -18,7 +18,7 @@ export default function Sidebar() {
         {/* Intro info */}
         <div className="space-y-4">
           <span className="neo-pill bg-[#fef08a] text-black">
-            UX / Product Designer
+            Product designer
           </span>
           <h1 className="font-display text-4xl font-black tracking-tight text-black dark:text-white md:text-5xl leading-[1.1]" id="intro-greeting">
             Hola, <br className="hidden md:inline" />

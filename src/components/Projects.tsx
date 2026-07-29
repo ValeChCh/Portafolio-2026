@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { PROJECTS } from '../data';
 import { Project } from '../types';
-import { ArrowRight, Eye, Sparkles, Trophy, Settings, ChevronRight, X, Calendar } from 'lucide-react';
+import { ArrowRight, Eye, Sparkles, Trophy, Settings, ChevronRight, ChevronLeft, X, Calendar } from 'lucide-react';
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<string>('All');
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Gather all unique categories
   const categories = ['All', 'Fintech', 'Health', 'E-Commerce'];
@@ -13,6 +14,20 @@ export default function Projects() {
   const filteredProjects = filter === 'All' 
     ? PROJECTS 
     : PROJECTS.filter(p => p.category === filter);
+
+  const openProject = (project: Project) => {
+    setCarouselIndex(0);
+    setSelectedProject(project);
+  };
+
+  const gallery = selectedProject
+    ? (selectedProject.images?.length ? selectedProject.images : [selectedProject.image])
+    : [];
+
+  const goToSlide = (index: number) => {
+    if (!gallery.length) return;
+    setCarouselIndex((index + gallery.length) % gallery.length);
+  };
 
   return (
     <div className="space-y-10 py-2 md:py-6" id="projects-section-container">
@@ -44,22 +59,8 @@ export default function Projects() {
 
       {/* Projects List */}
       <div className="space-y-12" id="projects-list">
-        {filteredProjects.map((project, idx) => (
+        {filteredProjects.map((project) => (
           <div key={project.id} id={`project-wrapper-${project.id}`}>
-            {/* CTA button positioned after the second project card */}
-            {idx === 1 && filter === 'All' && (
-              <div className="flex justify-start my-8 no-print" id="middle-cta-container">
-                <button
-                  onClick={() => setFilter('All')}
-                  className="neo-btn-primary"
-                  id="middle-cta-btn"
-                >
-                  <span>Ver todos los proyectos</span>
-                  <ArrowRight size={18} />
-                </button>
-              </div>
-            )}
-
             {/* Project Card as Window Frame */}
             <div 
               className="neo-window group flex flex-col"
@@ -79,7 +80,7 @@ export default function Projects() {
               {/* Image Container with Hover Zoom & Action Overlay */}
               <div 
                 className="relative aspect-16/10 w-full overflow-hidden bg-slate-100 dark:bg-slate-900 cursor-pointer border-b-2 border-black dark:border-white"
-                onClick={() => setSelectedProject(project)}
+                onClick={() => openProject(project)}
                 id={`project-img-container-${project.id}`}
               >
                 <img
@@ -120,7 +121,7 @@ export default function Projects() {
                 {/* Title */}
                 <h3 
                   className="font-display text-2xl font-black text-black dark:text-white hover:text-amber-500 transition-colors cursor-pointer inline-block leading-tight tracking-tight"
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => openProject(project)}
                   id={`project-title-${project.id}`}
                 >
                   {project.title}
@@ -134,7 +135,7 @@ export default function Projects() {
                 {/* Interactive Detail Link */}
                 <div className="pt-2" id={`project-action-row-${project.id}`}>
                   <button
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => openProject(project)}
                     className="neo-btn-secondary"
                     id={`project-details-btn-${project.id}`}
                   >
@@ -180,20 +181,74 @@ export default function Projects() {
 
             {/* Modal Body (Scrollable) */}
             <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8" id="modal-body">
-              {/* Image & Key metrics layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" id="modal-grid-top">
-                <div className="lg:col-span-2 overflow-hidden rounded-xl border-2 border-black dark:border-white" id="modal-hero-img-wrapper">
+              {/* Image & Key metrics layout (stacked: meta below image) */}
+              <div className="flex flex-col gap-6" id="modal-grid-top">
+                <div
+                  className="relative overflow-hidden rounded-xl border-2 border-black dark:border-white group/carousel"
+                  id="modal-hero-img-wrapper"
+                >
                   <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-auto object-cover"
+                    key={gallery[carouselIndex]}
+                    src={gallery[carouselIndex]}
+                    alt={`${selectedProject.title} — captura ${carouselIndex + 1}`}
+                    className="w-full aspect-[16/10] object-cover"
                     referrerPolicy="no-referrer"
                   />
+
+                  {gallery.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => goToSlide(carouselIndex - 1)}
+                        className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] text-black hover:bg-[#fde047] transition-colors cursor-pointer"
+                        aria-label="Imagen anterior"
+                        id="carousel-prev-btn"
+                      >
+                        <ChevronLeft size={18} strokeWidth={2.5} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => goToSlide(carouselIndex + 1)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] text-black hover:bg-[#fde047] transition-colors cursor-pointer"
+                        aria-label="Imagen siguiente"
+                        id="carousel-next-btn"
+                      >
+                        <ChevronRight size={18} strokeWidth={2.5} />
+                      </button>
+
+                      <div
+                        className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2"
+                        id="carousel-dots"
+                      >
+                        {gallery.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => goToSlide(idx)}
+                            aria-label={`Ir a captura ${idx + 1}`}
+                            className={`h-2.5 rounded-full border-2 border-black transition-all cursor-pointer ${
+                              idx === carouselIndex
+                                ? 'w-6 bg-[#fef08a]'
+                                : 'w-2.5 bg-white hover:bg-slate-200'
+                            }`}
+                            id={`carousel-dot-${idx}`}
+                          />
+                        ))}
+                      </div>
+
+                      <span
+                        className="absolute top-3 right-3 font-mono text-[10px] font-bold border-2 border-black bg-white text-black px-2 py-0.5 rounded-full"
+                        id="carousel-counter"
+                      >
+                        {carouselIndex + 1} / {gallery.length}
+                      </span>
+                    </>
+                  )}
                 </div>
                 
-                {/* Meta details & KPIs */}
-                <div className="space-y-6 flex flex-col justify-between" id="modal-project-meta">
-                  <div className="space-y-4">
+                {/* Meta details & KPIs — below image */}
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6" id="modal-project-meta">
+                  <div className="space-y-4 shrink-0">
                     <div>
                       <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">Mi Rol</span>
                       <span className="text-sm font-bold text-black dark:text-white bg-[#fef08a] dark:text-black border-2 border-black px-3 py-1 rounded-full inline-block">{selectedProject.role}</span>
@@ -212,7 +267,7 @@ export default function Projects() {
 
                   {/* Metrics Box */}
                   {selectedProject.metrics && (
-                    <div className="rounded-xl bg-[#a7f3d0] border-2 border-black p-4 space-y-3 text-black" id="modal-metrics-box">
+                    <div className="rounded-xl bg-[#a7f3d0] border-2 border-black p-4 space-y-3 text-black w-full md:max-w-md" id="modal-metrics-box">
                       <div className="flex items-center space-x-2 text-black">
                         <Trophy size={18} />
                         <span className="text-xs font-black uppercase tracking-wider">Resultados Medibles</span>
