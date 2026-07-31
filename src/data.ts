@@ -4,9 +4,9 @@ export const VALERIA_PROFILE = {
   name: "Valeria",
   title: "Product Designer",
   email: "Valechchh05@gmail.com",
-  avatar: "/src/assets/images/valeria_avatar_1784586297194.jpg",
+  avatar: "/src/assets/images/valeria_avatar.jpg",
   bio: "Diseñando experiencias digitales intuitivas y sistemas escalables que conectan a las personas con la tecnología de manera significativa.",
-  aboutDetailed: "Soy una diseñadora de producto con más de 5 años de experiencia liderando el diseño de plataformas complejas en sectores como Fintech, TravelTech y E-commerce. Creo firmemente que el buen diseño no solo es estético, sino también altamente funcional, medible y alineado con los objetivos de negocio. Me apasiona simplificar lo complejo, trabajar de la mano con equipos de desarrollo para garantizar una implementación impecable, y validar cada decisión a través de pruebas de usabilidad e investigación cualitativa.",
+  aboutDetailed: "Trabajo especialmente en el aspecto visual y funcional de productos digitales, me gusta aplicar metodologías ágiles para optimizar el desarrollo de los proyectos y así entender los requerimientos de los stakeholder y sobre todo de los usuario. Busco implementar mis ideas en proyectos dinámicos y trabajar con equipos divertidos.",
   location: "Ciudad de México, México (Remoto para todo el mundo)",
   socials: [
     { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
@@ -128,34 +128,33 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCE_HISTORY: Experience[] = [
   {
     id: "exp-1",
-    role: "Lead Product Designer",
-    company: "NovaPay Fintech",
+    role: "Senior Product Designer",
+    company: "BBVA",
     duration: "2024 - Presente",
     description: [
-      "Lidero el diseño de la plataforma web B2B de pagos internacionales y la app móvil de finanzas personales.",
-      "Colaboro estrechamente con ingenieros, gerentes de producto y directivos para conceptualizar, diseñar y validar soluciones escalables.",
-      "Creé y mantengo el sistema de diseño corporativo 'Nova UI', reduciendo el tiempo de desarrollo frontend en un 35%."
+      "Diseñé 2 flujos principales dentro del crédito de la banca mayorísta para ejecutivos de cuenta dentro del banco, para migrar procesos manuales a plataformas conectadas entre sí para reducir los procesos en un 50%.",
+      "Colaboro estrechamente con ingenieros, gerentes de producto y directivos para conceptualizar, diseñar y validar soluciones escalables dentro de Salesforce como para aplicativos propios del banco."
     ],
     current: true
   },
   {
     id: "exp-2",
-    role: "Senior UX/Product Designer",
-    company: "Curando Health",
+    role: "Senior Product Designer",
+    company: "TS4 Strategy",
     duration: "2022 - 2024",
     description: [
-      "Diseñé interfaces seguras e intuitivas para pacientes y médicos en una de las plataformas de telemedicina más grandes de Latinoamérica.",
-      "Planifiqué y ejecuté más de 40 pruebas de usabilidad moderadas y no moderadas que guiaron decisiones clave de la hoja de ruta de producto.",
-      "Reduje la fricción de agendamiento médico, incrementando las consultas completadas con éxito en un 28%."
+      "Bestel - Colaboré en las primeras etapas con stakeholders para el mapeo de su proceso ASIS y Costumer Journeys detectando áreas de mejora para migrar procesos aislados y desconectados a Salesforce.",
+      "Interceramic- Rediseñé el sitio web detectando mejoras de accesibilidad y destacando el diferenciador que fue llevar la experiencia de tienda a la web aumentándo las visitas al sitio en un 12%.",
+      "Soriana- Diseñé la implementación de nuevos features como el rediseño de las cards, optimización del carrito y seguimiento de envío. Se aumento en un 10% el CSAT."
     ]
   },
   {
     id: "exp-3",
-    role: "UI/UX Designer",
-    company: "Arise E-Commerce Studio",
+    role: "Product Designer",
+    company: "Shuttle Central",
     duration: "2020 - 2022",
     description: [
-      "Creé experiencias de compra móvil personalizadas para marcas minoristas premium de moda y diseño.",
+      "Diseñé la Web App de reservación aumentando la conversión en un 20%",
       "Desarrollé prototipos de alta fidelidad interactivos de micro-interacciones clave para aumentar el enganche emocional del comprador.",
       "Colaboré en flujos de optimización de conversión (CRO) mediante mapas de calor y grabaciones del comportamiento de los usuarios."
     ]
@@ -180,7 +179,7 @@ export const METHODOLOGIES = [
   "Design Thinking",
   "Lean UX",
   "Agile / Scrum Integration",
-  "A/B Testing & Data-Driven CRO",
+  "A/B Testing",
   "Interactive Prototyping",
   "Heuristic Evaluation",
   "Information Architecture"
@@ -189,8 +188,5 @@ export const METHODOLOGIES = [
 export const DESIGN_TOOLS = [
   "Figma (Pro / Components Master)",
   "Adobe Creative Suite",
-  "Miro / FigJam",
-  "Hotjar / Clarity",
-  "Webflow",
-  "CSS / Tailwind / basic React"
+  "Miro / FigJam"
 ];

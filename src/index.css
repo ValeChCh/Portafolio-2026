@@ -80,6 +80,25 @@
   @apply inline-flex items-center px-3.5 py-1 rounded-full border-[1.5px] border-black text-xs font-extrabold uppercase tracking-wider text-black;
 }
 
+/* Stacked neo-brutalist social icons (LinkedIn / Behance) */
+.neo-social-icon {
+  @apply relative inline-flex h-10 w-10 shrink-0;
+}
+
+.neo-social-icon::before {
+  content: '';
+  @apply absolute inset-0 border-2 border-black bg-white;
+  transform: translate(5px, -5px);
+}
+
+.neo-social-icon > span {
+  @apply relative z-10 flex h-full w-full items-center justify-center border-2 border-black bg-white font-display text-[15px] font-black leading-none text-black transition-transform duration-150;
+}
+
+.neo-social-icon:hover > span {
+  transform: translate(2px, -2px);
+}
+
 /* Custom transitions and scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;
@@ -111,4 +130,18 @@
     max-width: 100% !important;
     padding: 0 !important;
   }
+}
+
+/* Demo Day: reduced motion + visible focus baseline */
+@media (prefers-reduced-motion: reduce) {
+  .demo-day-slide,
+  .demo-day-slide * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+#demo-day-root :focus-visible {
+  outline: 4px solid #000;
+  outline-offset: 3px;
 }

@@ -1,6 +1,6 @@
 # Design System & Decisiones de Diseño (MVP)
 
-**Proyecto**: Portafolio Profesional de Valeria — UX/Product Designer  
+**Proyecto**: Portafolio  
 **Versión**: 2.0 (Neo-Brutalist Pop Editorial)  
 **Fecha**: Julio 2026  
 
@@ -26,7 +26,7 @@ El sitio adopta un estilo de diseño **Neo-Brutalist & Pop Editorial**, inspirad
 - **Bordes y Sombras Desplazadas (**`.bento-card` **&** `.neo-window`**)**:
   - Bordes negros gruesos (`border-1 border-black` en modo claro, `border-1 border-white` en modo oscuro).
 - **Micro-interacciones**:
-  - Botones primarios (`.neo-btn-primary`) en color amarillo vibrante (`#fef08a`) con sombra desplazada negra que responde al hover con mayor relieve (`hover:shadow-[6px_6px_0px_0px_#000]`) y traslación (`hover:-translate-x-0.5 hover:-translate-y-0.5`).
+  - Botones primarios (`.neo-btn-primary`) en color purpura ( #8F9DE2 ) con sombra desplazada negra que responde al hover con mayor relieve (`hover:shadow-[6px_6px_0px_0px_#000]`) y traslación (`hover:-translate-x-0.5 hover:-translate-y-0.5`).
   - Badges o Píldoras (`.neo-pill`) con fondo de tonos Pop pastel/vibrante, borde negro de 1.5px y sombras de 2px.
 
 
@@ -37,7 +37,7 @@ El sitio adopta un estilo de diseño **Neo-Brutalist & Pop Editorial**, inspirad
   - Light Mode: `#f7f5f0` con patrón de puntos radiales `radial-gradient(#000 1px, transparent 1px)` a 12px x 12px.
   - Dark Mode: `#0f1117` con patrón de puntos radiales `radial-gradient(#ffffff 1px, transparent 1px)`.
 - **Colores de Acento Pop (Pills & Cards)**:
-  - **Amarillo Pop (**`#fef08a`**)**: Color primario para botones destacados, etiquetas de introducción y encabezados.
+  - **Lila (**`# #8F9DE2` **)**: Color primario para botones destacados, etiquetas de introducción y encabezados.
   - **Rosa Pop (**`#fbcfe8`**)**: Utilizado para tarjetas de desafíos, formación y avisos destacados.
   - **Cian Pop (**`#bae6fd`**)**: Utilizado para propuestas de solución, especialidades y cajas de éxito.
   - **Menta Pop (**`#a7f3d0`**)**: Utilizado para métricas KPI, badges de estado y metodologías.
