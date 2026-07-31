@@ -26,10 +26,11 @@
 | I2 | Fuente de contenido: `src/data.ts` + tipos en `src/types.ts`. No inventar APIs. |
 | I3 | Tokens visuales en `src/index.css` (`.neo-window`, `.neo-btn-*`, `.neo-pill`, colores `@theme`). |
 | I4 | **Sin `shadow-*`** en UI (decisión 2026-07-26). Bordes 2px + color Pop bastan. |
-| I5 | Dark mode: clase `dark` en `<html>` desde Header. |
+| I5 | Idioma ES/EN vía `LanguageProvider` (`src/i18n/`). Sin dark mode. |
 | I6 | No editar `node_modules/`. No tocar `diagrama-estructura-portfolio.html` salvo pedido. |
 | I7 | Copy/tono/contenido visual de Valeria: humano decide; IA propone, no cierra sin OK. |
 | I8 | Contact form + calendar booking = simulación local (`setTimeout` / state). No backend. |
+| I9 | `/demo-day` es presentación independiente (pathname en `main.tsx`). No usa `activeTab` ni altera el flujo principal. |
 
 ## Orden de lectura (mínimo → máximo)
 
@@ -48,6 +49,7 @@
 | Navegación / tabs / layout app | `src/App.tsx`, `src/components/Header.tsx` |
 | Feature Work / modal case study | `src/components/Projects.tsx`, `Sidebar.tsx` |
 | Contacto / form | `src/components/Contact.tsx` |
+| Demo Day presentación | `src/pages/DemoDay.tsx`, `src/main.tsx` (pathname) |
 | Bug conocido / entorno | `gotchas/README.md` |
 | Decisión histórica | `decisions/` (archivo por fecha) |
 | Continuidad sesión | `logs/` más reciente |

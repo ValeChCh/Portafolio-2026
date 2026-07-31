@@ -14,7 +14,8 @@ ADR con más detalle en `../decisions/`.
 
 - **2026-07 | Neo-Brutalist Pop + window UI** | Diferenciación vs portafolios genéricos. | Clases `.neo-*` en `index.css`.
 - **2026-07-26 | Eliminar todas las sombras (contenedores, botones, pills, inputs)** | Usuario pidió limpieza visual; sombras hard offset saturaban. | Invariante I4. `design.md` raíz puede quedar desactualizado en sección sombras → confiar en este archivo + CSS.
-- **2026-07 | Dark mode vía clase `dark` en html** | Tailwind dark variants. | Header toggle; no localStorage aún (sesión DOM).
+- **2026-07 | Dark mode vía clase `dark` en html** | Tailwind dark variants. | **Reemplazado 2026-07-29** por toggle ES/EN (sin dark mode).
+- **2026-07-29 | Toggle idioma ES↔EN en lugar de dark mode** | Reclutadores bilingües. | `src/i18n/*`; UI + contenido de `data.ts` traducidos; persistencia `localStorage`.
 
 ## Contenido mock
 
@@ -22,7 +23,7 @@ ADR con más detalle en `../decisions/`.
 - Experiencia: NovaPay → Curando → Arise.
 - Perfil: Santiago CL, remoto; email en `VALERIA_PROFILE`.
 
-## Abierto / pendiente de decisión
+- **2026-07-29 | Ruta `/demo-day` sin router** | Demo Day independiente; no deps nuevas. | Pathname en `main.tsx` + `vercel.json`. Ver ADR.
 
 - ¿Persistir dark mode en localStorage?
 - ¿Conectar form real (Formspree/email) o dejar mock?

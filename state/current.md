@@ -1,27 +1,23 @@
-# Estado actual — 2026-07-26
+# Estado actual — 2026-07-29
 
 ## Hecho
 - [x] MVP SPA: Work / About / Resume / Contact
-- [x] Datos mock + 3 case studies + modal
-- [x] Design system neo (ventanas, pills, botones, dark mode)
-- [x] Diagrama HTML aparte (`diagrama-estructura-portfolio.html`)
-- [x] Sombras eliminadas en toda la UI
-- [x] Sistema de memoria persistente (`AGENTS.md` + carpetas)
+- [x] Datos mock + 3 case studies + modal + carrusel
+- [x] Design system neo (sin sombras)
+- [x] Booking: calendario mensual + slots 10–16
+- [x] Sistema de memoria persistente
+- [x] **Ruta `/demo-day`** presentación Interface School (6 slides, teclado ←→)
+- [x] Dark mode eliminado → toggle **ES/EN** (`src/i18n/`)
 
 ## Pendiente
 - [ ] Sincronizar `design.md` raíz con “sin sombras”
-- [ ] Confirmar Node/npm en PATH del usuario (hoy se usa Node embebido de Cursor)
-- [ ] Deploy URL pública (requisito curso D4)
-- [ ] QA mobile + checklist S7
-- [ ] Decidir: form real vs mock permanente
-- [ ] ¿localStorage para dark mode?
+- [ ] Node/npm en PATH del usuario
+- [ ] Agenda calendario real + descarga CV
+- [ ] QA mobile checklist S7
+- [ ] Traducir `/demo-day` si se presenta en inglés
 
 ## Blockers
-- **Entorno:** `npm`/`node` no siempre en PATH del agente → ver `gotchas/README.md` + `skills/dev-server.md`.
-- Servidor Vite puede morir entre sesiones → `ERR_CONNECTION_REFUSED` en :3000 es “server off”, no bug de app.
-
-## Enfoque actual
-Memoria/contexto instalada. Siguiente trabajo típico: pulir UI, contenido real, o deploy.
+- Entorno: Node vía Cursor helpers si npm no está en PATH (`skills/dev-server.md`).
 
 ## Archivos calientes
-`src/App.tsx` · `src/data.ts` · `src/index.css` · `src/components/*`
+`src/pages/DemoDay.tsx` · `src/main.tsx` · `vercel.json` · `src/components/*`

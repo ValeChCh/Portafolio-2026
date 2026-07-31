@@ -11,9 +11,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('work');
-  const [darkMode, setDarkMode] = useState<boolean>(false);
 
-  // Render content based on the active tab
   const renderTabContent = () => {
     switch (activeTab) {
       case 'work':
@@ -27,12 +25,10 @@ export default function App() {
             className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12"
             id="work-tab-content"
           >
-            {/* Left Column: Introducción & Core Skills (33% on large screens) */}
             <aside className="lg:col-span-4 lg:sticky lg:top-24 h-fit" id="left-sidebar-aside">
-              <Sidebar />
+              <Sidebar setActiveTab={setActiveTab} />
             </aside>
 
-            {/* Right Column: Trabajos destacados (67% on large screens) */}
             <main className="lg:col-span-8" id="right-projects-main">
               <Projects />
             </main>
@@ -87,23 +83,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f0f2f5] text-slate-900 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-300" id="portfolio-app-root">
-      {/* Navigation Header */}
-      <Header 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
-        darkMode={darkMode} 
-        setDarkMode={setDarkMode} 
-      />
+    <div className="min-h-screen flex flex-col bg-[#f0f2f5] text-slate-900" id="portfolio-app-root">
+      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      {/* Main Content Area */}
       <div className="flex-grow mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-16" id="main-content-container">
         <AnimatePresence mode="wait">
           {renderTabContent()}
         </AnimatePresence>
       </div>
 
-      {/* Footer copyright and links */}
       <Footer />
     </div>
   );

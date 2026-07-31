@@ -1,24 +1,31 @@
 import { useState } from 'react';
-import { PROJECTS } from '../data';
 import { Project } from '../types';
-import { ArrowRight, Eye, Sparkles, Trophy, Settings, ChevronRight, ChevronLeft, X, Calendar } from 'lucide-react';
+import { useLocalizedContent } from '../i18n/useI18n';
+import { ArrowRight, Eye, Trophy, ChevronRight, ChevronLeft, X } from 'lucide-react';
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const { projects, t } = useLocalizedContent();
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('All');
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Gather all unique categories
   const categories = ['All', 'Fintech', 'Health', 'E-Commerce'];
 
-  const filteredProjects = filter === 'All' 
-    ? PROJECTS 
-    : PROJECTS.filter(p => p.category === filter);
+  const filteredProjects = filter === 'All'
+    ? projects
+    : projects.filter(p => p.category === filter);
+
+  const selectedProject = selectedProjectId
+    ? projects.find(p => p.id === selectedProjectId) ?? null
+    : null;
 
   const openProject = (project: Project) => {
     setCarouselIndex(0);
-    setSelectedProject(project);
+    setSelectedProjectId(project.id);
   };
+
+  const closeProject = () => setSelectedProjectId(null);
 
   const gallery = selectedProject
     ? (selectedProject.images?.length ? selectedProject.images : [selectedProject.image])
@@ -30,16 +37,16 @@ export default function Projects() {
   };
 
   return (
-    <div className="space-y-10 py-2 md:py-6" id="projects-section-container">
+    <div className="space-y-10 pt-0 pb-2 md:pb-6" id="projects-section-container">
       {/* Header and Filter Buttons */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4" id="projects-header-group">
-        <h2 className="font-display text-3xl font-black tracking-tight text-black dark:text-white flex items-center space-x-2" id="featured-title">
-          <span className="bg-[#fef08a] text-black px-3 py-1 rounded-full border-2 border-black text-sm font-mono">01</span>
-          <span>Trabajos destacados</span>
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4" id="projects-header-group">
+        <h2 className="font-display text-3xl font-black tracking-tight text-black dark:text-white flex items-start space-x-2" id="featured-title">
+          <span className="bg-[#fef08a] text-black px-3 py-1 rounded-full border-2 border-black text-sm font-mono shrink-0 mt-1">01</span>
+          <span>{t.featuredWork}</span>
         </h2>
         
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2" id="filter-tabs">
+        <div className="flex flex-wrap gap-2 md:justify-end" id="filter-tabs">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -51,7 +58,7 @@ export default function Projects() {
               }`}
               id={`filter-btn-${cat.toLowerCase()}`}
             >
-              {cat === 'All' ? 'Todos' : cat}
+              {cat === 'All' ? t.filterAll : cat}
             </button>
           ))}
         </div>
@@ -94,7 +101,7 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <div className="bg-[#fef08a] text-black border-2 border-black px-5 py-2.5 rounded-full font-display text-xs font-black flex items-center space-x-2">
                     <Eye size={16} />
-                    <span>Ver Caso Completo</span>
+                    <span>{t.viewFullCase}</span>
                   </div>
                 </div>
               </div>
@@ -139,7 +146,7 @@ export default function Projects() {
                     className="neo-btn-secondary"
                     id={`project-details-btn-${project.id}`}
                   >
-                    <span>Explorar caso de estudio completo</span>
+                    <span>{t.exploreCase}</span>
                     <ChevronRight size={18} />
                   </button>
                 </div>
@@ -153,7 +160,7 @@ export default function Projects() {
       {selectedProject && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
-          onClick={() => setSelectedProject(null)}
+          onClick={() => closeProject()}
           id="project-detail-modal"
         >
           <div 
@@ -164,16 +171,16 @@ export default function Projects() {
             {/* Modal Window Header */}
             <div className="neo-window-bar sticky top-0 bg-slate-100 dark:bg-slate-800 z-10">
               <div className="flex space-x-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block cursor-pointer" onClick={() => setSelectedProject(null)} />
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block cursor-pointer" onClick={() => closeProject()} />
                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
               </div>
               <span className="font-bold truncate">{selectedProject.title.toUpperCase()} - CASE_STUDY.WINDOW</span>
               <button
-                onClick={() => setSelectedProject(null)}
+                onClick={() => closeProject()}
                 className="rounded-full bg-black text-white p-1 hover:bg-red-500 transition-colors"
                 id="modal-close-btn"
-                aria-label="Cerrar modal"
+                aria-label={t.closeModal}
               >
                 <X size={14} />
               </button>
@@ -190,7 +197,7 @@ export default function Projects() {
                   <img
                     key={gallery[carouselIndex]}
                     src={gallery[carouselIndex]}
-                    alt={`${selectedProject.title} — captura ${carouselIndex + 1}`}
+                    alt={t.captureAlt(selectedProject.title, carouselIndex + 1)}
                     className="w-full aspect-[16/10] object-cover"
                     referrerPolicy="no-referrer"
                   />
@@ -201,7 +208,7 @@ export default function Projects() {
                         type="button"
                         onClick={() => goToSlide(carouselIndex - 1)}
                         className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] text-black hover:bg-[#fde047] transition-colors cursor-pointer"
-                        aria-label="Imagen anterior"
+                        aria-label={t.prevImage}
                         id="carousel-prev-btn"
                       >
                         <ChevronLeft size={18} strokeWidth={2.5} />
@@ -210,7 +217,7 @@ export default function Projects() {
                         type="button"
                         onClick={() => goToSlide(carouselIndex + 1)}
                         className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] text-black hover:bg-[#fde047] transition-colors cursor-pointer"
-                        aria-label="Imagen siguiente"
+                        aria-label={t.nextImage}
                         id="carousel-next-btn"
                       >
                         <ChevronRight size={18} strokeWidth={2.5} />
@@ -225,7 +232,7 @@ export default function Projects() {
                             key={idx}
                             type="button"
                             onClick={() => goToSlide(idx)}
-                            aria-label={`Ir a captura ${idx + 1}`}
+                            aria-label={t.goToSlide(idx + 1)}
                             className={`h-2.5 rounded-full border-2 border-black transition-all cursor-pointer ${
                               idx === carouselIndex
                                 ? 'w-6 bg-[#fef08a]'
@@ -250,11 +257,11 @@ export default function Projects() {
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6" id="modal-project-meta">
                   <div className="space-y-4 shrink-0">
                     <div>
-                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">Mi Rol</span>
+                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">{t.myRole}</span>
                       <span className="text-sm font-bold text-black dark:text-white bg-[#fef08a] dark:text-black border-2 border-black px-3 py-1 rounded-full inline-block">{selectedProject.role}</span>
                     </div>
                     <div>
-                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">Especialidades</span>
+                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">{t.specialties}</span>
                       <div className="flex flex-wrap gap-1.5 mt-1">
                         {selectedProject.tags.map((tag, idx) => (
                           <span key={idx} className="neo-pill bg-[#bae6fd]">
@@ -270,7 +277,7 @@ export default function Projects() {
                     <div className="rounded-xl bg-[#a7f3d0] border-2 border-black p-4 space-y-3 text-black w-full md:max-w-md" id="modal-metrics-box">
                       <div className="flex items-center space-x-2 text-black">
                         <Trophy size={18} />
-                        <span className="text-xs font-black uppercase tracking-wider">Resultados Medibles</span>
+                        <span className="text-xs font-black uppercase tracking-wider">{t.measurableResults}</span>
                       </div>
                       <div className="grid grid-cols-3 gap-2" id="metrics-grid">
                         {selectedProject.metrics.map((metric, mIdx) => (
@@ -288,7 +295,7 @@ export default function Projects() {
               {/* El Desafío */}
               <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#fbcfe8] text-black" id="modal-challenge-section">
                 <h4 className="font-display text-lg font-black flex items-center space-x-2">
-                  <span>★ El Desafío / El Problema</span>
+                  <span>{t.challenge}</span>
                 </h4>
                 <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
                   {selectedProject.challenge}
@@ -298,7 +305,7 @@ export default function Projects() {
               {/* El Proceso */}
               <div className="space-y-4" id="modal-process-section">
                 <h4 className="font-display text-lg font-black text-black dark:text-white">
-                  Metodología y Proceso de Diseño
+                  {t.processTitle}
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4" id="process-grid">
                   {selectedProject.process.map((step, sIdx) => (
@@ -317,7 +324,7 @@ export default function Projects() {
               {/* La Solución */}
               <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#bae6fd] text-black" id="modal-solution-section">
                 <h4 className="font-display text-lg font-black flex items-center space-x-2">
-                  <span>✔ La Solución / Propuesta de Valor</span>
+                  <span>{t.solution}</span>
                 </h4>
                 <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
                   {selectedProject.solution}
@@ -332,12 +339,12 @@ export default function Projects() {
               </span>
               <button
                 onClick={() => {
-                  setSelectedProject(null);
+                  closeProject();
                 }}
                 className="neo-btn-black"
                 id="modal-cta-btn"
               >
-                <span>Cerrar Vista</span>
+                <span>{t.closeView}</span>
                 <ArrowRight size={14} />
               </button>
             </div>
