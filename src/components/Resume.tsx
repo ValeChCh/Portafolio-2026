@@ -12,9 +12,8 @@ export default function Resume() {
     <div className="space-y-10 py-2 md:py-6" id="resume-section-container">
       <div className="flex items-center justify-between no-print" id="resume-actions-header">
         <div>
-          <h2 className="font-display text-3xl font-black tracking-tight text-black flex items-center space-x-2">
-            <span className="bg-[#fef08a] text-black px-3 py-1 rounded-full border-2 border-black text-sm font-mono">03</span>
-            <span>{t.resumeTitle}</span>
+          <h2 className="font-display text-3xl font-black tracking-tight text-black">
+            {t.resumeTitle}
           </h2>
           <p className="text-sm font-medium text-slate-700 mt-1">{t.resumeSubtitle}</p>
         </div>
@@ -55,19 +54,19 @@ export default function Resume() {
                   <div key={exp.id} className="relative group" id={`exp-timeline-item-${exp.id}`}>
                     <span
                       className={`absolute -left-7 top-1 h-5 w-5 rounded-full border-2 border-black transition-transform group-hover:scale-125 ${
-                        exp.current ? 'bg-[#fef08a]' : 'bg-[#bae6fd]'
+                        exp.current ? 'bg-[#8F9DE2]' : 'bg-[#bae6fd]'
                       }`}
                     />
 
                     <div className="space-y-2">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                        <h4 className="text-lg font-black text-black group-hover:text-amber-600 transition-colors">
+                        <h4 className="text-lg font-black text-black group-hover:text-[#7A8AD9] transition-colors">
                           {exp.role}
                         </h4>
                         <span className="neo-pill bg-[#a7f3d0] text-black">{exp.duration}</span>
                       </div>
 
-                      <div className="text-sm font-mono font-bold text-slate-700">{exp.company}</div>
+                      <div className="text-sm font-sans font-bold text-slate-700">{exp.company}</div>
 
                       <ul className="list-disc list-outside pl-4 space-y-1.5 text-xs md:text-sm font-medium text-slate-800 leading-relaxed" id={`exp-bullet-list-${exp.id}`}>
                         {exp.description.map((desc, dIdx) => (
@@ -106,7 +105,10 @@ export default function Resume() {
                   <div key={idx} className="space-y-1 p-3 rounded-xl border-2 border-black bg-[#fbcfe8] text-black" id={`edu-item-${idx}`}>
                     <h4 className="text-sm md:text-base font-black leading-tight">{edu.degree}</h4>
                     <p className="text-xs font-semibold text-slate-800">{edu.institution}</p>
-                    <span className="inline-block text-[10px] font-mono font-bold bg-black text-white px-2 py-0.5 rounded-full">
+                    {'detail' in edu && edu.detail ? (
+                      <p className="text-xs text-slate-700 leading-snug">{edu.detail}</p>
+                    ) : null}
+                    <span className="inline-block text-[10px] font-sans font-bold bg-black text-white px-2 py-0.5 rounded-full">
                       {edu.duration}
                     </span>
                   </div>

@@ -105,18 +105,34 @@ const experienceEn: Experience[] = [
       'I collaborated on conversion-rate optimization (CRO) flows using heatmaps and session recordings.',
     ],
   },
+  {
+    ...EXPERIENCE_HISTORY[3],
+    duration: '2020 - 2021',
+    description: [
+      'I collaborated on interface design for various Banpro Promérica banking services (wallets, corporate banking, ATMs). I also ran usability tests and analyzed results to present to stakeholders.',
+    ],
+  },
 ];
 
 const educationEn = [
   {
-    degree: 'Specialization in Design Systems and Advanced UX',
-    institution: 'Interaction Design Foundation (IxDF)',
-    duration: '2021',
+    degree: 'UX/UI Designer',
+    institution: 'Ironhack',
+    duration: '2019 - 2020',
+    detail: '400-hour bootcamp',
   },
   {
-    degree: 'Bachelor’s in Design with a focus on Digital Interaction',
-    institution: 'University of Design and Technology',
-    duration: '2016 - 2020',
+    degree: 'Bachelor’s in Visual Design and Communication',
+    institution: 'Universidad Nacional Autónoma de México',
+    duration: '2012 - 2016',
+    detail: 'Symbolism and three-dimensional media',
+  },
+  {
+    degree: 'Diploma in Web Design and Development',
+    institution: 'Universidad Nacional Autónoma de México',
+    duration: 'Mar 2021 - Jul 2021',
+    detail:
+      '240-hour diploma covering basic web programming with HTML, CSS, and Bootstrap for webpage design.',
   },
 ];
 

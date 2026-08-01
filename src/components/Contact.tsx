@@ -141,13 +141,10 @@ export default function Contact() {
     <div className="space-y-12 py-2 md:py-6" id="contact-section-container">
       <div>
         <h2
-          className="font-display text-3xl font-black tracking-tight text-black flex items-center space-x-2"
+          className="font-display text-3xl font-black tracking-tight text-black"
           id="contact-heading"
         >
-          <span className="bg-[#fef08a] text-black px-3 py-1 rounded-full border-2 border-black text-sm font-mono">
-            04
-          </span>
-          <span>{t.contactTitle}</span>
+          {t.contactTitle}
         </h2>
         <p className="text-sm font-medium text-slate-700 mt-1 max-w-xl">{t.contactIntro}</p>
       </div>
@@ -204,7 +201,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder={t.namePlaceholder}
-                      className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-[#fef08a] transition-colors"
+                      className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-slate-50 transition-colors"
                     />
                   </div>
 
@@ -220,7 +217,7 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder={t.emailPlaceholder}
-                      className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-[#fef08a] transition-colors"
+                      className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-slate-50 transition-colors"
                     />
                   </div>
                 </div>
@@ -234,7 +231,7 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-bold outline-hidden focus:bg-[#fef08a] transition-colors cursor-pointer"
+                    className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-bold outline-hidden focus:bg-slate-50 transition-colors cursor-pointer"
                   >
                     {subjectOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -256,14 +253,14 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder={t.messagePlaceholder}
-                    className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-[#fef08a] transition-colors resize-none"
+                    className="w-full rounded-xl border-2 border-black bg-white px-4 py-2.5 text-sm font-semibold outline-hidden focus:bg-slate-50 transition-colors resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="neo-btn-primary w-full justify-center"
+                  className="neo-btn-black w-full justify-center"
                   id="submit-contact-form"
                 >
                   {isSubmitting ? (
@@ -313,7 +310,7 @@ export default function Contact() {
                       {selectedDate ? formatDateLabel(selectedDate) : ''} {t.atTime} {selectedTime}
                     </strong>
                   </p>
-                  <p className="text-[10px] font-mono italic">{t.bookingInvite}</p>
+                  <p className="text-[10px] font-sans italic">{t.bookingInvite}</p>
                   <button
                     onClick={() => {
                       setIsCallBooked(false);
@@ -390,7 +387,7 @@ export default function Contact() {
                                 cell.disabled
                                   ? 'border-transparent text-slate-300 cursor-not-allowed'
                                   : isSelected
-                                    ? 'border-black bg-[#fef08a] text-black cursor-pointer'
+                                    ? 'border-black bg-[#8F9DE2] text-black cursor-pointer'
                                     : 'border-black bg-white text-black hover:bg-slate-100 cursor-pointer'
                               } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
                               id={`date-btn-${cell.key}`}
@@ -446,7 +443,7 @@ export default function Contact() {
           </div>
 
           <div
-            className="rounded-xl border-2 border-black bg-[#fef08a] text-black p-5 text-xs font-bold space-y-3"
+            className="rounded-xl border-2 border-black bg-[#8F9DE2] text-black p-5 text-xs font-bold space-y-3"
             id="quick-info-card"
           >
             <div className="flex items-center space-x-2.5" id="info-row-location">

@@ -6,9 +6,9 @@ export default function About() {
   const { profile, t } = useLocalizedContent();
 
   const values = [
-    { title: t.value1Title, desc: t.value1Desc, icon: Target, bg: 'bg-[#fef08a]' },
-    { title: t.value2Title, desc: t.value2Desc, icon: Heart, bg: 'bg-[#fbcfe8]' },
-    { title: t.value3Title, desc: t.value3Desc, icon: Award, bg: 'bg-[#bae6fd]' },
+    { title: t.value1Title, desc: t.value1Desc, icon: Target, hoverBg: 'hover:bg-[#F6D61A]', iconColor: 'text-[#F6D61A]' },
+    { title: t.value2Title, desc: t.value2Desc, icon: Heart, hoverBg: 'hover:bg-[#86DCE4]', iconColor: 'text-[#86DCE4]' },
+    { title: t.value3Title, desc: t.value3Desc, icon: Award, hoverBg: 'hover:bg-[#FC982C]', iconColor: 'text-[#FC982C]' },
   ];
 
   return (
@@ -21,7 +21,6 @@ export default function About() {
             <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
           </div>
           <span>{t.navAbout}</span>
-          <span className="text-[10px] text-slate-400">PROFILE</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 p-6 md:p-8 items-start">
@@ -34,7 +33,7 @@ export default function About() {
               id="about-profile-image-frame"
             >
               <img
-                src="/src/assets/images/valeria_avatar.jpg"
+                src="/images/valeria_avatar.jpg"
                 alt="Valeria Designer Profile"
                 className="h-full w-full object-cover object-[50%_20%]"
                 referrerPolicy="no-referrer"
@@ -42,8 +41,8 @@ export default function About() {
             </div>
             <div id="about-profile-meta" className="space-y-1">
               <h3 className="font-display text-2xl font-black text-black">Valeria Charco</h3>
-              <p className="neo-pill bg-[#fef08a] text-black">{t.productDesigner}</p>
-              <p className="text-xs font-mono font-bold text-slate-700 pt-1 leading-relaxed">
+              <p className="neo-pill bg-[#8F9DE2] text-black">{t.productDesigner}</p>
+              <p className="text-xs font-sans font-bold text-slate-700 pt-1 leading-relaxed">
                 {profile.location.includes('(') ? (
                   <>
                     {profile.location.slice(0, profile.location.indexOf('(')).trimEnd()}
@@ -58,7 +57,7 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-8 space-y-3" id="about-bio-text">
-            <span className="neo-pill bg-[#a7f3d0] text-black">{t.aboutPill}</span>
+            <span className="neo-pill bg-white text-black">{t.aboutPill}</span>
             <h2
               className="font-display text-3xl font-black tracking-tight text-black leading-tight"
               id="about-headline"
@@ -87,11 +86,11 @@ export default function About() {
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border-2 border-black p-6 md:p-8 flex flex-col space-y-4 ${val.bg} text-black`}
+                className={`group rounded-none border-2 border-black p-6 md:p-8 flex flex-col space-y-4 bg-white ${val.hoverBg} text-black transition-colors cursor-default`}
                 id={`value-card-${idx}`}
               >
                 <div className="p-3 rounded-full border-2 border-black bg-white w-fit" id={`value-icon-wrapper-${idx}`}>
-                  <IconComponent size={24} className="text-black" />
+                  <IconComponent size={24} className={`${val.iconColor} group-hover:text-black transition-colors`} />
                 </div>
                 <h4 className="font-display text-lg font-black text-black" id={`value-title-${idx}`}>
                   {val.title}

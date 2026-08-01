@@ -4,14 +4,13 @@ export const VALERIA_PROFILE = {
   name: "Valeria",
   title: "Product Designer",
   email: "Valechchh05@gmail.com",
-  avatar: "/src/assets/images/valeria_avatar.jpg",
+  avatar: "/images/valeria_avatar.jpg",
   bio: "Diseñando experiencias digitales intuitivas y sistemas escalables que conectan a las personas con la tecnología de manera significativa.",
   aboutDetailed: "Trabajo especialmente en el aspecto visual y funcional de productos digitales, me gusta aplicar metodologías ágiles para optimizar el desarrollo de los proyectos y así entender los requerimientos de los stakeholder y sobre todo de los usuario. Busco implementar mis ideas en proyectos dinámicos y trabajar con equipos divertidos.",
   location: "Ciudad de México, México (Remoto para todo el mundo)",
   socials: [
     { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
     { name: "Behance", url: "https://behance.net", icon: "ExternalLink" },
-    { name: "Email", url: "mailto:ValeChCh05@gmail.com", icon: "Mail" }
   ]
 };
 
@@ -29,13 +28,13 @@ export const PROJECTS: Project[] = [
     id: "findash-global",
     title: "FinDash Global",
     description: "Rediseño completo de la plataforma de análisis financiero, mejorando la eficiencia del usuario en un 40% mediante una arquitectura de información optimizada.",
-    category: "Fintech",
-    tags: ["Fintech", "Dashboard"],
-    image: "/src/assets/images/findash_global_1784586264509.jpg",
+    category: "Banca",
+    tags: ["Banca", "Dashboard"],
+    image: "/images/findash_global_1784586264509.jpg",
     images: [
-      "/src/assets/images/findash_global_1784586264509.jpg",
-      "/src/assets/images/vitality_tracker_1784586273218.jpg",
-      "/src/assets/images/lumina_store_1784586282264.jpg"
+      "/images/findash_global_1784586264509.jpg",
+      "/images/vitality_tracker_1784586273218.jpg",
+      "/images/lumina_store_1784586282264.jpg"
     ],
     role: "Líder de Diseño de Producto",
     challenge: "Los analistas financieros pasaban más de 25 minutos intentando compilar informes debido a una interfaz fragmentada y confusa. La plataforma original carecía de personalización y no era responsiva, lo que provocaba una tasa de abandono alta.",
@@ -62,13 +61,13 @@ export const PROJECTS: Project[] = [
     id: "vitality-tracker",
     title: "Vitality Tracker",
     description: "Aplicación móvil para el seguimiento del bienestar holístico. Implementación de un sistema de diseño propio y flujos de onboarding gamificados.",
-    category: "Health",
-    tags: ["Health", "Mobile App"],
-    image: "/src/assets/images/vitality_tracker_1784586273218.jpg",
+    category: "Traveltech",
+    tags: ["Traveltech", "Mobile App"],
+    image: "/images/vitality_tracker_1784586273218.jpg",
     images: [
-      "/src/assets/images/vitality_tracker_1784586273218.jpg",
-      "/src/assets/images/findash_global_1784586264509.jpg",
-      "/src/assets/images/lumina_store_1784586282264.jpg"
+      "/images/vitality_tracker_1784586273218.jpg",
+      "/images/findash_global_1784586264509.jpg",
+      "/images/lumina_store_1784586282264.jpg"
     ],
     role: "Senior Product Designer",
     challenge: "Los usuarios que descargaban la app a menudo la abandonaban durante el primer día. El flujo de registro era demasiado largo y pedía datos de salud delicados sin explicar el valor añadido, generando desconfianza.",
@@ -96,11 +95,11 @@ export const PROJECTS: Project[] = [
     description: "Transformación de la experiencia de compra online para una marca de iluminación premium, enfocada en la reducción de la fricción en el checkout.",
     category: "E-Commerce",
     tags: ["E-Commerce", "Web"],
-    image: "/src/assets/images/lumina_store_1784586282264.jpg",
+    image: "/images/lumina_store_1784586282264.jpg",
     images: [
-      "/src/assets/images/lumina_store_1784586282264.jpg",
-      "/src/assets/images/findash_global_1784586264509.jpg",
-      "/src/assets/images/vitality_tracker_1784586273218.jpg"
+      "/images/lumina_store_1784586282264.jpg",
+      "/images/findash_global_1784586264509.jpg",
+      "/images/vitality_tracker_1784586273218.jpg"
     ],
     role: "Lead UX/UI Designer",
     challenge: "Lumina, una marca de iluminación y mobiliario de alta gama, tenía visitas abundantes pero una tasa de conversión baja en móviles. El proceso de pago requería rellenar demasiados campos obligatorios en páginas sucesivas lentas.",
@@ -158,19 +157,37 @@ export const EXPERIENCE_HISTORY: Experience[] = [
       "Desarrollé prototipos de alta fidelidad interactivos de micro-interacciones clave para aumentar el enganche emocional del comprador.",
       "Colaboré en flujos de optimización de conversión (CRO) mediante mapas de calor y grabaciones del comportamiento de los usuarios."
     ]
+  },
+  {
+    id: "exp-4",
+    role: "User Experience Designer Consultant",
+    company: "Tech&Design",
+    duration: "2020 - 2021",
+    description: [
+      "Colaboré en el diseño de interfaces para diversos servicios bancarios de Banpro Promérica (billeteras, banca empresarial, cajeros automáticos). De igual manera realicé pruebas de usabilidad así como el análisis de los resultados para presentar a Stakeholders."
+    ]
   }
 ];
 
 export const EDUCATION_HISTORY = [
   {
-    degree: "Especialización en Sistemas de Diseño y UX Avanzado",
-    institution: "Interaction Design Foundation (IxDF)",
-    duration: "2021"
+    degree: "UX/UI Designer",
+    institution: "Ironhack",
+    duration: "2019 - 2020",
+    detail: "Bootcamp de 400 horas de duración"
   },
   {
-    degree: "Licenciatura en Diseño con mención en Interacción Digital",
-    institution: "Universidad de Diseño y Tecnología",
-    duration: "2016 - 2020"
+    degree: "Licenciatura en Diseño y Comunicación Visual",
+    institution: "Universidad Nacional Autónoma de México",
+    duration: "2012 - 2016",
+    detail: "Simbología y soportes tridimensionales"
+  },
+  {
+    degree: "Diplomado en Diseño y Desarrollo Web",
+    institution: "Universidad Nacional Autónoma de México",
+    duration: "Mar 2021 - Jul 2021",
+    detail:
+      "Diplomado de 240 horas para desarrollar conocimientos básicos de programación web HTML, CSS y Bootstrap para el diseño de páginas web."
   }
 ];
 
