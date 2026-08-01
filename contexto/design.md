@@ -7,7 +7,7 @@
 
 Neo-Brutalist Pop Editorial / ventanas retro OS.
 
-- Contenedores: `.neo-window` + `.neo-window-bar` (semáforo ●●●, título mono)
+- Contenedores: `.neo-window` + `.neo-window-bar` (semáforo ●●●; sin redondeado)
 - Cards acento: `.bento-card*` (yellow/pink/cyan/mint)
 - CTAs: `.neo-btn-primary` | `.neo-btn-secondary` | `.neo-btn-black`
 - Tags: `.neo-pill`
@@ -18,7 +18,7 @@ Neo-Brutalist Pop Editorial / ventanas retro OS.
 
 | Token      | Hex       | Uso                             |
 | ---------- | --------- | ------------------------------- |
-| neo-yellow | `#fef08a` | primario, tabs activos, botones |
+| neo-yellow | `#8F9DE2` | primario, tabs activos, botones |
 | neo-pink   | `#fbcfe8` | challenge, edu, avisos          |
 | neo-cyan   | `#bae6fd` | solution, éxito booking         |
 | neo-mint   | `#a7f3d0` | KPIs, metodologías              |
@@ -32,8 +32,7 @@ Neo-Brutalist Pop Editorial / ventanas retro OS.
 ## Tipo
 
 - Display: Outfit (`font-display`) 800–900
-- UI: Plus Jakarta Sans (`font-sans`)
-- Mono/window: Fira Code (`font-mono`)
+- UI / ventanas: Plus Jakarta Sans (`font-sans`)
 
 
 

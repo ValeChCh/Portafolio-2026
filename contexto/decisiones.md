@@ -12,6 +12,7 @@ ADR con más detalle en `../decisions/`.
 
 ## Visual
 
+- **2026-07-31 | Primario amarillo → `#8F9DE2`** | Pedido de Valeria. | Token `--color-neo-yellow` + hex en UI; form Contact sin relleno accent en focus (slate-50) y submit `neo-btn-black`.
 - **2026-07 | Neo-Brutalist Pop + window UI** | Diferenciación vs portafolios genéricos. | Clases `.neo-*` en `index.css`.
 - **2026-07-26 | Eliminar todas las sombras (contenedores, botones, pills, inputs)** | Usuario pidió limpieza visual; sombras hard offset saturaban. | Invariante I4. `design.md` raíz puede quedar desactualizado en sección sombras → confiar en este archivo + CSS.
 - **2026-07 | Dark mode vía clase `dark` en html** | Tailwind dark variants. | **Reemplazado 2026-07-29** por toggle ES/EN (sin dark mode).
@@ -28,4 +29,4 @@ ADR con más detalle en `../decisions/`.
 - ¿Persistir dark mode en localStorage?
 - ¿Conectar form real (Formspree/email) o dejar mock?
 - ¿Actualizar `design.md` raíz para quitar menciones a shadows? (recomendado)
-- ¿Assets en `/public` vs `/src/assets` (paths actuales bajo `/src/assets/images/`)?
+- **2026-07-31 | Imágenes en `public/images/`** | `/src/assets/...` rompe en prod. | Paths `/images/...`; gotcha G5 cerrado.

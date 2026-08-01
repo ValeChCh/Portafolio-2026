@@ -20,7 +20,8 @@ Ideal largo plazo: instalar Node LTS vía Homebrew y usar `npm run dev`.
 **No es bug.** No buscar API key Gemini para esto (README AI Studio es boilerplate).
 
 ## G5 — Paths de imágenes `/src/assets/images/...`
-Funciona en Vite dev; en build/deploy puede requerir mover a `public/` o imports. Probar antes de deploy.
+**Causa:** Vite serve `src/` en dev; en build esos paths no existen en `dist/`.  
+**Fix (2026-07-31):** archivos en `public/images/` y URLs `/images/...`. No usar `/src/assets/...` en strings.
 
 ## G6 — Cargar `node_modules` o todo el transcript
 Desperdicia tokens. Nunca. Usar `AGENTS.md` routing.

@@ -34,7 +34,7 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             <span className="h-3 w-3 rounded-full bg-yellow-400 border border-black inline-block" />
             <span className="h-3 w-3 rounded-full bg-emerald-400 border border-black inline-block" />
           </div>
-          <span className="font-display text-lg font-black tracking-tight text-black group-hover:text-amber-500 transition-colors">
+          <span className="font-display text-lg font-black tracking-tight text-black group-hover:text-[#7A8AD9] transition-colors">
             Valeria Charco _ {t.productDesigner}
           </span>
         </div>
@@ -44,9 +44,9 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`font-sans text-xs font-extrabold uppercase tracking-wider transition-all px-4 py-1.5 rounded-full cursor-pointer ${
+              className={`font-sans text-xs font-extrabold uppercase tracking-wider transition-transform px-4 py-1.5 rounded-full cursor-pointer hover:scale-105 ${
                 activeTab === item.id
-                  ? 'bg-[#fef08a] text-black border-2 border-black'
+                  ? 'bg-[#8F9DE2] text-black border-2 border-black'
                   : 'text-black hover:bg-slate-100'
               }`}
               id={`nav-${item.id}`}
@@ -66,9 +66,9 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             <button
               type="button"
               onClick={() => setLang('es')}
-              className={`min-w-9 rounded-full px-2.5 py-1 font-mono text-[11px] font-black tracking-wider transition-colors cursor-pointer focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black ${
+              className={`min-w-9 rounded-full px-2.5 py-1 font-sans text-[11px] font-black tracking-wider transition-colors cursor-pointer focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black ${
                 lang === 'es'
-                  ? 'bg-[#fef08a] text-black'
+                  ? 'bg-[#FC982C] text-black'
                   : 'bg-transparent text-slate-500 hover:text-black'
               }`}
               aria-pressed={lang === 'es'}
@@ -80,9 +80,9 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             <button
               type="button"
               onClick={() => setLang('en')}
-              className={`min-w-9 rounded-full px-2.5 py-1 font-mono text-[11px] font-black tracking-wider transition-colors cursor-pointer focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black ${
+              className={`min-w-9 rounded-full px-2.5 py-1 font-sans text-[11px] font-black tracking-wider transition-colors cursor-pointer focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black ${
                 lang === 'en'
-                  ? 'bg-[#bae6fd] text-black'
+                  ? 'bg-[#FC982C] text-black'
                   : 'bg-transparent text-slate-500 hover:text-black'
               }`}
               aria-pressed={lang === 'en'}
@@ -100,7 +100,7 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             id="avatar-nav-btn"
           >
             <img
-              src="/src/assets/images/valeria_avatar.jpg"
+              src="/images/valeria_avatar.jpg"
               alt="Valeria Profile"
               className="h-full w-full object-cover object-[50%_22%]"
               referrerPolicy="no-referrer"
@@ -128,9 +128,9 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
                   setActiveTab(item.id);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`flex w-full items-center px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border-2 border-black transition-colors ${
+                className={`flex w-full items-center px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border-2 border-black transition-transform hover:scale-105 ${
                   activeTab === item.id
-                    ? 'bg-[#fef08a] text-black'
+                    ? 'bg-[#8F9DE2] text-black'
                     : 'bg-white text-black'
                 }`}
                 id={`mobile-nav-${item.id}`}

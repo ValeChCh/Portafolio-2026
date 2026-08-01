@@ -20,4 +20,8 @@
 - Entorno: Node vía Cursor helpers si npm no está en PATH (`skills/dev-server.md`).
 
 ## Archivos calientes
-`src/pages/DemoDay.tsx` · `src/main.tsx` · `vercel.json` · `src/components/*`
+`src/index.css` · `src/components/Contact.tsx` · `src/pages/DemoDay.tsx` · `src/components/*`
+
+## Nota UI (2026-07-31)
+Primario de marca: `#8F9DE2` (antes amarillo). Form Contact: focus neutro + submit negro.
+Imágenes en `public/images/` (`/images/...`) — fix prod (G5).

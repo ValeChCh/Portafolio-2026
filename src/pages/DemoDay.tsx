@@ -25,7 +25,7 @@ const SLIDES: Slide[] = [
           href={LIVE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center gap-2 font-mono text-sm sm:text-base font-bold underline underline-offset-4 decoration-2 text-black hover:text-slate-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-black"
+          className="mt-8 inline-flex items-center gap-2 font-sans text-sm sm:text-base font-bold underline underline-offset-4 decoration-2 text-black hover:text-slate-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-black"
         >
           {LIVE_URL}
           <ExternalLink size={18} aria-hidden="true" />
@@ -73,15 +73,15 @@ const SLIDES: Slide[] = [
         </a>
         <ol className="space-y-4 text-lg sm:text-xl md:text-2xl font-semibold leading-snug text-black list-none">
           <li className="flex gap-3">
-            <span className="font-mono text-sm sm:text-base font-black bg-[#fef08a] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">1</span>
+            <span className="font-sans text-sm sm:text-base font-black bg-[#8F9DE2] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">1</span>
             <span>Home con descripción de perfil</span>
           </li>
           <li className="flex gap-3">
-            <span className="font-mono text-sm sm:text-base font-black bg-[#fef08a] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">2</span>
+            <span className="font-sans text-sm sm:text-base font-black bg-[#8F9DE2] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">2</span>
             <span>Proyectos filtrados por área de trabajo</span>
           </li>
           <li className="flex gap-3">
-            <span className="font-mono text-sm sm:text-base font-black bg-[#fef08a] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">3</span>
+            <span className="font-sans text-sm sm:text-base font-black bg-[#8F9DE2] border-2 border-black rounded-full px-3 py-1 shrink-0 h-fit">3</span>
             <span>Formulario de contacto funcional</span>
           </li>
         </ol>
@@ -208,7 +208,7 @@ export default function DemoDay() {
     >
       <a
         href="#demo-day-slide"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-[#fef08a] focus:text-black focus:border-2 focus:border-black focus:px-4 focus:py-2 focus:font-bold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-[#8F9DE2] focus:text-black focus:border-2 focus:border-black focus:px-4 focus:py-2 focus:font-bold focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black"
       >
         Saltar a la diapositiva
       </a>
@@ -219,11 +219,11 @@ export default function DemoDay() {
             <span className="font-display text-sm sm:text-base font-black tracking-tight truncate">
               Valeria · Demo Day
             </span>
-            <span className="hidden sm:inline neo-pill bg-[#fef08a]">Wave Delta</span>
+            <span className="hidden sm:inline neo-pill bg-[#8F9DE2]">Wave Delta</span>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <p
-              className="font-mono text-sm sm:text-base font-bold tabular-nums"
+              className="font-sans text-sm sm:text-base font-bold tabular-nums"
               aria-live="polite"
               id="demo-day-progress"
             >
@@ -256,14 +256,14 @@ export default function DemoDay() {
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
             </div>
             <span className="truncate uppercase tracking-wider">{slide.eyebrow}</span>
-            <span className="text-[10px] text-slate-500 font-mono">
+            <span className="text-[10px] text-slate-500 font-sans">
               {slide.timing ?? 'START'}
             </span>
           </div>
 
           <div className="p-6 sm:p-10 md:p-14 space-y-6 sm:space-y-8">
             <header className="space-y-3">
-              <p className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700">
+              <p className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700">
                 {slide.eyebrow}
                 {slide.timing ? ` · ${slide.timing}` : ''}
               </p>
@@ -299,7 +299,7 @@ export default function DemoDay() {
                 aria-label={`Ir a diapositiva ${i + 1}: ${s.title}`}
                 aria-current={i === index ? 'true' : undefined}
                 className={`h-3 rounded-full border-2 border-black transition-all cursor-pointer focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2 focus-visible:outline-black ${
-                  i === index ? 'w-8 bg-[#fef08a]' : 'w-3 bg-white hover:bg-slate-200'
+                  i === index ? 'w-8 bg-[#8F9DE2]' : 'w-3 bg-white hover:bg-slate-200'
                 }`}
               />
             ))}
