@@ -17,7 +17,6 @@ export default function Sidebar({ setActiveTab }: SidebarProps) {
           <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
         </div>
-        <span className="truncate">VALERIA_PROFILE.APP</span>
       </div>
 
       <div className="p-6 md:p-8 flex flex-col space-y-6">
