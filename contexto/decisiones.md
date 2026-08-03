@@ -12,6 +12,7 @@ ADR con más detalle en `../decisions/`.
 
 ## Visual
 
+- **2026-07-31 | Modal case study estilo Behance** | Pedido: ampliar viewer. | Overlay full-viewport + panel `max-w-7xl`, scroll de página (sin `max-h-[90vh]`), hero full-bleed; aplica a todos los proyectos.
 - **2026-07-31 | Primario amarillo → `#8F9DE2`** | Pedido de Valeria. | Token `--color-neo-yellow` + hex en UI; form Contact sin relleno accent en focus (slate-50) y submit `neo-btn-black`.
 - **2026-07 | Neo-Brutalist Pop + window UI** | Diferenciación vs portafolios genéricos. | Clases `.neo-*` en `index.css`.
 - **2026-07-26 | Eliminar todas las sombras (contenedores, botones, pills, inputs)** | Usuario pidió limpieza visual; sombras hard offset saturaban. | Invariante I4. `design.md` raíz puede quedar desactualizado en sección sombras → confiar en este archivo + CSS.

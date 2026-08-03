@@ -19,10 +19,10 @@ const projectsEn: Project[] = [
   {
     ...PROJECTS[0],
     description:
-      'Complete redesign of the financial analytics platform, improving user efficiency by 40% through optimized information architecture.',
+      'Migration of manual processes to digital platforms and Salesforce',
     role: 'Lead Product Designer',
     challenge:
-      'Financial analysts spent more than 25 minutes compiling reports due to a fragmented, confusing interface. The original platform lacked personalization and was not responsive, causing a high drop-off rate.',
+      'Within the Wholesale Transformation Program (designed to enable the business goals of Corporate, CIB, and SME banking), credit origination and sanctioning needed to speed up, standardize, and automate the management of credit limits and sub-limits. Traditionally, assigning and managing financial sub-limits involved complex manual processes, duplicated data entry, physical or obsolete formats (such as information annexes), and complex risk-committee approvals.',
     process: [
       'Research with 12 financial analysts using empathy maps and usability tests of the legacy system.',
       'Definition of user archetypes and a full information architecture redesign through card sorting.',
@@ -32,18 +32,63 @@ const projectsEn: Project[] = [
     solution:
       'A unified, customizable dashboard with drag-and-drop widgets that lets users structure priority data views in seconds. The PDF/Excel report export module was also simplified to a single click.',
     metrics: [
-      { label: 'Time to generate reports', value: '-60%' },
-      { label: 'User satisfaction (SUS)', value: '92/100' },
-      { label: 'Operational efficiency', value: '+40%' },
+      {
+        label:
+          'Reduction in contracting times: Free up the account executive’s operations so they can spend more time on client service.',
+        icon: 'timer',
+      },
+      {
+        label:
+          'Operational autonomy: Enable operations under a previously sanctioned credit “ceiling.”',
+        icon: 'shield-check',
+      },
+      {
+        label:
+          'Removal of technical friction: Automate triage engine rules and validations, standardizing conditions and policies.',
+        icon: 'bot',
+      },
     ],
   },
   {
     ...PROJECTS[1],
     description:
-      'Mobile app for holistic wellness tracking. Delivery of a custom design system and gamified onboarding flows.',
-    role: 'Senior Product Designer',
+      'Self-service for travelers that confirms critical data and reduces operational friction.\nI redesigned the Shuttle Central (YC W22) traveler portal so guests who book via OTAs (Expedia, Booking, etc.) can complete, edit, and confirm their transfer before the trip — turning incomplete data into an operable service.',
+    role: 'Product Designer (end-to-end)',
     challenge:
-      'Users who downloaded the app often abandoned it on day one. The registration flow was too long and asked for sensitive health data without explaining the value, creating distrust.',
+      'Most travelers arrived at Shuttle Central through OTAs (Expedia, Booking, etc.). That external booking left missing or outdated information: flight, pickup, passengers, or destination. Without reliable data, the service became fragile. Customer Service absorbed changes, confirmations, and questions. At the most critical moment of the trip, the traveler depended on an agent.',
+    challengeFollowUp: [
+      {
+        columns: [
+          {
+            heading: 'Operating without complete data',
+            text: '',
+          },
+          {
+            heading: 'High dependency on Customer Service',
+            text: '',
+          },
+          {
+            heading: 'Traveler anxiety on airport arrival',
+            text: '',
+          },
+        ],
+      },
+    ],
+    meta: [
+      { label: 'Role', value: 'Product Designer (end-to-end)' },
+      { label: 'Company', value: 'Shuttle Central' },
+      { label: 'Timeline', value: '~2021–2022' },
+      {
+        label: 'Team',
+        value: 'Founders · Frontend · Logistics & Revenue · Customer Experience',
+      },
+      { label: 'Tools', value: 'Figma · Miro · Asana · Zeplin' },
+      {
+        label: 'Product',
+        value: 'ride.shuttlecentral.com',
+        href: 'https://ride.shuttlecentral.com',
+      },
+    ],
     process: [
       'Analysis of bounce rate by screen in the original registration funnel.',
       'Redesign of onboarding flows with playful micro-interactions, progress bars, and clear explanations about data privacy.',

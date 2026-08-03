@@ -1,13 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Project } from '../types';
 import { useLocalizedContent } from '../i18n/useI18n';
-import { ArrowRight, Eye, Trophy, ChevronRight, ChevronLeft, X } from 'lucide-react';
+import {
+  ArrowRight,
+  Eye,
+  Trophy,
+  ChevronRight,
+  ChevronLeft,
+  X,
+  Timer,
+  ShieldCheck,
+  Bot,
+  type LucideIcon,
+} from 'lucide-react';
+
+const METRIC_ICONS: Record<'timer' | 'shield-check' | 'bot', LucideIcon> = {
+  timer: Timer,
+  'shield-check': ShieldCheck,
+  bot: Bot,
+};
 
 export default function Projects() {
   const { projects, t } = useLocalizedContent();
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('All');
   const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // Lock page scroll while the Behance-style project viewer is open
+  useEffect(() => {
+    if (!selectedProjectId) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedProjectId]);
 
   // Gather all unique categories
   const categories = ['All', 'Banca', 'Traveltech', 'E-Commerce'];
@@ -149,9 +176,14 @@ export default function Projects() {
                 </h3>
 
                 {/* Description */}
-                <p className="font-sans text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-200" id={`project-desc-${project.id}`}>
-                  {project.description}
-                </p>
+                <div
+                  className="font-sans text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-200 space-y-3"
+                  id={`project-desc-${project.id}`}
+                >
+                  {project.description.split('\n').filter(Boolean).map((paragraph, pIdx) => (
+                    <p key={pIdx}>{paragraph}</p>
+                  ))}
+                </div>
 
                 {/* Interactive Detail Link */}
                 <div className="pt-2" id={`project-action-row-${project.id}`}>
@@ -170,49 +202,54 @@ export default function Projects() {
         ))}
       </div>
 
-      {/* Detail Modal Component */}
+      {/* Behance-style full project viewer (all case studies) */}
       {selectedProject && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fade-in overflow-y-auto"
+        <div
+          className="fixed inset-0 z-50 overflow-y-auto overscroll-contain bg-black/85 animate-fade-in"
           onClick={() => closeProject()}
           id="project-detail-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-project-title"
         >
-          <div 
-            className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-none border-2 border-black dark:border-white my-8 overflow-hidden max-h-[90vh] flex flex-col animate-scale-up"
+          <div
+            className="relative mx-auto min-h-full w-full max-w-7xl bg-white border-x-2 border-black animate-scale-up"
             onClick={(e) => e.stopPropagation()}
             id="modal-content"
           >
-            {/* Modal Window Header */}
-            <div className="neo-window-bar sticky top-0 bg-slate-100 dark:bg-slate-800 z-10">
+            <div className="neo-window-bar sticky top-0 z-20 border-b-2 border-black bg-slate-100">
               <div className="flex space-x-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block cursor-pointer" onClick={() => closeProject()} />
+                <span
+                  className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block cursor-pointer"
+                  onClick={() => closeProject()}
+                />
                 <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
                 <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
               </div>
-              <span className="font-bold truncate">{selectedProject.title.toUpperCase()}</span>
+              <span id="modal-project-title" className="font-bold truncate">
+                {selectedProject.title.toUpperCase()}
+              </span>
               <button
                 onClick={() => closeProject()}
-                className="rounded-full bg-black text-white p-1 hover:bg-red-500 transition-colors"
+                className="rounded-full bg-black text-white p-1.5 hover:bg-red-500 transition-colors cursor-pointer"
                 id="modal-close-btn"
                 aria-label={t.closeModal}
               >
-                <X size={14} />
+                <X size={16} />
               </button>
             </div>
 
-            {/* Modal Body (Scrollable) */}
-            <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8" id="modal-body">
-              {/* Image & Key metrics layout (stacked: meta below image) */}
-              <div className="flex flex-col gap-6" id="modal-grid-top">
+            <div id="modal-body">
+              <div className="flex flex-col" id="modal-grid-top">
                 <div
-                  className="relative overflow-hidden rounded-xl border-2 border-black dark:border-white group/carousel"
+                  className="relative overflow-hidden border-b-2 border-black group/carousel bg-slate-100"
                   id="modal-hero-img-wrapper"
                 >
                   <img
                     key={gallery[carouselIndex]}
                     src={gallery[carouselIndex]}
                     alt={t.captureAlt(selectedProject.title, carouselIndex + 1)}
-                    className="w-full aspect-[16/10] object-cover"
+                    className="w-full aspect-[16/10] md:aspect-[21/9] object-cover"
                     referrerPolicy="no-referrer"
                   />
 
@@ -221,24 +258,24 @@ export default function Projects() {
                       <button
                         type="button"
                         onClick={() => goToSlide(carouselIndex - 1)}
-                        className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2] text-black hover:bg-[#7A8AD9] transition-colors cursor-pointer"
+                        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 transition-colors cursor-pointer"
                         aria-label={t.prevImage}
                         id="carousel-prev-btn"
                       >
-                        <ChevronLeft size={18} strokeWidth={2.5} />
+                        <ChevronLeft size={22} strokeWidth={2.5} />
                       </button>
                       <button
                         type="button"
                         onClick={() => goToSlide(carouselIndex + 1)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2] text-black hover:bg-[#7A8AD9] transition-colors cursor-pointer"
+                        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 transition-colors cursor-pointer"
                         aria-label={t.nextImage}
                         id="carousel-next-btn"
                       >
-                        <ChevronRight size={18} strokeWidth={2.5} />
+                        <ChevronRight size={22} strokeWidth={2.5} />
                       </button>
 
                       <div
-                        className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2"
+                        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2"
                         id="carousel-dots"
                       >
                         {gallery.map((_, idx) => (
@@ -249,7 +286,7 @@ export default function Projects() {
                             aria-label={t.goToSlide(idx + 1)}
                             className={`h-2.5 rounded-full border-2 border-black transition-all cursor-pointer ${
                               idx === carouselIndex
-                                ? 'w-6 bg-[#8F9DE2]'
+                                ? 'w-7 bg-[#8F9DE2]'
                                 : 'w-2.5 bg-white hover:bg-slate-200'
                             }`}
                             id={`carousel-dot-${idx}`}
@@ -258,7 +295,7 @@ export default function Projects() {
                       </div>
 
                       <span
-                        className="absolute top-3 right-3 font-sans text-[10px] font-bold border-2 border-black bg-white text-black px-2 py-0.5 rounded-full"
+                        className="absolute top-4 right-4 font-sans text-[10px] font-bold border-2 border-black bg-white text-black px-2.5 py-1 rounded-full"
                         id="carousel-counter"
                       >
                         {carouselIndex + 1} / {gallery.length}
@@ -266,98 +303,190 @@ export default function Projects() {
                     </>
                   )}
                 </div>
-                
-                {/* Meta details & KPIs — below image */}
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6" id="modal-project-meta">
-                  <div className="space-y-4 shrink-0">
-                    <div>
-                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">{t.myRole}</span>
-                      <span className="text-sm font-bold text-black dark:text-white bg-[#8F9DE2] dark:text-black border-2 border-black px-3 py-1 rounded-full inline-block">{selectedProject.role}</span>
-                    </div>
-                    <div>
-                      <span className="block text-xs font-black uppercase tracking-wider text-black dark:text-white mb-1">{t.specialties}</span>
-                      <div className="flex flex-wrap gap-1.5 mt-1">
-                        {selectedProject.tags.map((tag, idx) => (
-                          <span key={idx} className={`neo-pill ${tagPillClass(tag)}`}>
-                            {tag}
-                          </span>
-                        ))}
+
+                <div className="py-10 md:py-14 space-y-10 md:space-y-12 w-full">
+                  <div className="px-6 md:px-12 lg:px-16 max-w-5xl mx-auto w-full">
+                  <div
+                    className="flex flex-col gap-8"
+                    id="modal-project-meta"
+                  >
+                    <div className="space-y-5 w-full">
+                      <div
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                        id="modal-highlight-pills"
+                      >
+                        {(selectedProject.meta?.length
+                          ? selectedProject.meta.slice(0, 3)
+                          : [{ label: t.myRole, value: selectedProject.role }]
+                        ).map((item, idx) => {
+                          const pillBg = ['bg-[#8F9DE2]', 'bg-[#fbcfe8]', 'bg-[#bae6fd]'][idx % 3];
+                          return (
+                            <div key={`${item.label}-${idx}`} id={`modal-highlight-${idx}`}>
+                              <span className="block text-xs font-black uppercase tracking-wider text-black mb-1">
+                                {item.label}
+                              </span>
+                              <span
+                                className={`text-sm font-bold text-black ${pillBg} px-3 py-1 rounded-full inline-block`}
+                              >
+                                {item.value}
+                              </span>
+                            </div>
+                          );
+                        })}
                       </div>
+                      <div>
+                        <span className="block text-xs font-black uppercase tracking-wider text-black mb-1">
+                          {t.specialties}
+                        </span>
+                        <div className="flex flex-wrap gap-1.5 mt-1">
+                          {selectedProject.tags.map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-black ${tagPillClass(tag)}`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {selectedProject.metrics && (
+                      <div
+                        className="rounded-xl bg-[#a7f3d0] p-5 space-y-3 text-black w-full"
+                        id="modal-metrics-box"
+                      >
+                        <div className="flex items-center space-x-2 text-black">
+                          <Trophy size={18} />
+                          <span className="text-xs font-black uppercase tracking-wider">
+                            {t.measurableResults}
+                          </span>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2" id="metrics-grid">
+                          {selectedProject.metrics.map((metric, mIdx) => {
+                            const Icon = metric.icon ? METRIC_ICONS[metric.icon] : null;
+                            return (
+                            <div
+                              key={mIdx}
+                              className="text-center bg-white rounded-lg p-2"
+                              id={`metric-cell-${mIdx}`}
+                            >
+                              {Icon ? (
+                                <span className="mx-auto mb-1 flex h-8 items-center justify-center text-black" aria-hidden>
+                                  <Icon size={28} strokeWidth={2.25} />
+                                </span>
+                              ) : (
+                                <span className="block text-xl font-black text-black">{metric.value}</span>
+                              )}
+                              <span className="text-[10px] font-bold text-slate-700 leading-tight block">
+                                {metric.label}
+                              </span>
+                            </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  </div>
+
+                  <div
+                    className="space-y-3 px-6 md:px-12 lg:px-16 py-6 md:py-8 w-full bg-white text-black"
+                    id="modal-challenge-section"
+                  >
+                    <h4 className="font-display text-xl font-black flex items-center space-x-2">
+                      <span>{selectedProject.challengeTitle ?? t.challenge}</span>
+                    </h4>
+                    {selectedProject.challengeSubtitle ? (
+                      <p className="text-xs font-black uppercase tracking-wider text-black">
+                        {selectedProject.challengeSubtitle}
+                      </p>
+                    ) : null}
+                    <div className="font-sans text-sm md:text-base leading-relaxed font-medium max-w-none space-y-6">
+                      <p>{selectedProject.challenge}</p>
+                      {selectedProject.challengeFollowUp?.map((block, idx) => {
+                        const columns =
+                          block.columns ??
+                          block.body
+                            ?.split('\n')
+                            .map((p) => p.trim())
+                            .filter(Boolean)
+                            .map((text) => ({ text })) ??
+                          [];
+                        return (
+                          <div key={idx} className="space-y-3">
+                            {block.title ? (
+                              <p className="text-xs font-black uppercase tracking-wider text-black">
+                                {block.title}
+                              </p>
+                            ) : null}
+                            <div
+                              className={
+                                columns.length >= 3
+                                  ? 'grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'
+                                  : 'space-y-3'
+                              }
+                            >
+                              {columns.map((col, cIdx) => (
+                                <div key={cIdx} className="space-y-2">
+                                  {col.heading ? (
+                                    <p className="text-xs font-black uppercase tracking-wider text-black">
+                                      {col.heading}
+                                    </p>
+                                  ) : null}
+                                  {col.text ? <p>{col.text}</p> : null}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
-                  {/* Metrics Box */}
-                  {selectedProject.metrics && (
-                    <div className="rounded-xl bg-[#a7f3d0] border-2 border-black p-4 space-y-3 text-black w-full md:max-w-md" id="modal-metrics-box">
-                      <div className="flex items-center space-x-2 text-black">
-                        <Trophy size={18} />
-                        <span className="text-xs font-black uppercase tracking-wider">{t.measurableResults}</span>
-                      </div>
-                      <div className="grid grid-cols-3 gap-2" id="metrics-grid">
-                        {selectedProject.metrics.map((metric, mIdx) => (
-                          <div key={mIdx} className="text-center bg-white border border-black rounded-lg p-1.5" id={`metric-cell-${mIdx}`}>
-                            <span className="block text-lg font-black text-black">{metric.value}</span>
-                            <span className="text-[10px] font-bold text-slate-700 leading-tight block">{metric.label}</span>
+                  <div className="px-6 md:px-12 lg:px-16 max-w-5xl mx-auto w-full space-y-10 md:space-y-12">
+                  <div className="space-y-4" id="modal-process-section">
+                    <h4 className="font-display text-xl font-black text-black">{t.processTitle}</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" id="process-grid">
+                      {selectedProject.process.map((step, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className="flex space-x-3 p-5 rounded-xl bg-white"
+                          id={`process-step-${sIdx}`}
+                        >
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#8F9DE2] text-black text-xs font-black">
+                            {sIdx + 1}
                           </div>
-                        ))}
-                      </div>
+                          <p className="text-sm font-semibold text-black leading-relaxed">{step}</p>
+                        </div>
+                      ))}
                     </div>
-                  )}
+                  </div>
+
+                  <div
+                    className="space-y-2 p-6 md:p-8 rounded-xl bg-[#bae6fd] text-black"
+                    id="modal-solution-section"
+                  >
+                    <h4 className="font-display text-xl font-black flex items-center space-x-2">
+                      <span>{t.solution}</span>
+                    </h4>
+                    <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
+                      {selectedProject.solution}
+                    </p>
+                  </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* El Desafío */}
-              <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#fbcfe8] text-black" id="modal-challenge-section">
-                <h4 className="font-display text-lg font-black flex items-center space-x-2">
-                  <span>{t.challenge}</span>
-                </h4>
-                <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
-                  {selectedProject.challenge}
-                </p>
-              </div>
-
-              {/* El Proceso */}
-              <div className="space-y-4" id="modal-process-section">
-                <h4 className="font-display text-lg font-black text-black dark:text-white">
-                  {t.processTitle}
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4" id="process-grid">
-                  {selectedProject.process.map((step, sIdx) => (
-                    <div key={sIdx} className="flex space-x-3 p-4 rounded-xl border-2 border-black bg-white dark:bg-slate-800 dark:border-white" id={`process-step-${sIdx}`}>
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#8F9DE2] border-2 border-black text-black text-xs font-black">
-                        {sIdx + 1}
-                      </div>
-                      <p className="text-xs md:text-sm font-semibold text-black dark:text-slate-100 leading-relaxed">
-                        {step}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* La Solución */}
-              <div className="space-y-2 p-5 rounded-xl border-2 border-black bg-[#bae6fd] text-black" id="modal-solution-section">
-                <h4 className="font-display text-lg font-black flex items-center space-x-2">
-                  <span>{t.solution}</span>
-                </h4>
-                <p className="font-sans text-sm md:text-base leading-relaxed font-medium">
-                  {selectedProject.solution}
-                </p>
               </div>
             </div>
 
-            {/* Modal Footer */}
-            <div className="border-t-2 border-black px-6 py-4 bg-slate-100 dark:bg-slate-800 flex items-center justify-between" id="modal-footer">
-              <span className="text-xs font-sans font-bold text-black dark:text-white">
-                VALERIA UX • {selectedProject.title}
+            <div
+              className="sticky bottom-0 border-t-2 border-black px-6 md:px-12 py-4 bg-slate-100 flex items-center justify-between"
+              id="modal-footer"
+            >
+              <span className="text-xs font-sans font-bold text-black">
+                {selectedProject.title}
               </span>
-              <button
-                onClick={() => {
-                  closeProject();
-                }}
-                className="neo-btn-black"
-                id="modal-cta-btn"
-              >
+              <button onClick={() => closeProject()} className="neo-btn-black" id="modal-cta-btn">
                 <span>{t.closeView}</span>
                 <ArrowRight size={14} />
               </button>

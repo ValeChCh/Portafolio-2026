@@ -26,18 +26,18 @@ export const CORE_SKILLS: Skill[] = [
 export const PROJECTS: Project[] = [
   {
     id: "findash-global",
-    title: "FinDash Global",
-    description: "Rediseño completo de la plataforma de análisis financiero, mejorando la eficiencia del usuario en un 40% mediante una arquitectura de información optimizada.",
+    title: "BBVA",
+    description: "Migración de procesos manuales a plataformas digitales y Salesforce",
     category: "Banca",
-    tags: ["Banca", "Dashboard"],
-    image: "/images/findash_global_1784586264509.jpg",
+    tags: ["Banca", "SAAS"],
+    image: "/images/bbva_mockup.jpg",
     images: [
-      "/images/findash_global_1784586264509.jpg",
+      "/images/bbva_mockup.jpg",
       "/images/vitality_tracker_1784586273218.jpg",
       "/images/lumina_store_1784586282264.jpg"
     ],
     role: "Líder de Diseño de Producto",
-    challenge: "Los analistas financieros pasaban más de 25 minutos intentando compilar informes debido a una interfaz fragmentada y confusa. La plataforma original carecía de personalización y no era responsiva, lo que provocaba una tasa de abandono alta.",
+    challenge: "Dentro del marco del Programa de Transformación Mayorista (diseñado para habilitar los objetivos de negocio de las bancas de Empresas, CIB y PyMEs), la originación y sanción crediticia requería agilizar, estandarizar y automatizar la gestión de límites y sublímites de crédito. Tradicionalmente, la asignación y gestión de sublímites financieros implicaba procesos manuales complejos, duplicidad en la captura de información, uso de formatos físicos u obsoletos (como anexos de información) y aprobaciones complejas por comité de riesgos.",
     process: [
       "Investigación con 12 analistas financieros mediante mapas de empatía y pruebas de usabilidad del sistema antiguo.",
       "Definición de arquetipos de usuario y rediseño completo de la arquitectura de información mediante card sorting.",
@@ -46,9 +46,9 @@ export const PROJECTS: Project[] = [
     ],
     solution: "Se creó un panel unificado personalizable con widgets de arrastrar y soltar, que permite a los usuarios estructurar sus vistas de datos prioritarios en segundos. Además, se simplificó el módulo de exportación de informes en PDF/Excel a un solo clic.",
     metrics: [
-      { label: "Tiempo para generar reportes", value: "-60%" },
-      { label: "Satisfacción de usuario (SUS)", value: "92/100" },
-      { label: "Eficiencia operativa", value: "+40%" }
+      { label: "Reducción de tiempos de contratación: Liberar la operación del ejecutivo de cuenta para enfocar más tiempo en la atención al cliente.", icon: "timer" },
+      { label: "Autonomía operativa: Permitir la operación bajo la figura de un \"techo\" de crédito sancionado previamente.", icon: "shield-check" },
+      { label: "Eliminación de fricción técnica: Automatizar reglas y validaciones del motor triage, estandarizando condiciones y políticas.", icon: "bot" }
     ],
     color: {
       bg: "bg-blue-50/50 dark:bg-blue-950/10",
@@ -59,18 +59,54 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "vitality-tracker",
-    title: "Vitality Tracker",
-    description: "Aplicación móvil para el seguimiento del bienestar holístico. Implementación de un sistema de diseño propio y flujos de onboarding gamificados.",
+    title: "Shuttle Central",
+    description:
+      "Self-service para viajeros que confirma datos críticos y reduce fricción operativa\nRediseñé el portal del viajero de Shuttle Central (YC W22) para que quienes reservan vía OTAs (Expedia, Booking, etc.) puedan completar, editar y confirmar su transfer antes del viaje — transformando datos incompletos en un servicio operable.",
     category: "Traveltech",
-    tags: ["Traveltech", "Mobile App"],
-    image: "/images/vitality_tracker_1784586273218.jpg",
+    tags: ["Traveltech", "Web App"],
+    image: "/images/shuttle_central_mockup.jpg",
     images: [
-      "/images/vitality_tracker_1784586273218.jpg",
-      "/images/findash_global_1784586264509.jpg",
-      "/images/lumina_store_1784586282264.jpg"
+      "/images/shuttle_central_mockup.jpg",
+      "/images/shuttle_central_login.jpg",
+      "/images/shuttle_central_reservation.jpg",
+      "/images/shuttle_central_schedule.jpg"
     ],
-    role: "Senior Product Designer",
-    challenge: "Los usuarios que descargaban la app a menudo la abandonaban durante el primer día. El flujo de registro era demasiado largo y pedía datos de salud delicados sin explicar el valor añadido, generando desconfianza.",
+    role: "Product Designer (end-to-end)",
+    challenge:
+      "La mayoría de viajeros llegaba a Shuttle Central a través de OTAs (Expedia, Booking, etc.). Esa reserva externa dejaba información faltante o desactualizada: vuelo, pickup, pasajeros o destino. Sin datos confiables, el servicio se volvía frágil. Customer Service absorbía cambios, confirmaciones y dudas. El viajero, en el momento más crítico del viaje, dependía de un agente.",
+    challengeFollowUp: [
+      {
+        columns: [
+          {
+            heading: "Operación sin datos completos",
+            text: ""
+          },
+          {
+            heading: "Alta dependencia de Customer Service",
+            text: ""
+          },
+          {
+            heading: "Ansiedad del viajero al llegar al aeropuerto",
+            text: ""
+          }
+        ]
+      }
+    ],
+    meta: [
+      { label: "Rol", value: "Product Designer (end-to-end)" },
+      { label: "Empresa", value: "Shuttle Central" },
+      { label: "Tiempo", value: "~2021–2022" },
+      {
+        label: "Equipo",
+        value: "Founders · Frontend · Logistics & Revenue · Customer Experience"
+      },
+      { label: "Herramientas", value: "Figma · Miro · Asana · Zeplin" },
+      {
+        label: "Producto",
+        value: "ride.shuttlecentral.com",
+        href: "https://ride.shuttlecentral.com"
+      }
+    ],
     process: [
       "Análisis de la tasa de rebote por pantalla en el túnel de registro original.",
       "Rediseño de los flujos de onboarding introduciendo micro-interacciones lúdicas, barras de progreso y explicaciones claras sobre la privacidad de datos.",
@@ -91,13 +127,13 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "lumina-store",
-    title: "Lumina Store",
+    title: "Soriana",
     description: "Transformación de la experiencia de compra online para una marca de iluminación premium, enfocada en la reducción de la fricción en el checkout.",
     category: "E-Commerce",
     tags: ["E-Commerce", "Web"],
-    image: "/images/lumina_store_1784586282264.jpg",
+    image: "/images/soriana_mockup.png",
     images: [
-      "/images/lumina_store_1784586282264.jpg",
+      "/images/soriana_mockup.png",
       "/images/findash_global_1784586264509.jpg",
       "/images/vitality_tracker_1784586273218.jpg"
     ],

@@ -39,19 +39,16 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-3" id="desktop-nav">
+        <nav className="hidden md:flex items-center gap-4" id="desktop-nav">
           {navItems.map((item) => (
             <button
               key={item.id}
+              type="button"
               onClick={() => setActiveTab(item.id)}
-              className={`font-sans text-xs font-extrabold uppercase tracking-wider transition-transform px-4 py-1.5 rounded-full cursor-pointer hover:scale-105 ${
-                activeTab === item.id
-                  ? 'bg-[#8F9DE2] text-black border-2 border-black'
-                  : 'text-black hover:bg-slate-100'
-              }`}
+              className={`neo-nav-btn${activeTab === item.id ? ' is-active' : ''}`}
               id={`nav-${item.id}`}
             >
-              {item.label}
+              <span>{item.label}</span>
             </button>
           ))}
         </nav>
@@ -120,22 +117,19 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
 
       {isMobileMenuOpen && (
         <div className="border-b-2 border-black bg-[#f7f5f0] px-4 py-4 md:hidden animate-fade-in" id="mobile-menu-panel">
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col items-start gap-4">
             {navItems.map((item) => (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => {
                   setActiveTab(item.id);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`flex w-full items-center px-4 py-2.5 rounded-full text-xs font-black uppercase tracking-wider border-2 border-black transition-transform hover:scale-105 ${
-                  activeTab === item.id
-                    ? 'bg-[#8F9DE2] text-black'
-                    : 'bg-white text-black'
-                }`}
+                className={`neo-nav-btn${activeTab === item.id ? ' is-active' : ''}`}
                 id={`mobile-nav-${item.id}`}
               >
-                {item.label}
+                <span>{item.label}</span>
               </button>
             ))}
           </div>

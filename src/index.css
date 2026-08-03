@@ -102,6 +102,34 @@
   transform: translate(2px, -2px);
 }
 
+/* Stacked neo-brutalist nav buttons (same language as social icons) */
+.neo-nav-btn {
+  @apply relative inline-flex h-8 shrink-0 cursor-pointer;
+}
+
+.neo-nav-btn::before {
+  content: '';
+  @apply absolute inset-0 border-2 border-black bg-white;
+  transform: translate(4px, -4px);
+}
+
+.neo-nav-btn > span {
+  @apply relative z-10 flex h-full items-center justify-center border-2 border-black bg-white px-3 font-sans text-[11px] font-black uppercase tracking-wider text-black transition-transform duration-150 whitespace-nowrap;
+}
+
+.neo-nav-btn:hover > span {
+  transform: translate(2px, -2px);
+}
+
+/* Active tab: white face, purple hard offset (shadow/outline) */
+.neo-nav-btn.is-active::before {
+  @apply border-[#8F9DE2] bg-[#8F9DE2];
+}
+
+.neo-nav-btn.is-active > span {
+  @apply bg-white border-black;
+}
+
 /* Custom transitions and scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;
