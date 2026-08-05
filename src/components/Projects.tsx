@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Project } from '../types';
+import { Project, type CaseStudyIconId } from '../types';
 import { useLocalizedContent } from '../i18n/useI18n';
 import {
   ArrowRight,
@@ -11,6 +11,36 @@ import {
   Timer,
   ShieldCheck,
   Bot,
+  UserCog,
+  Scale,
+  Landmark,
+  LayoutPanelLeft,
+  Users,
+  MessageSquareText,
+  Boxes,
+  Layers,
+  BadgeDollarSign,
+  ListChecks,
+  Eraser,
+  Zap,
+  ScanEye,
+  Target,
+  Lightbulb,
+  Map,
+  Search,
+  FlaskConical,
+  Palette,
+  Smartphone,
+  CheckCircle2,
+  Rocket,
+  AlertTriangle,
+  Route,
+  ClipboardList,
+  PenTool,
+  Gauge,
+  Sparkles,
+  HeartHandshake,
+  Building2,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -20,11 +50,63 @@ const METRIC_ICONS: Record<'timer' | 'shield-check' | 'bot', LucideIcon> = {
   bot: Bot,
 };
 
+const CASE_ICONS: Record<CaseStudyIconId, LucideIcon> = {
+  timer: Timer,
+  'shield-check': ShieldCheck,
+  bot: Bot,
+  'user-cog': UserCog,
+  scale: Scale,
+  landmark: Landmark,
+  'layout-panel': LayoutPanelLeft,
+  users: Users,
+  'message-square': MessageSquareText,
+  boxes: Boxes,
+  layers: Layers,
+  currency: BadgeDollarSign,
+  'list-checks': ListChecks,
+  eraser: Eraser,
+  zap: Zap,
+  'scan-eye': ScanEye,
+  target: Target,
+  lightbulb: Lightbulb,
+  map: Map,
+  search: Search,
+  flask: FlaskConical,
+  palette: Palette,
+  smartphone: Smartphone,
+  'check-circle': CheckCircle2,
+  rocket: Rocket,
+  alert: AlertTriangle,
+  route: Route,
+  clipboard: ClipboardList,
+  'pen-tool': PenTool,
+  gauge: Gauge,
+  sparkles: Sparkles,
+  'heart-handshake': HeartHandshake,
+  building: Building2,
+};
+
+const SECTION_ACCENT = {
+  white: 'bg-white',
+  pink: 'bg-[#fbcfe8]',
+  cyan: 'bg-[#bae6fd]',
+  mint: 'bg-[#a7f3d0]',
+  lilac: 'bg-[#ddd6fe]',
+} as const;
+
 export default function Projects() {
-  const { projects, t } = useLocalizedContent();
+  const { projects, t, lang } = useLocalizedContent();
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('All');
   const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const categoryLabel = (cat: string) => {
+    if (cat === 'All') return t.filterAll;
+    if (cat === 'Banca') return t.catBanking;
+    if (cat === 'Traveltech') return t.catTraveltech;
+    if (cat === 'E-Commerce') return t.catEcommerce;
+    return cat;
+  };
 
   // Lock page scroll while the Behance-style project viewer is open
   useEffect(() => {
@@ -84,7 +166,7 @@ export default function Projects() {
     <div className="space-y-10 pt-0 pb-2 md:pb-6" id="projects-section-container">
       {/* Header and Filter Buttons */}
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-4" id="projects-header-group">
-        <h2 className="font-display text-3xl font-black tracking-tight text-black dark:text-white" id="featured-title">
+        <h2 className="font-display text-3xl font-black tracking-tight text-black" id="featured-title">
           {t.featuredWork}
         </h2>
         
@@ -92,18 +174,18 @@ export default function Projects() {
         <div className="flex flex-wrap gap-2 md:justify-end" id="filter-tabs">
           {categories.map((cat) => {
             const isActive = filter === cat;
-            const activeBg = categoryPillBgOnActive[cat] || 'bg-[#8F9DE2] dark:bg-[#7A8AD9]';
+            const activeBg = categoryPillBgOnActive[cat] || 'bg-[#8F9DE2]';
             const bgClass = isActive
               ? activeBg
-              : 'bg-white hover:bg-slate-100 dark:bg-slate-800 dark:border-white';
+              : 'bg-white hover:bg-slate-100';
             return (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider transition-transform hover:scale-105 cursor-pointer border-2 border-black text-black dark:text-white ${bgClass}`}
+                className={`rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider transition-transform hover:scale-105 cursor-pointer border-2 border-black text-black ${bgClass}`}
                 id={`filter-btn-${cat.toLowerCase()}`}
               >
-                {cat === 'All' ? t.filterAll : cat}
+                {categoryLabel(cat)}
               </button>
             );
           })}
@@ -131,7 +213,7 @@ export default function Projects() {
 
               {/* Image Container with Hover Zoom & Action Overlay */}
               <div 
-                className="relative aspect-16/10 w-full overflow-hidden bg-slate-100 dark:bg-slate-900 cursor-pointer border-b-2 border-black dark:border-white"
+                className="relative aspect-16/10 w-full overflow-hidden bg-slate-100 cursor-pointer border-b-2 border-black "
                 onClick={() => openProject(project)}
                 id={`project-img-container-${project.id}`}
               >
@@ -168,7 +250,7 @@ export default function Projects() {
 
                 {/* Title */}
                 <h3 
-                  className="font-display text-2xl font-black text-black dark:text-white hover:text-[#7A8AD9] transition-colors cursor-pointer inline-block leading-tight tracking-tight"
+                  className="font-display text-2xl font-black text-black hover:text-[#7A8AD9] transition-colors cursor-pointer inline-block leading-tight tracking-tight"
                   onClick={() => openProject(project)}
                   id={`project-title-${project.id}`}
                 >
@@ -177,7 +259,7 @@ export default function Projects() {
 
                 {/* Description */}
                 <div
-                  className="font-sans text-sm md:text-base leading-relaxed text-slate-800 dark:text-slate-200 space-y-3"
+                  className="font-sans text-sm md:text-base leading-relaxed text-slate-800 space-y-3"
                   id={`project-desc-${project.id}`}
                 >
                   {project.description.split('\n').filter(Boolean).map((paragraph, pIdx) => (
@@ -390,6 +472,237 @@ export default function Projects() {
                   </div>
                   </div>
 
+                  {selectedProject.caseStudySections?.length ? (
+                    <div className="w-full" id="modal-case-study-sections" key={lang}>
+                      {selectedProject.caseStudySections.map((section) => (
+                        <section
+                          key={section.number}
+                          className={`px-6 md:px-12 lg:px-16 py-10 md:py-14 text-black ${
+                            SECTION_ACCENT[section.accent ?? 'white']
+                          }`}
+                          id={`case-study-section-${section.number}`}
+                        >
+                          <div className="mx-auto max-w-5xl space-y-7">
+                            <div className="flex flex-col gap-3">
+                              <span className="w-fit rounded-full border-2 border-black bg-white px-3 py-1 font-display text-xs font-black">
+                                {section.number}
+                              </span>
+                              {section.kicker ? (
+                                <p className="text-xs font-black uppercase tracking-wider">
+                                  {section.kicker}
+                                </p>
+                              ) : null}
+                              <h4 className="font-display text-2xl md:text-3xl font-black leading-tight">
+                                {section.title}
+                              </h4>
+                            </div>
+
+                            {section.image && section.imagePlacement !== 'after' ? (
+                              <div className="overflow-hidden bg-white">
+                                <img
+                                  src={section.image}
+                                  alt=""
+                                  className="w-full aspect-[16/9] object-cover object-top"
+                                  referrerPolicy="no-referrer"
+                                />
+                              </div>
+                            ) : null}
+
+                            {section.body ? (
+                              <div className="w-full space-y-4 font-sans text-sm md:text-base font-medium leading-relaxed whitespace-pre-line">
+                                {section.body.split('\n\n').map((paragraph, idx) => (
+                                  <p key={idx} className="w-full max-w-none">
+                                    {paragraph}
+                                  </p>
+                                ))}
+                              </div>
+                            ) : null}
+
+                            {section.imagePlacement === 'after' ? (
+                              section.image ? (
+                                <div className="overflow-hidden border-2 border-black bg-white">
+                                  <img
+                                    src={section.image}
+                                    alt=""
+                                    className="w-full aspect-[16/9] object-cover object-top"
+                                    referrerPolicy="no-referrer"
+                                  />
+                                </div>
+                              ) : (
+                                <div
+                                  className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                  aria-hidden
+                                />
+                              )
+                            ) : null}
+
+                            {section.gallery?.length ? (
+                              <div
+                                className={`grid gap-3 ${
+                                  section.gallery.length >= 4
+                                    ? 'grid-cols-2 md:grid-cols-4'
+                                    : 'grid-cols-1 md:grid-cols-3'
+                                }`}
+                              >
+                                {section.gallery.map((src) => (
+                                  <div
+                                    key={src}
+                                    className="overflow-hidden border-2 border-black bg-white"
+                                  >
+                                    <img
+                                      src={src}
+                                      alt=""
+                                      className="w-full aspect-[4/5] object-cover object-top"
+                                      referrerPolicy="no-referrer"
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            ) : null}
+
+                            {section.itemsTitle ? (
+                              <h5 className="font-display text-lg font-black">{section.itemsTitle}</h5>
+                            ) : null}
+
+                            {section.items?.length ? (
+                              <div
+                                className={`grid grid-cols-1 gap-4 ${
+                                  section.items.length === 4
+                                    ? 'md:grid-cols-2 lg:grid-cols-4'
+                                    : section.items.length >= 3
+                                      ? 'md:grid-cols-3'
+                                      : 'md:grid-cols-2'
+                                }`}
+                              >
+                                {section.items.map((item, itemIdx) => {
+                                  const Icon = item.icon ? CASE_ICONS[item.icon] : null;
+                                  return (
+                                    <article
+                                      key={`${item.title}-${itemIdx}`}
+                                      className="border-2 border-black bg-white p-5 space-y-4"
+                                    >
+                                      {Icon ? (
+                                        <span
+                                          className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2]"
+                                          aria-hidden
+                                        >
+                                          <Icon size={23} strokeWidth={2.25} />
+                                        </span>
+                                      ) : (
+                                        <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] px-2 font-display text-xs font-black">
+                                          {String(itemIdx + 1).padStart(2, '0')}
+                                        </span>
+                                      )}
+                                      <div className="space-y-2">
+                                        <h5 className="font-display text-base font-black leading-tight">
+                                          {item.title}
+                                        </h5>
+                                        <p className="font-sans text-sm font-medium leading-relaxed">
+                                          {item.text}
+                                        </p>
+                                      </div>
+                                    </article>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
+
+                            {section.groups?.map((group) => (
+                              <div key={group.title} className="space-y-4">
+                                <h5 className="font-display text-lg font-black">{group.title}</h5>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                  {group.items.map((item, itemIdx) => {
+                                    const Icon = item.icon ? CASE_ICONS[item.icon] : null;
+                                    return (
+                                      <article
+                                        key={`${group.title}-${item.title}-${itemIdx}`}
+                                        className="flex gap-4 border-2 border-black bg-white p-5"
+                                      >
+                                        {Icon ? (
+                                          <span
+                                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2]"
+                                            aria-hidden
+                                          >
+                                            <Icon size={23} strokeWidth={2.25} />
+                                          </span>
+                                        ) : null}
+                                        <div className="space-y-2">
+                                          <h6 className="font-display text-base font-black leading-tight">
+                                            {item.title}
+                                          </h6>
+                                          <p className="font-sans text-sm font-medium leading-relaxed">
+                                            {item.text}
+                                          </p>
+                                        </div>
+                                      </article>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            ))}
+
+                            {section.href ? (
+                              <a
+                                href={section.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 neo-btn-primary"
+                              >
+                                <span>{section.hrefLabel ?? section.href}</span>
+                                <ArrowRight size={16} />
+                              </a>
+                            ) : null}
+
+                            {section.processSteps?.length ? (
+                              <div className="border-2 border-black bg-white px-4 py-5 md:px-6 space-y-4">
+                                {section.processLabel ? (
+                                  <p className="text-xs font-black uppercase tracking-wider">
+                                    {section.processLabel}
+                                  </p>
+                                ) : null}
+                                <ol className="flex flex-col gap-3 md:flex-row md:items-stretch md:gap-0">
+                                  {section.processSteps.map((step, idx) => {
+                                    const StepIcon = CASE_ICONS[step.icon];
+                                    return (
+                                      <li
+                                        key={`${step.title}-${idx}`}
+                                        className="flex items-center gap-2 md:flex-1 md:min-w-0"
+                                      >
+                                        <div className="flex items-center gap-2.5 min-w-0">
+                                          <span
+                                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2]"
+                                            aria-hidden
+                                          >
+                                            <StepIcon size={18} strokeWidth={2.25} />
+                                          </span>
+                                          <span className="font-display text-sm font-black leading-tight">
+                                            {step.title}
+                                          </span>
+                                        </div>
+                                        {idx < section.processSteps!.length - 1 ? (
+                                          <ChevronRight
+                                            className="hidden md:block mx-1.5 shrink-0 opacity-70"
+                                            size={18}
+                                            strokeWidth={2.5}
+                                            aria-hidden
+                                          />
+                                        ) : null}
+                                      </li>
+                                    );
+                                  })}
+                                </ol>
+                              </div>
+                            ) : section.footnote ? (
+                              <p className="text-xs md:text-sm font-bold leading-relaxed border-2 border-black bg-white px-4 py-3">
+                                {section.footnote}
+                              </p>
+                            ) : null}
+                          </div>
+                        </section>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
                   <div
                     className="space-y-3 px-6 md:px-12 lg:px-16 py-6 md:py-8 w-full bg-white text-black"
                     id="modal-challenge-section"
@@ -475,6 +788,8 @@ export default function Projects() {
                     </p>
                   </div>
                   </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

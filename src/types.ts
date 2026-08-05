@@ -5,6 +5,71 @@ export interface ProjectMetaRow {
   href?: string;
 }
 
+export type CaseStudyIconId =
+  | 'timer'
+  | 'shield-check'
+  | 'bot'
+  | 'user-cog'
+  | 'scale'
+  | 'landmark'
+  | 'layout-panel'
+  | 'users'
+  | 'message-square'
+  | 'boxes'
+  | 'layers'
+  | 'currency'
+  | 'list-checks'
+  | 'eraser'
+  | 'zap'
+  | 'scan-eye'
+  | 'target'
+  | 'lightbulb'
+  | 'map'
+  | 'search'
+  | 'flask'
+  | 'palette'
+  | 'smartphone'
+  | 'check-circle'
+  | 'rocket'
+  | 'alert'
+  | 'route'
+  | 'clipboard'
+  | 'pen-tool'
+  | 'gauge'
+  | 'sparkles'
+  | 'heart-handshake'
+  | 'building';
+
+export interface CaseStudyItem {
+  /** Si falta, se muestra número o solo texto */
+  icon?: CaseStudyIconId;
+  title: string;
+  text: string;
+}
+
+export interface CaseStudySection {
+  number: string;
+  title: string;
+  kicker?: string;
+  body?: string;
+  itemsTitle?: string;
+  footnote?: string;
+  /** Pasos de proceso como esquema visual (reemplaza footnote de texto plano) */
+  processSteps?: { title: string; icon: CaseStudyIconId }[];
+  processLabel?: string;
+  href?: string;
+  hrefLabel?: string;
+  /** Imagen full-bleed alusiva o UI */
+  image?: string;
+  /** Posición de la imagen respecto al body. Default: before */
+  imagePlacement?: 'before' | 'after';
+  /** Galería de pantallas / wireframes */
+  gallery?: string[];
+  accent?: 'white' | 'pink' | 'cyan' | 'mint' | 'lilac';
+  items?: CaseStudyItem[];
+  groups?: { title: string; items: CaseStudyItem[] }[];
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -37,6 +102,11 @@ export interface Project {
   }[];
   /** Tabla Meta / Valor del case study (p. ej. Shuttle Central) */
   meta?: ProjectMetaRow[];
+  /**
+   * Narrativa Behance (slides). Si existe, reemplaza challenge/process/solution/metrics
+   * en el modal del case study.
+   */
+  caseStudySections?: CaseStudySection[];
   color: {
     bg: string;
     text: string;

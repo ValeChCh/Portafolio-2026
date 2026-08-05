@@ -8,16 +8,18 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ActiveTab } from './types';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLanguage } from './i18n/LanguageContext';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('work');
+  const { lang } = useLanguage();
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'work':
         return (
           <motion.div
-            key="work"
+            key={`work-${lang}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
@@ -38,7 +40,7 @@ export default function App() {
       case 'about':
         return (
           <motion.div
-            key="about"
+            key={`about-${lang}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
@@ -52,7 +54,7 @@ export default function App() {
       case 'resume':
         return (
           <motion.div
-            key="resume"
+            key={`resume-${lang}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
@@ -66,7 +68,7 @@ export default function App() {
       case 'contact':
         return (
           <motion.div
-            key="contact"
+            key={`contact-${lang}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}

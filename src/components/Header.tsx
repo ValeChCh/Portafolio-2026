@@ -69,10 +69,11 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
                   : 'bg-transparent text-slate-500 hover:text-black'
               }`}
               aria-pressed={lang === 'es'}
+              aria-label="Español"
               title="Español"
               id="lang-es-btn"
             >
-              ES
+              {t.langEs}
             </button>
             <button
               type="button"
@@ -83,10 +84,11 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
                   : 'bg-transparent text-slate-500 hover:text-black'
               }`}
               aria-pressed={lang === 'en'}
+              aria-label="English"
               title="English"
               id="lang-en-btn"
             >
-              EN
+              {t.langEn}
             </button>
           </div>
 

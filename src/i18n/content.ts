@@ -5,6 +5,7 @@ import {
   PROJECTS,
   VALERIA_PROFILE,
 } from '../data';
+import { SHUTTLE_CASE_SECTIONS_EN } from '../data/shuttleCaseStudy.en';
 import type { Lang } from './LanguageContext';
 
 const profileEn = {
@@ -20,87 +21,160 @@ const projectsEn: Project[] = [
     ...PROJECTS[0],
     description:
       'Migration of manual processes to digital platforms and Salesforce',
-    role: 'Lead Product Designer',
-    challenge:
-      'Within the Wholesale Transformation Program (designed to enable the business goals of Corporate, CIB, and SME banking), credit origination and sanctioning needed to speed up, standardize, and automate the management of credit limits and sub-limits. Traditionally, assigning and managing financial sub-limits involved complex manual processes, duplicated data entry, physical or obsolete formats (such as information annexes), and complex risk-committee approvals.',
-    process: [
-      'Research with 12 financial analysts using empathy maps and usability tests of the legacy system.',
-      'Definition of user archetypes and a full information architecture redesign through card sorting.',
-      'High-fidelity prototypes iterated through regular usability testing with direct feedback.',
-      'Thorough documentation of the component system in Figma to streamline delivery to engineering.',
+    role: 'UX Designer',
+    challenge: '',
+    process: [],
+    solution: '',
+    meta: [
+      { label: 'Role', value: 'UX Designer' },
+      { label: 'Company', value: 'Banco' },
+      { label: 'Program', value: 'Wholesale Transformation' },
     ],
-    solution:
-      'A unified, customizable dashboard with drag-and-drop widgets that lets users structure priority data views in seconds. The PDF/Excel report export module was also simplified to a single click.',
-    metrics: [
+    caseStudySections: [
       {
-        label:
-          'Reduction in contracting times: Free up the account executive’s operations so they can spend more time on client service.',
-        icon: 'timer',
+        number: '01',
+        title: 'The business challenge',
+        body:
+          'Within the credit process, several steps need to be sped up, standardized, and automated; one of those steps is the management of credit limits and sub-limits. Traditionally, assigning and managing financial sub-limits involved complex manual processes, duplicated data entry, physical or obsolete formats (such as information annexes), and complex approvals by a risk committee.',
+        imagePlacement: 'after',
+        itemsTitle: 'Expected Impact',
+        accent: 'white',
+        items: [
+          {
+            icon: 'timer',
+            title: 'Reduced contracting times',
+            text: 'Free up the account executive’s operations so they can spend more time on client service.',
+          },
+          {
+            icon: 'shield-check',
+            title: 'Operational autonomy',
+            text: 'Enable operations under a previously sanctioned credit limit.',
+          },
+          {
+            icon: 'bot',
+            title: 'Removal of technical friction',
+            text: 'Automate rules and validations that standardize and simplify the drafting of annexes.',
+          },
+        ],
       },
       {
-        label:
-          'Operational autonomy: Enable operations under a previously sanctioned credit “ceiling.”',
-        icon: 'shield-check',
+        number: '02',
+        title: 'User Understanding',
+        body:
+          'To design a holistic end-to-end tool, the key profiles across the project’s operational circuit were identified and aligned:',
+        image: '/images/banco_story_interviews_en.png',
+        imagePlacement: 'after',
+        accent: 'white',
+        items: [
+          {
+            icon: 'user-cog',
+            title: 'Account Executive (AE)',
+            text: 'Needs to quickly create the credit and, with that, detail the sub-limit linked to that credit.',
+          },
+          {
+            icon: 'scale',
+            title: 'Technical Secretariat & Risk Advisor',
+            text: 'Need to assess the credit-limit proposal, review its annexes, and issue a clear opinion (approve/reject).',
+          },
+          {
+            icon: 'landmark',
+            title: 'Committee / Sanctioning Authority',
+            text: 'Needs a unified, structured view to approve risk (detailed credit view).',
+          },
+        ],
       },
       {
-        label:
-          'Removal of technical friction: Automate triage engine rules and validations, standardizing conditions and policies.',
-        icon: 'bot',
+        number: '03',
+        title: 'My role as Product and my cross-functional collaboration',
+        accent: 'white',
+        items: [
+          {
+            icon: 'layout-panel',
+            title: 'Information architecture & navigation',
+            text: 'I led the information architecture and navigation, segmenting the experience according to each user’s profile and permissions.',
+          },
+          {
+            icon: 'users',
+            title: 'Cross-functional collaboration',
+            text: 'I worked in ongoing sessions with stakeholders, Product Owners, Technology Architecture, users (Account Executive and Risk Area), and Content teams.',
+          },
+          {
+            icon: 'message-square',
+            title: 'UX Writing standardization',
+            text: 'I aligned microcopy and clear interface instructions (notification messages, guidance for sub-limit registration, and standardized language for the teams).',
+          },
+        ],
+      },
+      {
+        number: '04',
+        title: 'Process & Architecture',
+        accent: 'white',
+        groups: [
+          {
+            title: 'Redesign for sub-limit approval',
+            items: [
+              {
+                icon: 'boxes',
+                title: 'Elimination of manual processes',
+                text: 'The current approval process was migrated to Salesforce, bringing the required information into a single front end while keeping process measurement in place.',
+              },
+            ],
+          },
+          {
+            title: 'Managing Technical Complexity and Business Rules',
+            items: [
+              {
+                icon: 'currency',
+                title: 'Flow variation depending on banking products',
+                text: 'The system was configured to validate conversions (for example, multi-currency in dollars) and auto-complete required subfamilies and fields based on the selected product.',
+              },
+              {
+                icon: 'list-checks',
+                title: 'Measurable cross-cutting chat',
+                text: 'Provide a space within the flow so different areas can communicate to adjust data, avoiding chats outside the system.',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        number: '05',
+        title: 'Results',
+        accent: 'white',
+        items: [
+          {
+            icon: 'eraser',
+            title: 'Eliminated redundancies',
+            text: 'Manual capture formats were replaced, avoiding duplication and making information transparent for different profiles.',
+          },
+          {
+            icon: 'zap',
+            title: 'Accelerated end-to-end flow',
+            text: 'The credit sanctioning and contracting lifecycle was significantly reduced by enabling access to information in a single system.',
+          },
+          {
+            icon: 'scan-eye',
+            title: 'Clearer decision-making',
+            text: 'Sub-limit and financial information was unified through a standardized component system.',
+          },
+        ],
       },
     ],
   },
   {
     ...PROJECTS[1],
     description:
-      'Self-service for travelers that confirms critical data and reduces operational friction.\nI redesigned the Shuttle Central (YC W22) traveler portal so guests who book via OTAs (Expedia, Booking, etc.) can complete, edit, and confirm their transfer before the trip — turning incomplete data into an operable service.',
-    role: 'Product Designer (end-to-end)',
-    challenge:
-      'Most travelers arrived at Shuttle Central through OTAs (Expedia, Booking, etc.). That external booking left missing or outdated information: flight, pickup, passengers, or destination. Without reliable data, the service became fragile. Customer Service absorbed changes, confirmations, and questions. At the most critical moment of the trip, the traveler depended on an agent.',
-    challengeFollowUp: [
-      {
-        columns: [
-          {
-            heading: 'Operating without complete data',
-            text: '',
-          },
-          {
-            heading: 'High dependency on Customer Service',
-            text: '',
-          },
-          {
-            heading: 'Traveler anxiety on airport arrival',
-            text: '',
-          },
-        ],
-      },
-    ],
+      'Self-service for travelers / How I designed the portal that confirms critical transfer data booked via OTAs and reduces operational friction',
+    role: 'Product Designer · End-to-end',
+    challenge: '',
     meta: [
-      { label: 'Role', value: 'Product Designer (end-to-end)' },
-      { label: 'Company', value: 'Shuttle Central' },
-      { label: 'Timeline', value: '~2021–2022' },
-      {
-        label: 'Team',
-        value: 'Founders · Frontend · Logistics & Revenue · Customer Experience',
-      },
-      { label: 'Tools', value: 'Figma · Miro · Asana · Zeplin' },
-      {
-        label: 'Product',
-        value: 'ride.shuttlecentral.com',
-        href: 'https://ride.shuttlecentral.com',
-      },
+      { label: 'Role', value: 'Product Designer · End-to-end' },
+      { label: 'Company', value: 'Shuttle Central (YC W22)' },
+      { label: 'Focus', value: 'Research · UX · UI · Validation' },
     ],
-    process: [
-      'Analysis of bounce rate by screen in the original registration funnel.',
-      'Redesign of onboarding flows with playful micro-interactions, progress bars, and clear explanations about data privacy.',
-      'Visual system design with calming color palettes and fast-reading typography to reduce user anxiety.',
-    ],
-    solution:
-      'Onboarding became a conversational, friendly experience with instant rewards (gamification). Initial questions were reduced to the essentials, with the rest collected progressively inside the app.',
-    metrics: [
-      { label: 'Day-7 retention', value: '+55%' },
-      { label: 'Profile completeness', value: '88%' },
-      { label: 'App Store rating', value: '4.8★' },
-    ],
+    process: [],
+    solution: '',
+    caseStudySections: SHUTTLE_CASE_SECTIONS_EN,
   },
   {
     ...PROJECTS[2],
