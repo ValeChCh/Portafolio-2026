@@ -25,3 +25,12 @@
 ## Nota UI (2026-07-31)
 Primario de marca: `#8F9DE2` (antes amarillo). Form Contact: focus neutro + submit negro.
 Imágenes en `public/images/` (`/images/...`) — fix prod (G5).
+
+## Nota case study Banco (2026-08-03)
+Narrativa Behance puntos 1–5 vía `caseStudySections` en `src/data.ts` (+ EN en `content.ts`). Render en `Projects.tsx`.
+
+## Nota Shuttle Behance (2026-08-03)
+18 slides storytelling en `src/data/shuttleCaseStudy.ts` (+ EN). Ilustraciones `public/images/shuttle_story_*.png` + pantallas UI existentes.
+
+## Nota dark mode (2026-08-03)
+Modo nocturno desactivado: `@custom-variant dark` solo con clase `.dark` (nunca se aplica) + estilos `dark:` / `html.dark` limpiados. Solo tema claro.

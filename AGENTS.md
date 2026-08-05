@@ -81,7 +81,7 @@ logs/              ← resúmenes de sesión comprimidos
 ## Arquitectura rápida (no expandir salvo necesidad)
 
 ```
-main.tsx → App.tsx [activeTab, darkMode]
+main.tsx → App.tsx [activeTab] + LanguageProvider
   Header (nav) | Footer
   work → Sidebar + Projects (+ modal)
   about → About

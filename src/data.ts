@@ -1,4 +1,5 @@
 import { Project, Experience, Skill } from './types';
+import { SHUTTLE_CASE_SECTIONS_ES } from './data/shuttleCaseStudy';
 
 export const VALERIA_PROFILE = {
   name: "Valeria",
@@ -15,45 +16,166 @@ export const VALERIA_PROFILE = {
 };
 
 export const CORE_SKILLS: Skill[] = [
-  { name: "Figma", category: "core", color: "bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-950/40 dark:text-purple-300 dark:border-purple-900/50" },
-  { name: "Research", category: "core", color: "bg-rose-100 text-rose-800 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/50" },
-  { name: "Design Systems", category: "core", color: "bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-950/40 dark:text-cyan-300 dark:border-cyan-900/50" },
-  { name: "Prototyping", category: "core", color: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-900/50" },
-  { name: "UI Design", category: "core", color: "bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-900/50" },
-  { name: "User Testing", category: "core", color: "bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-900/50" }
+  { name: "Figma", category: "core", color: "bg-purple-100 text-purple-800 border-purple-200 "},
+  { name: "Research", category: "core", color: "bg-rose-100 text-rose-800 border-rose-200 "},
+  { name: "Design Systems", category: "core", color: "bg-cyan-100 text-cyan-800 border-cyan-200 "},
+  { name: "Prototyping", category: "core", color: "bg-amber-100 text-amber-800 border-amber-200 "},
+  { name: "UI Design", category: "core", color: "bg-indigo-100 text-indigo-800 border-indigo-200 "},
+  { name: "User Testing", category: "core", color: "bg-emerald-100 text-emerald-800 border-emerald-200 "}
 ];
 
 export const PROJECTS: Project[] = [
   {
     id: "findash-global",
-    title: "BBVA",
+    title: "Banco",
     description: "Migración de procesos manuales a plataformas digitales y Salesforce",
     category: "Banca",
     tags: ["Banca", "SAAS"],
     image: "/images/bbva_mockup.jpg",
     images: [
-      "/images/bbva_mockup.jpg",
-      "/images/vitality_tracker_1784586273218.jpg",
-      "/images/lumina_store_1784586282264.jpg"
+      "/images/bbva_mockup.jpg"
     ],
-    role: "Líder de Diseño de Producto",
-    challenge: "Dentro del marco del Programa de Transformación Mayorista (diseñado para habilitar los objetivos de negocio de las bancas de Empresas, CIB y PyMEs), la originación y sanción crediticia requería agilizar, estandarizar y automatizar la gestión de límites y sublímites de crédito. Tradicionalmente, la asignación y gestión de sublímites financieros implicaba procesos manuales complejos, duplicidad en la captura de información, uso de formatos físicos u obsoletos (como anexos de información) y aprobaciones complejas por comité de riesgos.",
-    process: [
-      "Investigación con 12 analistas financieros mediante mapas de empatía y pruebas de usabilidad del sistema antiguo.",
-      "Definición de arquetipos de usuario y rediseño completo de la arquitectura de información mediante card sorting.",
-      "Creación de prototipos de alta fidelidad iterados a través de pruebas de usabilidad periódicas con feedback directo.",
-      "Documentación exhaustiva del sistema de componentes en Figma para agilizar la entrega técnica a desarrollo."
+    role: "Diseñadora UX",
+    challenge: "",
+    process: [],
+    solution: "",
+    meta: [
+      { label: "Rol", value: "Diseñadora UX" },
+      { label: "Empresa", value: "Banco" },
+      { label: "Programa", value: "Transformación Mayorista" }
     ],
-    solution: "Se creó un panel unificado personalizable con widgets de arrastrar y soltar, que permite a los usuarios estructurar sus vistas de datos prioritarios en segundos. Además, se simplificó el módulo de exportación de informes en PDF/Excel a un solo clic.",
-    metrics: [
-      { label: "Reducción de tiempos de contratación: Liberar la operación del ejecutivo de cuenta para enfocar más tiempo en la atención al cliente.", icon: "timer" },
-      { label: "Autonomía operativa: Permitir la operación bajo la figura de un \"techo\" de crédito sancionado previamente.", icon: "shield-check" },
-      { label: "Eliminación de fricción técnica: Automatizar reglas y validaciones del motor triage, estandarizando condiciones y políticas.", icon: "bot" }
+    caseStudySections: [
+      {
+        number: "01",
+        title: "El desafío de negocio",
+        body: "Dentro del proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar; uno de esos pasos es la gestión de límites y sublímites de crédito. Tradicionalmente, la asignación y gestión de sublímites financieros implicaba procesos manuales complejos, duplicidad en la captura de información, uso de formatos físicos u obsoletos (como anexos de información) y aprobaciones complejas por un comité de riesgos.",
+        imagePlacement: "after",
+        itemsTitle: "El Impacto Esperado",
+        accent: "white",
+        items: [
+          {
+            icon: "timer",
+            title: "Reducción de tiempos de contratación",
+            text: "Liberar la operación del ejecutivo de cuenta para enfocar más tiempo en la atención al cliente."
+          },
+          {
+            icon: "shield-check",
+            title: "Autonomía operativa",
+            text: "Permitir la operación bajo la figura de un límite de crédito sancionado previamente."
+          },
+          {
+            icon: "bot",
+            title: "Eliminación de fricción técnica",
+            text: "Automatizar reglas y validaciones que permitan estandarizar y facilitar la redacción de anexos."
+          }
+        ]
+      },
+      {
+        number: "02",
+        title: "Entendimiento del Usuario y Gobernanza",
+        body: "Para diseñar una herramienta holística E2E, se identificaron y alinearon los distintos perfiles clave dentro del circuito operativo del proyecto:",
+        image: "/images/banco_story_interviews_es.png",
+        imagePlacement: "after",
+        accent: "white",
+        items: [
+          {
+            icon: "user-cog",
+            title: "Ejecutivo de Cuenta (EC)",
+            text: "Requiere dar alta rápida al crédito, y con ello detallar el sublímite que estará ligado a ese crédito."
+          },
+          {
+            icon: "scale",
+            title: "Secretaría Técnica y Asesor de Riesgos",
+            text: "Necesitan evaluar la propuesta del límite del crédito, revisar los anexos del mismo y emitir un dictamen claro (aprobar/rechazar)."
+          },
+          {
+            icon: "landmark",
+            title: "Comité / Instancia de Sanción",
+            text: "Requiere una visión unificada y estructurada para aprobar el riesgo (vista detallada del crédito)."
+          }
+        ]
+      },
+      {
+        number: "03",
+        title: "Mi rol como Product y mi colaboración transversal",
+        accent: "white",
+        items: [
+          {
+            icon: "layout-panel",
+            title: "Arquitectura de información y navegación",
+            text: "Lideré la arquitectura de información y la navegación, segmentando la experiencia según el perfil y permisos del usuario."
+          },
+          {
+            icon: "users",
+            title: "Colaboración multidisciplinaria",
+            text: "Trabajé en mesas de trabajo constantes junto a Stakeholders, Product Owners, Arquitectura Tecnológica, usuarios (Ejecutivo de Cuenta y Área de Riesgos) y los equipos de Content."
+          },
+          {
+            icon: "message-square",
+            title: "Estandarización de UX Writing",
+            text: "Alineación de microcopia e instrucciones claras en la interfaz (mensajes de notificaciones, guía en el registro de los sublímites y estandarización del lenguaje para las áreas)."
+          }
+        ]
+      },
+      {
+        number: "04",
+        title: "El Proceso de Diseño y Arquitectura de la Solución",
+        accent: "white",
+        groups: [
+          {
+            title: "Rediseño para la sanción de sublímites",
+            items: [
+              {
+                icon: "boxes",
+                title: "Eliminación de procesos manuales",
+                text: "Se migró el proceso de sanción actual a Salesforce reuniendo la información necesaria en un solo frontal manteniendo la medición del proceso."
+              }
+            ]
+          },
+          {
+            title: "Manejo de Complejidades Técnicas y Reglas de Negocio",
+            items: [
+              {
+                icon: "currency",
+                title: "Variación del flujo dependiendo de los productos bancarios",
+                text: "Parametrización del sistema para validar conversiones (ej. multidivisa en dólares) y auto-completar subfamilias/campos obligatorios según el producto elegido."
+              },
+              {
+                icon: "list-checks",
+                title: "Chat transversal medible",
+                text: "Destinar un espacio dentro del flujo que permita a las diferentes áreas mantener comunicación para ajustar datos evitando los chats fuera del sistema."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        number: "05",
+        title: "Medición de Resultados e Impacto",
+        accent: "white",
+        items: [
+          {
+            icon: "eraser",
+            title: "Eliminación de redundancias",
+            text: "Reemplazo de formatos manuales de captura evitando duplicidades y transparentando la información para los diferentes perfiles."
+          },
+          {
+            icon: "zap",
+            title: "Agilización del flujo E2E",
+            text: "Reducción significativa en el ciclo de vida de la sanción y contratación del crédito al permitir la accesibilidad a la información en un solo sistema."
+          },
+          {
+            icon: "scan-eye",
+            title: "Claridad en la toma de decisiones",
+            text: "Unificación de la visión de sublímites e información financiera mediante un sistema de componentes estandarizado."
+          }
+        ]
+      }
     ],
     color: {
-      bg: "bg-blue-50/50 dark:bg-blue-950/10",
-      text: "text-blue-700 dark:text-blue-400",
-      border: "border-blue-100 dark:border-blue-900/30",
+      bg: "bg-blue-50/50",
+      text: "text-blue-700",
+      border: "border-blue-100",
       accent: "bg-blue-600 hover:bg-blue-700 text-white"
     }
   },
@@ -61,9 +183,9 @@ export const PROJECTS: Project[] = [
     id: "vitality-tracker",
     title: "Shuttle Central",
     description:
-      "Self-service para viajeros que confirma datos críticos y reduce fricción operativa\nRediseñé el portal del viajero de Shuttle Central (YC W22) para que quienes reservan vía OTAs (Expedia, Booking, etc.) puedan completar, editar y confirmar su transfer antes del viaje — transformando datos incompletos en un servicio operable.",
+      "Self-service para viajeros\nCómo diseñé el portal que confirma datos críticos de transfers reservados vía OTAs y reduce fricción operativa.",
     category: "Traveltech",
-    tags: ["Traveltech", "Web App"],
+    tags: ["Traveltech", "Web App", "UX Research", "Design System"],
     image: "/images/shuttle_central_mockup.jpg",
     images: [
       "/images/shuttle_central_mockup.jpg",
@@ -72,56 +194,19 @@ export const PROJECTS: Project[] = [
       "/images/shuttle_central_schedule.jpg"
     ],
     role: "Product Designer (end-to-end)",
-    challenge:
-      "La mayoría de viajeros llegaba a Shuttle Central a través de OTAs (Expedia, Booking, etc.). Esa reserva externa dejaba información faltante o desactualizada: vuelo, pickup, pasajeros o destino. Sin datos confiables, el servicio se volvía frágil. Customer Service absorbía cambios, confirmaciones y dudas. El viajero, en el momento más crítico del viaje, dependía de un agente.",
-    challengeFollowUp: [
-      {
-        columns: [
-          {
-            heading: "Operación sin datos completos",
-            text: ""
-          },
-          {
-            heading: "Alta dependencia de Customer Service",
-            text: ""
-          },
-          {
-            heading: "Ansiedad del viajero al llegar al aeropuerto",
-            text: ""
-          }
-        ]
-      }
-    ],
+    challenge: "",
+    process: [],
+    solution: "",
     meta: [
-      { label: "Rol", value: "Product Designer (end-to-end)" },
-      { label: "Empresa", value: "Shuttle Central" },
-      { label: "Tiempo", value: "~2021–2022" },
-      {
-        label: "Equipo",
-        value: "Founders · Frontend · Logistics & Revenue · Customer Experience"
-      },
-      { label: "Herramientas", value: "Figma · Miro · Asana · Zeplin" },
-      {
-        label: "Producto",
-        value: "ride.shuttlecentral.com",
-        href: "https://ride.shuttlecentral.com"
-      }
+      { label: "Rol", value: "Product Designer · End-to-end" },
+      { label: "Empresa", value: "Shuttle Central (YC W22)" },
+      { label: "Foco", value: "Research · UX · UI · Validación" },
     ],
-    process: [
-      "Análisis de la tasa de rebote por pantalla en el túnel de registro original.",
-      "Rediseño de los flujos de onboarding introduciendo micro-interacciones lúdicas, barras de progreso y explicaciones claras sobre la privacidad de datos.",
-      "Diseño de un sistema visual con paletas cromáticas calmantes y tipografía de lectura rápida para reducir la ansiedad del usuario."
-    ],
-    solution: "Se transformó el onboarding en una experiencia conversacional y amigable con recompensas instantáneas (gamificación). Se redujo el número de preguntas iniciales a las estrictamente necesarias, dejando el resto para flujos progresivos dentro de la app.",
-    metrics: [
-      { label: "Retención en el Día 7", value: "+55%" },
-      { label: "Completitud del perfil", value: "88%" },
-      { label: "Calificación en App Store", value: "4.8★" }
-    ],
+    caseStudySections: SHUTTLE_CASE_SECTIONS_ES,
     color: {
-      bg: "bg-emerald-50/50 dark:bg-emerald-950/10",
-      text: "text-emerald-700 dark:text-emerald-400",
-      border: "border-emerald-100 dark:border-emerald-900/30",
+      bg: "bg-emerald-50/50",
+      text: "text-emerald-700",
+      border: "border-emerald-100",
       accent: "bg-emerald-600 hover:bg-emerald-700 text-white"
     }
   },
@@ -152,9 +237,9 @@ export const PROJECTS: Project[] = [
       { label: "Tiempo promedio de checkout", value: "1.5 min" }
     ],
     color: {
-      bg: "bg-amber-50/50 dark:bg-amber-950/10",
-      text: "text-amber-700 dark:text-amber-400",
-      border: "border-amber-100 dark:border-amber-900/30",
+      bg: "bg-amber-50/50",
+      text: "text-amber-700",
+      border: "border-amber-100",
       accent: "bg-amber-600 hover:bg-amber-700 text-white"
     }
   }
@@ -164,7 +249,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
   {
     id: "exp-1",
     role: "Senior Product Designer",
-    company: "BBVA",
+    company: "Banco",
     duration: "2024 - Presente",
     description: [
       "Diseñé 2 flujos principales dentro del crédito de la banca mayorísta para ejecutivos de cuenta dentro del banco, para migrar procesos manuales a plataformas conectadas entre sí para reducir los procesos en un 50%.",
