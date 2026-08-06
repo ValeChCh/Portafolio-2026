@@ -29,8 +29,17 @@ Imágenes en `public/images/` (`/images/...`) — fix prod (G5).
 ## Nota case study Banco (2026-08-03)
 Narrativa Behance puntos 1–5 vía `caseStudySections` en `src/data.ts` (+ EN en `content.ts`). Render en `Projects.tsx`.
 
-## Nota Shuttle Behance (2026-08-03)
-18 slides storytelling en `src/data/shuttleCaseStudy.ts` (+ EN). Ilustraciones `public/images/shuttle_story_*.png` + pantallas UI existentes.
+## Nota Shuttle Behance (2026-08-03 → 2026-08-05)
+11 slides storytelling en `src/data/shuttleCaseStudy.ts` (+ EN). Compactado para lectura senior.
+
+## Nota Banco skeleton senior (2026-08-05)
+6 secciones: problema → users → rol → decisiones → UI → impacto. Pendiente: más pantallas + 1 métrica real.
+
+## Nota Soriana case study senior (2026-08-05)
+Reescrito desde Behance (cards · tracking · combos). 8 slides en `src/data/sorianaCaseStudy.ts` (+ EN). Quitado copy Lumina / métricas inventadas. Métrica citada: +10% CSAT.
+
+## Nota Contact booking inline (2026-08-05)
+Agendar Meet es opcional dentro de `SEND_MESSAGE.EXE` (checkbox). Requiere email válido + día + hora. Columna derecha = info rápida. Sigue siendo simulación local (I8).
 
 ## Nota dark mode (2026-08-03)
 Modo nocturno desactivado: `@custom-variant dark` solo con clase `.dark` (nunca se aplica) + estilos `dark:` / `html.dark` limpiados. Solo tema claro.

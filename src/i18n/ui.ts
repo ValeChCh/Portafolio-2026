@@ -77,7 +77,7 @@ const ui = {
     toolsTitle: 'Herramientas y Tecnologías',
     contactTitle: '¡Hablemos de tu próximo proyecto!',
     contactIntro:
-      '¿Tienes un problema de experiencia de usuario o de producto digital que necesitas resolver? Cuéntame sobre tus metas o agenda una llamada rápida.',
+      '¿Tienes un problema de experiencia de usuario o de producto digital que necesitas resolver? Cuéntame sobre tus metas; si quieres, también puedes agendar un café virtual de 15 min.',
     sendMessage: 'Enviar un Mensaje',
     messageSuccessTitle: '¡Mensaje Enviado con Éxito!',
     messageSuccessBody:
@@ -97,7 +97,19 @@ const ui = {
     subjectTalk: 'Charla, Ponencia o Podcast',
     subjectValueCollab: 'Colaboración en Proyecto',
     submitMessage: 'Enviar Mensaje',
+    submitMessageWithMeeting: 'Enviar mensaje y agendar Meet',
     sending: 'Enviando...',
+    formErrorRequired: 'Completa tu nombre y el mensaje para continuar.',
+    formErrorEmail: 'Ingresa un email válido: lo usaré para el Meet y para responderte.',
+    formErrorMeetingSlot: 'Para agendar, elige un día y un horario disponibles.',
+    optionalMeetingTitle: 'También quiero agendar un café virtual (15 min)',
+    optionalMeetingHint:
+      'Opcional. Si lo marcas, elige día y hora; te enviaré la invitación de Google Meet al email del formulario.',
+    meetingNeedsEmail: 'Primero escribe un email válido arriba: ahí llega el enlace de Google Meet.',
+    meetingSummary: (dateLabel: string, time: string) =>
+      `Sesión: ${dateLabel} · ${time} · Google Meet`,
+    optionalMeetingAside:
+      'Marca la opción dentro del formulario, elige día y hora, y te envío el Meet al email que indiques.',
     bookCoffee: 'Agendar Café Virtual (15 min)',
     bookIntro:
       'Selecciona una fecha y hora disponibles para conversar informalmente sobre tu producto digital por Google Meet.',
@@ -105,9 +117,11 @@ const ui = {
     bookedFor: 'Agendado para:',
     atTime: 'a las',
     bookingInvite: 'Te hemos enviado la invitación de calendario y enlace Meet.',
+    bookingInviteMeet:
+      'Simulación local: en un flujo real, la invitación de Google Meet llegaría a tu email de contacto.',
     bookAnother: 'Agendar otra fecha',
-    selectDate: '1. Selecciona Fecha',
-    selectTime: '2. Selecciona Hora (UTC-4) · 10:00–16:00',
+    selectDate: 'Selecciona Fecha',
+    selectTime: 'Selecciona Hora (UTC-4) · 10:00–16:00',
     availabilityHint: 'Disponible lun–vie · fines de semana bloqueados',
     confirmMeeting: 'Confirmar Reunión',
     prevMonth: 'Mes anterior',
@@ -206,7 +220,7 @@ const ui = {
     toolsTitle: 'Tools & Technologies',
     contactTitle: 'Let’s talk about your next project!',
     contactIntro:
-      'Do you have a user experience or digital product problem to solve? Tell me about your goals or book a quick call.',
+      'Do you have a user experience or digital product problem to solve? Tell me about your goals — and optionally book a 15‑min virtual coffee.',
     sendMessage: 'Send a Message',
     messageSuccessTitle: 'Message Sent Successfully!',
     messageSuccessBody:
@@ -226,7 +240,19 @@ const ui = {
     subjectTalk: 'Talk, Keynote, or Podcast',
     subjectValueCollab: 'Project Collaboration',
     submitMessage: 'Send Message',
+    submitMessageWithMeeting: 'Send message & book Meet',
     sending: 'Sending...',
+    formErrorRequired: 'Please fill in your name and message to continue.',
+    formErrorEmail: 'Enter a valid email — I’ll use it for Meet and to reply.',
+    formErrorMeetingSlot: 'To book a session, pick an available day and time.',
+    optionalMeetingTitle: 'I’d also like to book a virtual coffee (15 min)',
+    optionalMeetingHint:
+      'Optional. If checked, pick a day and time; I’ll send the Google Meet invite to the email in this form.',
+    meetingNeedsEmail: 'Add a valid email above first — that’s where the Google Meet link goes.',
+    meetingSummary: (dateLabel: string, time: string) =>
+      `Session: ${dateLabel} · ${time} · Google Meet`,
+    optionalMeetingAside:
+      'Check the option in the form, pick a day and time, and I’ll send the Meet invite to the email you provide.',
     bookCoffee: 'Book a Virtual Coffee (15 min)',
     bookIntro:
       'Pick an available date and time for an informal chat about your digital product over Google Meet.',
@@ -234,9 +260,11 @@ const ui = {
     bookedFor: 'Scheduled for:',
     atTime: 'at',
     bookingInvite: 'We’ve sent you the calendar invite and Meet link.',
+    bookingInviteMeet:
+      'Local simulation: in a real flow, the Google Meet invite would go to your contact email.',
     bookAnother: 'Book another date',
-    selectDate: '1. Select a Date',
-    selectTime: '2. Select a Time (UTC-4) · 10:00–16:00',
+    selectDate: 'Select a Date',
+    selectTime: 'Select a Time (UTC-4) · 10:00–16:00',
     availabilityHint: 'Available Mon–Fri · weekends blocked',
     confirmMeeting: 'Confirm Meeting',
     prevMonth: 'Previous month',

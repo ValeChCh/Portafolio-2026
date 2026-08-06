@@ -1,10 +1,11 @@
 import { Project, Experience, Skill } from './types';
 import { SHUTTLE_CASE_SECTIONS_ES } from './data/shuttleCaseStudy';
+import { SORIANA_CASE_SECTIONS_ES } from './data/sorianaCaseStudy';
 
 export const VALERIA_PROFILE = {
   name: "Valeria",
   title: "Product Designer",
-  email: "Valechchh05@gmail.com",
+  email: "Valechch05@gmail.com",
   avatar: "/images/valeria_avatar.jpg",
   bio: "Diseñando experiencias digitales intuitivas y sistemas escalables que conectan a las personas con la tecnología de manera significativa.",
   aboutDetailed: "Trabajo especialmente en el aspecto visual y funcional de productos digitales, me gusta aplicar metodologías ágiles para optimizar el desarrollo de los proyectos y así entender los requerimientos de los stakeholder y sobre todo de los usuario. Busco implementar mis ideas en proyectos dinámicos y trabajar con equipos divertidos.",
@@ -28,156 +29,178 @@ export const PROJECTS: Project[] = [
   {
     id: "findash-global",
     title: "Banco",
-    description: "Migración de procesos manuales a plataformas digitales y Salesforce",
+    description:
+      "Sanción de sublímites en Salesforce\nCómo rediseñé el flujo E2E de crédito mayorista para eliminar procesos manuales entre Ejecutivo, Riesgos y Comité.",
     category: "Banca",
-    tags: ["Banca", "SAAS"],
+    tags: ["Banca", "Salesforce", "B2B", "Product Design"],
     image: "/images/bbva_mockup.jpg",
-    images: [
-      "/images/bbva_mockup.jpg"
-    ],
-    role: "Diseñadora UX",
+    images: ["/images/bbva_mockup.jpg"],
+    role: "Product Designer",
     challenge: "",
     process: [],
     solution: "",
     meta: [
-      { label: "Rol", value: "Diseñadora UX" },
+      { label: "Rol", value: "Product Designer" },
       { label: "Empresa", value: "Banco" },
-      { label: "Programa", value: "Transformación Mayorista" }
+      { label: "Foco", value: "Research · UX · UI · Validación" },
+      { label: "Alcance", value: "Flujo E2E · Gobernanza · Salesforce" },
     ],
     caseStudySections: [
       {
         number: "01",
-        title: "El desafío de negocio",
-        body: "Dentro del proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar; uno de esos pasos es la gestión de límites y sublímites de crédito. Tradicionalmente, la asignación y gestión de sublímites financieros implicaba procesos manuales complejos, duplicidad en la captura de información, uso de formatos físicos u obsoletos (como anexos de información) y aprobaciones complejas por un comité de riesgos.",
-        imagePlacement: "after",
-        itemsTitle: "El Impacto Esperado",
+        title: "El problema de negocio",
+        kicker: "Contexto",
         accent: "white",
+        body: "Dentro del proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar; uno de esos pasos es la gestión de límites y sublímites de crédito.\n\nTradicionalmente, la asignación y gestión de sublímites implicaba procesos manuales complejos, duplicidad en la captura, formatos físicos u obsoletos (anexos) y aprobaciones complejas por un comité de riesgos.\n\nConstraint: el rediseño debía respetar gobernanza de riesgo y medición del proceso al migrar a Salesforce.",
+        itemsTitle: "Objetivos del producto",
         items: [
           {
             icon: "timer",
-            title: "Reducción de tiempos de contratación",
-            text: "Liberar la operación del ejecutivo de cuenta para enfocar más tiempo en la atención al cliente."
+            title: "Acelerar contratación",
+            text: "Liberar operación del Ejecutivo de Cuenta para enfocar más tiempo en el cliente.",
           },
           {
             icon: "shield-check",
             title: "Autonomía operativa",
-            text: "Permitir la operación bajo la figura de un límite de crédito sancionado previamente."
+            text: "Operar bajo un límite de crédito sancionado previamente, con control de riesgo.",
           },
           {
             icon: "bot",
-            title: "Eliminación de fricción técnica",
-            text: "Automatizar reglas y validaciones que permitan estandarizar y facilitar la redacción de anexos."
-          }
-        ]
+            title: "Menos fricción técnica",
+            text: "Automatizar reglas y validaciones para estandarizar la captura (sin anexos dispersos).",
+          },
+        ],
       },
       {
         number: "02",
-        title: "Entendimiento del Usuario y Gobernanza",
-        body: "Para diseñar una herramienta holística E2E, se identificaron y alinearon los distintos perfiles clave dentro del circuito operativo del proyecto:",
+        title: "Usuarios y gobernanza",
+        kicker: "Research",
+        accent: "white",
+        body: "Para diseñar una herramienta E2E, alineamos los perfiles del circuito operativo. El producto no es “una pantalla”: es un flujo con permisos, dictámenes y sanción.",
         image: "/images/banco_story_interviews_es.png",
         imagePlacement: "after",
-        accent: "white",
         items: [
           {
             icon: "user-cog",
             title: "Ejecutivo de Cuenta (EC)",
-            text: "Requiere dar alta rápida al crédito, y con ello detallar el sublímite que estará ligado a ese crédito."
+            text: "Alta rápida del crédito y detalle del sublímite ligado a ese crédito.",
           },
           {
             icon: "scale",
             title: "Secretaría Técnica y Asesor de Riesgos",
-            text: "Necesitan evaluar la propuesta del límite del crédito, revisar los anexos del mismo y emitir un dictamen claro (aprobar/rechazar)."
+            text: "Evaluar propuesta, revisar anexos y emitir dictamen claro (aprobar / rechazar).",
           },
           {
             icon: "landmark",
             title: "Comité / Instancia de Sanción",
-            text: "Requiere una visión unificada y estructurada para aprobar el riesgo (vista detallada del crédito)."
-          }
-        ]
+            text: "Vista unificada y estructurada para aprobar el riesgo.",
+          },
+        ],
       },
       {
         number: "03",
-        title: "Mi rol como Product y mi colaboración transversal",
+        title: "Mi rol y ownership",
+        kicker: "Product Design",
         accent: "white",
+        body: "Lideré la experiencia de producto en el flujo de sublímites y sanción: arquitectura de información por perfil/permisos, mesas con negocio y tecnología, y estandarización de lenguaje en UI.",
         items: [
           {
             icon: "layout-panel",
-            title: "Arquitectura de información y navegación",
-            text: "Lideré la arquitectura de información y la navegación, segmentando la experiencia según el perfil y permisos del usuario."
+            title: "Arquitectura por perfil",
+            text: "Navegación y IA segmentadas según permisos (EC, Riesgos, Comité).",
           },
           {
             icon: "users",
-            title: "Colaboración multidisciplinaria",
-            text: "Trabajé en mesas de trabajo constantes junto a Stakeholders, Product Owners, Arquitectura Tecnológica, usuarios (Ejecutivo de Cuenta y Área de Riesgos) y los equipos de Content."
+            title: "Colaboración transversal",
+            text: "Mesas con Stakeholders, POs, Arquitectura, usuarios (EC / Riesgos) y Content.",
           },
           {
             icon: "message-square",
-            title: "Estandarización de UX Writing",
-            text: "Alineación de microcopia e instrucciones claras en la interfaz (mensajes de notificaciones, guía en el registro de los sublímites y estandarización del lenguaje para las áreas)."
-          }
-        ]
+            title: "UX Writing operativo",
+            text: "Microcopia e instrucciones para notificaciones, registro de sublímites y lenguaje común entre áreas.",
+          },
+        ],
       },
       {
         number: "04",
-        title: "El Proceso de Diseño y Arquitectura de la Solución",
+        title: "Decisiones de producto clave",
+        kicker: "Trade-offs",
         accent: "white",
-        groups: [
+        body: "Tres decisiones que definen el valor del producto — no solo “mejor UI”, sino operación medible dentro de Salesforce.",
+        items: [
           {
-            title: "Rediseño para la sanción de sublímites",
-            items: [
-              {
-                icon: "boxes",
-                title: "Eliminación de procesos manuales",
-                text: "Se migró el proceso de sanción actual a Salesforce reuniendo la información necesaria en un solo frontal manteniendo la medición del proceso."
-              }
-            ]
+            icon: "boxes",
+            title: "Un solo frontal medible",
+            text: "Migrar la sanción a Salesforce reuniendo la información necesaria en un solo front, manteniendo la medición del proceso.",
           },
           {
-            title: "Manejo de Complejidades Técnicas y Reglas de Negocio",
-            items: [
-              {
-                icon: "currency",
-                title: "Variación del flujo dependiendo de los productos bancarios",
-                text: "Parametrización del sistema para validar conversiones (ej. multidivisa en dólares) y auto-completar subfamilias/campos obligatorios según el producto elegido."
-              },
-              {
-                icon: "list-checks",
-                title: "Chat transversal medible",
-                text: "Destinar un espacio dentro del flujo que permita a las diferentes áreas mantener comunicación para ajustar datos evitando los chats fuera del sistema."
-              }
-            ]
-          }
-        ]
+            icon: "currency",
+            title: "Flujo según producto bancario",
+            text: "Parametrizar validaciones (ej. multidivisa) y auto-completar subfamilias/campos obligatorios según el producto.",
+          },
+          {
+            icon: "list-checks",
+            title: "Chat transversal medible",
+            text: "Espacio en el flujo para que las áreas ajusten datos sin chats fuera del sistema.",
+          },
+        ],
       },
       {
         number: "05",
-        title: "Medición de Resultados e Impacto",
+        title: "Solución en producto",
+        kicker: "UI / Salesforce",
         accent: "white",
+        body: "Vista consolidada del cliente y sublímites en un flujo guiado. Pendiente de enriquecer con 2–3 pantallas adicionales del flujo (antes/después o estados clave EC → Riesgos → Comité).",
+        image: "/images/bbva_mockup.jpg",
         items: [
           {
             icon: "eraser",
-            title: "Eliminación de redundancias",
-            text: "Reemplazo de formatos manuales de captura evitando duplicidades y transparentando la información para los diferentes perfiles."
+            title: "Sin formatos manuales duplicados",
+            text: "La captura vive en el sistema; la información queda transparente para cada perfil.",
           },
           {
             icon: "zap",
-            title: "Agilización del flujo E2E",
-            text: "Reducción significativa en el ciclo de vida de la sanción y contratación del crédito al permitir la accesibilidad a la información en un solo sistema."
+            title: "Ciclo de sanción más corto",
+            text: "Acceso a la información en un solo sistema reduce ida y vuelta entre áreas.",
           },
           {
             icon: "scan-eye",
-            title: "Claridad en la toma de decisiones",
-            text: "Unificación de la visión de sublímites e información financiera mediante un sistema de componentes estandarizado."
-          }
-        ]
-      }
+            title: "Decisión con contexto",
+            text: "Visión unificada de sublímites e información financiera para dictamen y sanción.",
+          },
+        ],
+      },
+      {
+        number: "06",
+        title: "Resultados y aprendizajes",
+        kicker: "Impacto",
+        accent: "white",
+        body: "El valor del case está en operación y gobernanza. Refuerza en entrevista con 1 número (tiempo de ciclo, % digitalización o tickets) cuando lo tengas.",
+        items: [
+          {
+            icon: "target",
+            title: "Outcome buscado",
+            text: "Menos redundancia, más velocidad E2E y claridad para sancionar con el mismo control de riesgo.",
+          },
+          {
+            icon: "lightbulb",
+            title: "Aprendizaje",
+            text: "En banca, el diseño senior se mide en flujo multi-perfil + reglas de negocio + trazabilidad — no solo en pantallas bonitas.",
+          },
+          {
+            icon: "alert",
+            title: "Siguiente mejora del case",
+            text: "Agregar diagrama EC → Riesgos → Comité y métrica real (baseline → after).",
+          },
+        ],
+      },
     ],
     color: {
       bg: "bg-blue-50/50",
       text: "text-blue-700",
       border: "border-blue-100",
-      accent: "bg-blue-600 hover:bg-blue-700 text-white"
-    }
+      accent: "bg-blue-600 hover:bg-blue-700 text-white",
+    },
   },
   {
     id: "vitality-tracker",
@@ -186,13 +209,14 @@ export const PROJECTS: Project[] = [
       "Self-service para viajeros\nCómo diseñé el portal que confirma datos críticos de transfers reservados vía OTAs y reduce fricción operativa.",
     category: "Traveltech",
     tags: ["Traveltech", "Web App", "UX Research", "Design System"],
-    image: "/images/shuttle_central_mockup.jpg",
+    image: "/images/shuttle_central_inicio.png",
     images: [
-      "/images/shuttle_central_mockup.jpg",
-      "/images/shuttle_central_login.jpg",
-      "/images/shuttle_central_reservation.jpg",
-      "/images/shuttle_central_schedule.jpg"
+      "/images/shuttle_central_inicio.png",
+      "/images/shuttle_central_ticket.png",
+      "/images/shuttle_central_schedule.png",
+      "/images/shuttle_central_styleguide.png"
     ],
+    galleryLayout: "phone",
     role: "Product Designer (end-to-end)",
     challenge: "",
     process: [],
@@ -213,34 +237,28 @@ export const PROJECTS: Project[] = [
   {
     id: "lumina-store",
     title: "Soriana",
-    description: "Transformación de la experiencia de compra online para una marca de iluminación premium, enfocada en la reducción de la fricción en el checkout.",
+    description:
+      "Ecommerce retail · cards, tracking y combos\nCómo diseñé features de catálogo y post-compra en Salesforce para subir claridad, confianza y CSAT.",
     category: "E-Commerce",
-    tags: ["E-Commerce", "Web"],
+    tags: ["E-Commerce", "Retail", "Salesforce", "Product Design"],
     image: "/images/soriana_mockup.png",
-    images: [
-      "/images/soriana_mockup.png",
-      "/images/findash_global_1784586264509.jpg",
-      "/images/vitality_tracker_1784586273218.jpg"
+    images: ["/images/soriana_mockup.png"],
+    galleryLayout: "wide",
+    role: "Product Designer",
+    challenge: "",
+    process: [],
+    solution: "",
+    meta: [
+      { label: "Rol", value: "Product Designer · TS4" },
+      { label: "Cliente", value: "Soriana Ecommerce" },
+      { label: "Foco", value: "Cards · Tracking · Combos · Design Sprint" },
     ],
-    role: "Lead UX/UI Designer",
-    challenge: "Lumina, una marca de iluminación y mobiliario de alta gama, tenía visitas abundantes pero una tasa de conversión baja en móviles. El proceso de pago requería rellenar demasiados campos obligatorios en páginas sucesivas lentas.",
-    process: [
-      "Auditoría heurística móvil y grabación de sesiones de usuario con herramientas analíticas.",
-      "Diseño de un flujo de pago en una sola pantalla colapsable de carga rápida.",
-      "Implementación de autocompletado inteligente de direcciones y pasarelas de pago express (Apple Pay, Google Pay).",
-      "Pruebas A/B semanales del nuevo flujo comparado con el checkout heredado."
-    ],
-    solution: "Un rediseño minimalista de la página del carrito y del checkout donde toda la información de entrega, envío y pago se consolida en una sola columna interactiva e inteligente con validación de errores en tiempo real.",
-    metrics: [
-      { label: "Tasa de conversión móvil", value: "+32%" },
-      { label: "Abandono del carrito", value: "-25%" },
-      { label: "Tiempo promedio de checkout", value: "1.5 min" }
-    ],
+    caseStudySections: SORIANA_CASE_SECTIONS_ES,
     color: {
-      bg: "bg-amber-50/50",
-      text: "text-amber-700",
-      border: "border-amber-100",
-      accent: "bg-amber-600 hover:bg-amber-700 text-white"
+      bg: "bg-red-50/50",
+      text: "text-red-700",
+      border: "border-red-100",
+      accent: "bg-red-600 hover:bg-red-700 text-white"
     }
   }
 ];
@@ -285,9 +303,31 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "Tech&Design",
     duration: "2020 - 2021",
     description: [
-      "Colaboré en el diseño de interfaces para diversos servicios bancarios de Banpro Promérica (billeteras, banca empresarial, cajeros automáticos). De igual manera realicé pruebas de usabilidad así como el análisis de los resultados para presentar a Stakeholders."
+      "Colaboré en el diseño de interfaces para diversos servicios bancarios de Banpro Promérica (billeteras, banca empresarial, cajeros automáticos). De igual manera realicé pruebas de usabilidad así como el análisis de los resultados para presentar a Stakeholders.",
+      "Mapeé journeys y flujos end-to-end entre canales digitales y físicos (ATM, banca empresarial y billeteras) para detectar fricciones y proponer mejoras de experiencia priorizadas.",
+      "Prototipé soluciones de alta fidelidad y documenté hallazgos de research para alinear a producto, negocio y desarrollo en la toma de decisiones de diseño.",
     ]
-  }
+  },
+  {
+    id: "exp-5",
+    role: "UX/UI Designer",
+    company: "Universidad Nacional Autónoma de México",
+    duration: "2017 - 2020",
+    description: [
+      "Como User Experience Designer, trabajé en el Centro de Orientación Educativa de la UNAM en la plataforma de orientación vocacional SEIVOC. Estuve a cargo de toda la propuesta visual para la versión web 2018 así como de las pruebas con usuarios.",
+      "Logramos digitalizar el examen de vocación y aptitudes para llegar a más alumnos de bachillerato UNAM y, al expandir el alcance, a alumnos de Bachilleres, CECyT, IEMS, CONALEP y DGETI.",
+    ],
+  },
+  {
+    id: "exp-6",
+    role: "Diseñadora Visual Freelance",
+    company: "VERITest - Hertz",
+    duration: "2016 - 2018",
+    description: [
+      "Estuve a cargo del diseño de contenido para redes sociales, mailing y material publicitario (tarjetas de presentación, folletos, lonas, carteles) para el Marketing del Centro VERITest, ayudando a ampliar su alcance y conectar mejor con su público meta.",
+      "Diseñé y conceptualicé el material publicitario de Hertz para las oficinas del área metropolitana (tarjetas de presentación, flyers y banners). Con esa publicidad, Hertz pudo buscar nuevos clientes y ofrecer mejor sus productos.",
+    ],
+  },
 ];
 
 export const EDUCATION_HISTORY = [

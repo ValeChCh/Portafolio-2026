@@ -43,6 +43,8 @@ export type CaseStudyIconId =
 export interface CaseStudyItem {
   /** Si falta, se muestra número o solo texto */
   icon?: CaseStudyIconId;
+  /** Fondo del círculo del ícono (hex). Default: #8F9DE2 */
+  iconBg?: string;
   title: string;
   text: string;
 }
@@ -63,10 +65,24 @@ export interface CaseStudySection {
   image?: string;
   /** Posición de la imagen respecto al body. Default: before */
   imagePlacement?: 'before' | 'after';
+  /** object-position Tailwind (p. ej. object-right). Default: object-top */
+  imageObjectPosition?: string;
+  /** Si true, la imagen usa h-auto object-contain (sin crop 16:9) */
+  imageContain?: boolean;
+  /** Reserva un slot vacío (borde punteado) para colocar imagen después */
+  imagePlaceholder?: boolean;
   /** Galería de pantallas / wireframes */
   gallery?: string[];
+  /** Índices (0-based) de la galería que ocupan todo el ancho del grid */
+  galleryFullWidthIndexes?: number[];
+  /** Si true, las celdas de la galería no llevan borde negro */
+  galleryBorderless?: boolean;
+  /** Si true, todas las imágenes van en un solo contenedor (no celdas separadas) */
+  galleryUnified?: boolean;
   accent?: 'white' | 'pink' | 'cyan' | 'mint' | 'lilac';
   items?: CaseStudyItem[];
+  /** Si true, las cards de `items` no llevan borde negro */
+  itemsBorderless?: boolean;
   groups?: { title: string; items: CaseStudyItem[] }[];
 }
 
@@ -79,6 +95,8 @@ export interface Project {
   image: string;
   /** Galería del case study (carrusel del modal). Si falta, se usa `image`. */
   images?: string[];
+  /** Layout del hero/carrusel. `phone` = pantallas verticales sin crop wide. */
+  galleryLayout?: 'wide' | 'phone';
   role: string;
   challenge: string;
   /** Título de la sección de problema (si falta, usa el string i18n genérico) */

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle, Clock, Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle, Clock, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocalizedContent } from '../i18n/useI18n';
 
 const AVAILABLE_TIMES = [
@@ -21,6 +21,10 @@ function startOfToday() {
   return new Date(n.getFullYear(), n.getMonth(), n.getDate());
 }
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+}
+
 export default function Contact() {
   const { profile, t } = useLocalizedContent();
 
@@ -40,15 +44,18 @@ export default function Contact() {
     subject: 'collab',
     message: '',
   });
+  const [wantMeeting, setWantMeeting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedWithMeeting, setSubmittedWithMeeting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
 
   const today = useMemo(() => startOfToday(), []);
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [isCallBooked, setIsCallBooked] = useState(false);
+  const [bookedSummary, setBookedSummary] = useState<{ date: string; time: string } | null>(null);
 
   useEffect(() => {
     document.documentElement.classList.remove('dark');
@@ -113,28 +120,69 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (formError) setFormError(null);
   };
 
-  const handleSubmitContactForm = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: 'collab', message: '' });
-    }, 1200);
-  };
-
-  const handleBookCall = () => {
-    if (!selectedDate || !selectedTime) return;
-    setIsCallBooked(true);
+  const toggleWantMeeting = (checked: boolean) => {
+    setWantMeeting(checked);
+    setFormError(null);
+    if (!checked) {
+      setSelectedDate(null);
+      setSelectedTime(null);
+    }
   };
 
   const selectDate = (key: string) => {
     setSelectedDate(key);
     setSelectedTime(null);
+    setFormError(null);
+  };
+
+  const handleSubmitContactForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+
+    if (!formData.name.trim() || !formData.message.trim()) {
+      setFormError(t.formErrorRequired);
+      return;
+    }
+
+    if (!formData.email.trim() || !isValidEmail(formData.email)) {
+      setFormError(t.formErrorEmail);
+      return;
+    }
+
+    if (wantMeeting) {
+      if (!selectedDate || !selectedTime) {
+        setFormError(t.formErrorMeetingSlot);
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+    const meetingBooked = wantMeeting && !!selectedDate && !!selectedTime;
+    const summary =
+      meetingBooked && selectedDate && selectedTime
+        ? { date: selectedDate, time: selectedTime }
+        : null;
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setSubmittedWithMeeting(meetingBooked);
+      setBookedSummary(summary);
+      setFormData({ name: '', email: '', subject: 'collab', message: '' });
+      setWantMeeting(false);
+      setSelectedDate(null);
+      setSelectedTime(null);
+    }, 1200);
+  };
+
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setSubmittedWithMeeting(false);
+    setBookedSummary(null);
+    setFormError(null);
   };
 
   return (
@@ -149,8 +197,8 @@ export default function Contact() {
         <p className="text-sm font-medium text-slate-700 mt-1 max-w-xl">{t.contactIntro}</p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch" id="contact-grids">
-        <div className="lg:col-span-7 neo-window" id="contact-form-card">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start" id="contact-grids">
+        <div className="lg:col-span-8 neo-window" id="contact-form-card">
           <div className="neo-window-bar">
             <div className="flex space-x-1.5">
               <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block" />
@@ -178,8 +226,24 @@ export default function Contact() {
                 <p className="text-xs md:text-sm font-medium text-slate-800 leading-relaxed max-w-sm mx-auto">
                   {t.messageSuccessBody}
                 </p>
+                {submittedWithMeeting && bookedSummary ? (
+                  <div className="rounded-xl border-2 border-black bg-[#bae6fd] px-4 py-3 text-left space-y-1 max-w-md mx-auto">
+                    <p className="text-xs font-black flex items-center gap-2">
+                      <Calendar size={14} />
+                      {t.bookingSuccessTitle}
+                    </p>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      {t.bookedFor}{' '}
+                      <strong className="font-black underline">
+                        {formatDateLabel(bookedSummary.date)} {t.atTime} {bookedSummary.time}
+                      </strong>
+                    </p>
+                    <p className="text-[10px] font-sans italic">{t.bookingInviteMeet}</p>
+                  </div>
+                ) : null}
                 <button
-                  onClick={() => setIsSubmitted(false)}
+                  type="button"
+                  onClick={resetForm}
                   className="neo-btn-black text-xs pt-1"
                   id="reset-form-btn"
                 >
@@ -257,6 +321,163 @@ export default function Contact() {
                   />
                 </div>
 
+                <div
+                  className="rounded-xl border-2 border-black bg-white p-4 space-y-3"
+                  id="optional-meeting-block"
+                >
+                  <label className="flex items-start gap-3 cursor-pointer" htmlFor="want-meeting">
+                    <input
+                      id="want-meeting"
+                      type="checkbox"
+                      checked={wantMeeting}
+                      onChange={(e) => toggleWantMeeting(e.target.checked)}
+                      className="mt-1 h-4 w-4 accent-black cursor-pointer"
+                    />
+                    <span className="space-y-1">
+                      <span className="flex items-center gap-2 text-sm font-black text-black">
+                        <Calendar size={16} />
+                        {t.optionalMeetingTitle}
+                      </span>
+                      <span className="block text-xs font-medium text-slate-600 leading-relaxed">
+                        {t.optionalMeetingHint}
+                      </span>
+                    </span>
+                  </label>
+
+                  {wantMeeting ? (
+                    <div className="space-y-4 pt-2 border-t-2 border-black/10" id="inline-booking-picker">
+                      {!formData.email.trim() || !isValidEmail(formData.email) ? (
+                        <p className="text-xs font-bold text-black rounded-lg border-2 border-black bg-[#fef08a] px-3 py-2">
+                          {t.meetingNeedsEmail}
+                        </p>
+                      ) : null}
+
+                      <div className="space-y-2" id="date-picker-group">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-[11px] font-black text-black uppercase tracking-wider">
+                            {t.selectDate}
+                          </span>
+                          <div className="flex items-center gap-1" id="month-nav">
+                            <button
+                              type="button"
+                              onClick={goPrevMonth}
+                              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
+                              aria-label={t.prevMonth}
+                              id="calendar-prev-month"
+                            >
+                              <ChevronLeft size={14} strokeWidth={2.5} />
+                            </button>
+                            <span className="min-w-[7.5rem] text-center text-[11px] font-black uppercase tracking-wider text-black">
+                              {t.months[viewMonth]} {viewYear}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={goNextMonth}
+                              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
+                              aria-label={t.nextMonth}
+                              id="calendar-next-month"
+                            >
+                              <ChevronRight size={14} strokeWidth={2.5} />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="rounded-xl border-2 border-black bg-white p-2" id="month-calendar">
+                          <div className="grid grid-cols-7 gap-1 mb-1" id="weekday-headers">
+                            {t.weekdays.map((wd) => (
+                              <span
+                                key={wd}
+                                className="text-center text-[9px] font-black uppercase text-slate-500 py-1"
+                              >
+                                {wd}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="grid grid-cols-7 gap-1" id="days-grid">
+                            {calendarCells.map((cell, idx) => {
+                              if (cell.day === null || !cell.key) {
+                                return <div key={`empty-${idx}`} className="aspect-square" />;
+                              }
+
+                              const isSelected = selectedDate === cell.key;
+                              const isToday =
+                                cell.key ===
+                                toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
+
+                              return (
+                                <button
+                                  key={cell.key}
+                                  type="button"
+                                  disabled={cell.disabled}
+                                  onClick={() => selectDate(cell.key!)}
+                                  className={`aspect-square rounded-lg border-2 text-[11px] font-black transition-colors ${
+                                    cell.disabled
+                                      ? 'border-transparent text-slate-300 cursor-not-allowed'
+                                      : isSelected
+                                        ? 'border-black bg-[#8F9DE2] text-black cursor-pointer'
+                                        : 'border-black bg-white text-black hover:bg-slate-100 cursor-pointer'
+                                  } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
+                                  id={`date-btn-${cell.key}`}
+                                  aria-label={formatDateLabel(cell.key)}
+                                  aria-pressed={isSelected}
+                                >
+                                  {cell.day}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        <p className="text-[10px] font-medium text-slate-500">{t.availabilityHint}</p>
+                      </div>
+
+                      {selectedDate ? (
+                        <div className="space-y-1.5 animate-fade-in" id="time-picker-group">
+                          <span className="text-[11px] font-black text-black uppercase tracking-wider">
+                            {t.selectTime}
+                          </span>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" id="times-grid">
+                            {AVAILABLE_TIMES.map((time) => (
+                              <button
+                                key={time}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedTime(time);
+                                  setFormError(null);
+                                }}
+                                className={`px-3 py-1.5 rounded-xl border-2 border-black text-center text-xs font-black transition-colors cursor-pointer ${
+                                  selectedTime === time
+                                    ? 'bg-[#fbcfe8] text-black'
+                                    : 'bg-white hover:bg-slate-100 text-black'
+                                }`}
+                                id={`time-btn-${time.replace(/[:\s]/g, '-')}`}
+                              >
+                                {time}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
+
+                      {selectedDate && selectedTime ? (
+                        <p className="text-xs font-bold text-black flex items-center gap-2">
+                          <Clock size={14} />
+                          {t.meetingSummary(formatDateLabel(selectedDate), selectedTime)}
+                        </p>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+
+                {formError ? (
+                  <p
+                    className="text-xs font-bold text-black rounded-lg border-2 border-black bg-[#fecaca] px-3 py-2"
+                    role="alert"
+                    id="contact-form-error"
+                  >
+                    {formError}
+                  </p>
+                ) : null}
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -267,7 +488,7 @@ export default function Contact() {
                     <span>{t.sending}</span>
                   ) : (
                     <>
-                      <span>{t.submitMessage}</span>
+                      <span>{wantMeeting ? t.submitMessageWithMeeting : t.submitMessage}</span>
                       <Send size={16} />
                     </>
                   )}
@@ -277,171 +498,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 flex flex-col justify-between space-y-6" id="calendly-booking-section">
-          <div className="neo-window p-0 flex-grow flex flex-col justify-between" id="booking-card">
-            <div className="neo-window-bar">
-              <div className="flex space-x-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block" />
-                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
-                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
-              </div>
-              <span>CALENDAR_BOOKING.SYS</span>
-            </div>
-
-            <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-              <div>
-                <h3 className="font-display text-lg font-black text-black flex items-center space-x-2">
-                  <Calendar className="text-black" size={18} />
-                  <span>{t.bookCoffee}</span>
-                </h3>
-                <p className="text-xs font-medium text-slate-700 leading-relaxed mt-1">{t.bookIntro}</p>
-              </div>
-
-              {isCallBooked ? (
-                <div
-                  className="p-4 rounded-xl bg-[#bae6fd] border-2 border-black text-black text-center space-y-2 animate-scale-up my-auto"
-                  id="booking-success-state"
-                >
-                  <Clock className="text-black mx-auto" size={24} />
-                  <h4 className="text-xs font-black">{t.bookingSuccessTitle}</h4>
-                  <p className="text-[11px] font-medium leading-relaxed">
-                    {t.bookedFor} <br />
-                    <strong className="text-black font-black underline">
-                      {selectedDate ? formatDateLabel(selectedDate) : ''} {t.atTime} {selectedTime}
-                    </strong>
-                  </p>
-                  <p className="text-[10px] font-sans italic">{t.bookingInvite}</p>
-                  <button
-                    onClick={() => {
-                      setIsCallBooked(false);
-                      setSelectedDate(null);
-                      setSelectedTime(null);
-                    }}
-                    className="text-[10px] font-bold text-black underline hover:text-slate-700 mt-2 block mx-auto cursor-pointer"
-                    id="reset-booking-btn"
-                  >
-                    {t.bookAnother}
-                  </button>
-                </div>
-              ) : (
-                <div className="space-y-4 mt-3" id="booking-picker">
-                  <div className="space-y-2" id="date-picker-group">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[11px] font-black text-black uppercase tracking-wider">
-                        {t.selectDate}
-                      </span>
-                      <div className="flex items-center gap-1" id="month-nav">
-                        <button
-                          type="button"
-                          onClick={goPrevMonth}
-                          className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
-                          aria-label={t.prevMonth}
-                          id="calendar-prev-month"
-                        >
-                          <ChevronLeft size={14} strokeWidth={2.5} />
-                        </button>
-                        <span className="min-w-[7.5rem] text-center text-[11px] font-black uppercase tracking-wider text-black">
-                          {t.months[viewMonth]} {viewYear}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={goNextMonth}
-                          className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
-                          aria-label={t.nextMonth}
-                          id="calendar-next-month"
-                        >
-                          <ChevronRight size={14} strokeWidth={2.5} />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="rounded-xl border-2 border-black bg-white p-2" id="month-calendar">
-                      <div className="grid grid-cols-7 gap-1 mb-1" id="weekday-headers">
-                        {t.weekdays.map((wd) => (
-                          <span
-                            key={wd}
-                            className="text-center text-[9px] font-black uppercase text-slate-500 py-1"
-                          >
-                            {wd}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="grid grid-cols-7 gap-1" id="days-grid">
-                        {calendarCells.map((cell, idx) => {
-                          if (cell.day === null || !cell.key) {
-                            return <div key={`empty-${idx}`} className="aspect-square" />;
-                          }
-
-                          const isSelected = selectedDate === cell.key;
-                          const isToday =
-                            cell.key ===
-                            toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
-
-                          return (
-                            <button
-                              key={cell.key}
-                              type="button"
-                              disabled={cell.disabled}
-                              onClick={() => selectDate(cell.key!)}
-                              className={`aspect-square rounded-lg border-2 text-[11px] font-black transition-colors ${
-                                cell.disabled
-                                  ? 'border-transparent text-slate-300 cursor-not-allowed'
-                                  : isSelected
-                                    ? 'border-black bg-[#8F9DE2] text-black cursor-pointer'
-                                    : 'border-black bg-white text-black hover:bg-slate-100 cursor-pointer'
-                              } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
-                              id={`date-btn-${cell.key}`}
-                              aria-label={formatDateLabel(cell.key)}
-                              aria-pressed={isSelected}
-                            >
-                              {cell.day}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    <p className="text-[10px] font-medium text-slate-500">{t.availabilityHint}</p>
-                  </div>
-
-                  {selectedDate && (
-                    <div className="space-y-1.5 animate-fade-in" id="time-picker-group">
-                      <span className="text-[11px] font-black text-black uppercase tracking-wider">
-                        {t.selectTime}
-                      </span>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" id="times-grid">
-                        {AVAILABLE_TIMES.map((time) => (
-                          <button
-                            key={time}
-                            type="button"
-                            onClick={() => setSelectedTime(time)}
-                            className={`px-3 py-1.5 rounded-xl border-2 border-black text-center text-xs font-black transition-colors cursor-pointer ${
-                              selectedTime === time
-                                ? 'bg-[#fbcfe8] text-black'
-                                : 'bg-white hover:bg-slate-100 text-black'
-                            }`}
-                            id={`time-btn-${time.replace(/[:\s]/g, '-')}`}
-                          >
-                            {time}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <button
-                    disabled={!selectedDate || !selectedTime}
-                    onClick={handleBookCall}
-                    className="neo-btn-black w-full justify-center"
-                    id="confirm-booking-btn"
-                  >
-                    <span>{t.confirmMeeting}</span>
-                    <ArrowRight size={14} />
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
+        <div className="lg:col-span-4 space-y-6" id="contact-aside">
           <div
             className="rounded-xl border-2 border-black bg-[#8F9DE2] text-black p-5 text-xs font-bold space-y-3"
             id="quick-info-card"
@@ -456,6 +513,13 @@ export default function Contact() {
                 {profile.email}
               </a>
             </div>
+          </div>
+          <div className="rounded-xl border-2 border-black bg-white p-5 text-xs font-medium text-slate-700 leading-relaxed space-y-2">
+            <p className="font-black text-black uppercase tracking-wider text-[11px] flex items-center gap-2">
+              <Calendar size={14} />
+              {t.bookCoffee}
+            </p>
+            <p>{t.optionalMeetingAside}</p>
           </div>
         </div>
       </div>
