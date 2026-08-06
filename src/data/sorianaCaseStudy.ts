@@ -37,23 +37,13 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Rol, ownership y equipo',
     kicker: 'Ownership',
     accent: 'white',
-    image: '/images/soriana_story_02.png',
-    imageContain: true,
-    body: 'Como Sr. Product Designer en TS4, lideré discovery, definición, UX/UI, prototipo, pruebas con usuarios y handoff técnico — en sprints, con alcance negociado con PO y desarrollo Salesforce.',
+    body: 'Como Sr. Product Designer en TS4, lideré discovery para acordar definiciones que hicieran el flujo de compra y tracking de envío mucho más claros y eficientes con las herramientas que nos ofrecía desarrollo.',
     itemsBorderless: true,
     itemsStacked: true,
     items: [
       {
-        icon: 'target',
         title: 'HMW',
-        iconBg: '#FF8400',
-        text: '¿Cómo podríamos dar claridad y confianza en el journey de compra (catálogo → carrito → post-compra) sin romper el ecosistema Salesforce existente?',
-      },
-      {
-        icon: 'lightbulb',
-        title: 'Hipótesis',
-        iconBg: '#FF8400',
-        text: 'Si redesignamos cards, integramos tracking en el detalle de pedido y habilitamos combos en PDP, subimos claridad, confianza y ticket promedio — y con ello CSAT.',
+        text: '¿Cómo podríamos dar claridad y confianza en el journey de compra (catálogo → carrito → post-compra) sin romper el ecosistema Salesforce existente?\n\nHipótesis\nSi redesignamos cards, integramos tracking en el detalle de pedido y habilitamos combos en PDP, subimos claridad, confianza y ticket promedio — y con ello CSAT.',
       },
     ],
     groups: [
@@ -73,8 +63,6 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Tres historias de usuario, un mismo journey',
     kicker: 'Oportunidad',
     accent: 'white',
-    image: '/images/soriana_story_03.png',
-    imageContain: true,
     body: 'Priorizamos tres HUs que tocaban momentos distintos del funnel — pero compartían un mismo principio: reducir incertidumbre y hacer más fácil la decisión de compra.',
     items: [
       {
@@ -99,8 +87,6 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Design Sprint adaptado al ritmo de delivery',
     kicker: 'Metodología',
     accent: 'white',
-    image: '/images/soriana_story_04.png',
-    imageContain: true,
     body: 'No corrimos un sprint “de libro”: lo adaptamos a Salesforce y a ventanas reales de desarrollo. La investigación y las pruebas tenían que caber en el sprint — no quedarse fuera.',
     items: [
       {
@@ -154,8 +140,6 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'UI — soluciones en producto',
     kicker: 'Solución',
     accent: 'white',
-    image: '/images/soriana_story_05.png',
-    imageContain: true,
     body: 'Tres entregables concretos, listos para construir en Salesforce y coherentes con la marca Soriana.',
     gallery: [
       '/images/soriana_mockup.png',
@@ -215,11 +199,7 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Impacto y aprendizajes',
     kicker: 'Resultados',
     accent: 'white',
-    image: '/images/soriana_story_06.png',
-    imageContain: true,
     body: 'Las features salieron a producción con QA en varios ambientes. En experiencia reportada: +10% CSAT tras el rediseño de cards, optimización de carrito y seguimiento de envío.',
-    href: 'https://www.behance.net/gallery/198502507/Proceso-de-diseno-Soriana-Ecommerce',
-    hrefLabel: 'Behance: Proceso de diseño Soriana Ecommerce',
     items: [
       {
         icon: 'gauge',
