@@ -35,6 +35,7 @@ import {
   AlertTriangle,
   Route,
   ClipboardList,
+  StickyNote,
   PenTool,
   Gauge,
   Sparkles,
@@ -78,6 +79,7 @@ const CASE_ICONS: Record<CaseStudyIconId, LucideIcon> = {
   alert: AlertTriangle,
   route: Route,
   clipboard: ClipboardList,
+  'sticky-note': StickyNote,
   'pen-tool': PenTool,
   gauge: Gauge,
   sparkles: Sparkles,
@@ -556,11 +558,13 @@ export default function Projects() {
                             {section.items?.length ? (
                               <div
                                 className={`grid grid-cols-1 gap-4 ${
-                                  section.items.length === 4
-                                    ? 'md:grid-cols-2 lg:grid-cols-4'
-                                    : section.items.length >= 3
-                                      ? 'md:grid-cols-3'
-                                      : 'md:grid-cols-2'
+                                  section.itemsStacked
+                                    ? ''
+                                    : section.items.length === 4
+                                      ? 'md:grid-cols-2 lg:grid-cols-4'
+                                      : section.items.length >= 3
+                                        ? 'md:grid-cols-3'
+                                        : 'md:grid-cols-2'
                                 }`}
                               >
                                 {section.items.map((item, itemIdx) => {
@@ -582,18 +586,38 @@ export default function Projects() {
                                         >
                                           <Icon size={23} strokeWidth={2.25} />
                                         </span>
-                                      ) : (
-                                        <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-full border-2 border-black bg-[#fef08a] px-2 font-display text-xs font-black">
-                                          {String(itemIdx + 1).padStart(2, '0')}
-                                        </span>
-                                      )}
-                                      <div className="space-y-2">
+                                      ) : null}
+                                      <div className="space-y-3">
                                         <h5 className="font-display text-base font-black leading-tight">
                                           {item.title}
                                         </h5>
-                                        <p className="font-sans text-sm font-medium leading-relaxed">
-                                          {item.text}
-                                        </p>
+                                        {item.text.split('\n\n').map((block, blockIdx) => {
+                                          const lines = block.split('\n');
+                                          const label = lines[0];
+                                          const isSubhead =
+                                            lines.length > 1 &&
+                                            (label === 'Hipótesis' || label === 'Hypothesis');
+                                          if (isSubhead) {
+                                            return (
+                                              <div key={blockIdx} className="space-y-1 pt-1">
+                                                <p className="font-display text-base font-black leading-tight">
+                                                  {label}
+                                                </p>
+                                                <p className="font-sans text-sm font-medium leading-relaxed">
+                                                  {lines.slice(1).join('\n')}
+                                                </p>
+                                              </div>
+                                            );
+                                          }
+                                          return (
+                                            <p
+                                              key={blockIdx}
+                                              className="font-sans text-sm font-medium leading-relaxed"
+                                            >
+                                              {block}
+                                            </p>
+                                          );
+                                        })}
                                       </div>
                                     </article>
                                   );

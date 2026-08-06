@@ -64,7 +64,7 @@ const projectsEn: Project[] = [
         kicker: 'Research',
         accent: 'white',
         body: 'To design an E2E tool, we aligned the profiles across the operational circuit. This product is not “one screen”: it is a flow with permissions, opinions, and sanctioning.',
-        image: '/images/banco_story_credit_process_en.svg',
+        image: '/images/banco_story_proceso_credito_en.png',
         imagePlacement: 'after',
         imageContain: true,
         items: [
@@ -95,17 +95,17 @@ const projectsEn: Project[] = [
           {
             icon: 'layout-panel',
             title: 'Architecture by profile',
-            text: 'Navigation and IA segmented by permissions (AE, Risk, Committee).',
+            text: 'E2E sub-limits flow design tailored to each profile (AE, Risk).',
           },
           {
             icon: 'users',
             title: 'Cross-functional collaboration',
-            text: 'Sessions with stakeholders, POs, Architecture, users (AE / Risk), and Content.',
+            text: 'Definition workshops with stakeholders to scope flow rules and must-haves, architecture alignment with development, and user outreach/feedback (AE / Risk).',
           },
           {
             icon: 'message-square',
             title: 'Operational UX writing',
-            text: 'Microcopy and instructions for notifications, sub-limit registration, and shared language across teams.',
+            text: 'In-flow instructions, specs and descriptions for each section, and concept alignment across teams.',
           },
         ],
       },
@@ -122,12 +122,12 @@ const projectsEn: Project[] = [
             text: 'Migrate sanctioning to Salesforce, gathering required information in a single front while keeping process measurement.',
           },
           {
-            icon: 'currency',
-            title: 'Flow by banking product',
-            text: 'Parameterize validations (e.g. multi-currency) and auto-complete required subfamilies/fields by product.',
+            icon: 'pen-tool',
+            title: 'Easy-to-complete flow',
+            text: 'Parameterize validations and auto-complete required fields based on data captured in processes prior to sub-limits.',
           },
           {
-            icon: 'list-checks',
+            icon: 'message-square',
             title: 'Measurable cross-cutting chat',
             text: 'In-flow space for teams to adjust data without chats outside the system.',
           },
@@ -138,7 +138,6 @@ const projectsEn: Project[] = [
         title: 'Solution in product',
         kicker: 'UI / Salesforce',
         accent: 'white',
-        body: 'A consolidated client and sub-limit view in a guided flow. Next improvement: add 2–3 more screens of the flow (before/after or AE → Risk → Committee states).',
         image: '/images/bbva_mockup.jpg',
         items: [
           {
@@ -147,14 +146,14 @@ const projectsEn: Project[] = [
             text: 'Capture lives in the system; information stays transparent for each profile.',
           },
           {
-            icon: 'zap',
-            title: 'Shorter sanctioning cycle',
-            text: 'Access to information in one system reduces back-and-forth between teams.',
-          },
-          {
             icon: 'scan-eye',
             title: 'Decisions with context',
             text: 'Unified view of sub-limits and financial information for opinion and sanctioning.',
+          },
+          {
+            icon: 'message-square',
+            title: 'Cross-team communication',
+            text: 'A unified chat where everyone involved stays informed of sub-limit progress and/or changes.',
           },
         ],
       },
@@ -163,7 +162,6 @@ const projectsEn: Project[] = [
         title: 'Outcomes and learnings',
         kicker: 'Impact',
         accent: 'white',
-        body: 'This case’s value is in operations and governance. Strengthen it in interviews with one number (cycle time, digitization %, or tickets) when you have it.',
         items: [
           {
             icon: 'target',
@@ -171,14 +169,14 @@ const projectsEn: Project[] = [
             text: 'Less redundancy, faster E2E, and clearer sanctioning with the same risk control.',
           },
           {
-            icon: 'lightbulb',
-            title: 'Learning',
-            text: 'In banking, senior design is measured in multi-profile flow + business rules + traceability — not only polished screens.',
+            icon: 'target',
+            title: 'Test results',
+            text: 'Early sessions with account executives show an 84% TSR.',
           },
           {
-            icon: 'alert',
-            title: 'Next case improvement',
-            text: 'Add an AE → Risk → Committee diagram and a real metric (baseline → after).',
+            icon: 'sticky-note',
+            title: 'Learning',
+            text: 'Although Salesforce is an efficient and powerful tool, I faced constraints when proposing UI elements because customization can be limited or imply development delays.',
           },
         ],
       },

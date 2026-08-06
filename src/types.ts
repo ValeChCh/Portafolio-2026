@@ -34,6 +34,7 @@ export type CaseStudyIconId =
   | 'alert'
   | 'route'
   | 'clipboard'
+  | 'sticky-note'
   | 'pen-tool'
   | 'gauge'
   | 'sparkles'
@@ -83,6 +84,8 @@ export interface CaseStudySection {
   items?: CaseStudyItem[];
   /** Si true, las cards de `items` no llevan borde negro */
   itemsBorderless?: boolean;
+  /** Si true, items en una sola columna (ancho completo, apilados) */
+  itemsStacked?: boolean;
   groups?: { title: string; items: CaseStudyItem[] }[];
 }
 

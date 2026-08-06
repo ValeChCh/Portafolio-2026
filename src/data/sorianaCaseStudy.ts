@@ -41,6 +41,7 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     imageContain: true,
     body: 'Como Sr. Product Designer en TS4, lideré discovery, definición, UX/UI, prototipo, pruebas con usuarios y handoff técnico — en sprints, con alcance negociado con PO y desarrollo Salesforce.',
     itemsBorderless: true,
+    itemsStacked: true,
     items: [
       {
         icon: 'target',
@@ -65,14 +66,6 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
           { icon: 'pen-tool', title: 'Sr. Product Designer — TS4', text: 'Research, UX/UI, prototipo y validación (mi rol).' },
         ],
       },
-    ],
-    processLabel: 'Proceso',
-    processSteps: [
-      { title: 'Research', icon: 'search' },
-      { title: 'UX Design', icon: 'pen-tool' },
-      { title: 'UI Design', icon: 'palette' },
-      { title: 'Prototipar', icon: 'smartphone' },
-      { title: 'Validar', icon: 'check-circle' },
     ],
   },
   {
