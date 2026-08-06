@@ -1,6 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Mail, MapPin, Send, CheckCircle, Clock, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Mail, MapPin, Send, CheckCircle, Clock, Calendar, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { useLocalizedContent } from '../i18n/useI18n';
+import CalendlyEmbed from './CalendlyEmbed';
+import { getCalendlyUrl } from '../lib/contactConfig';
+import { submitContactMessage } from '../lib/submitContact';
 
 const AVAILABLE_TIMES = [
   '10:00 AM',
@@ -27,6 +30,8 @@ function isValidEmail(email: string) {
 
 export default function Contact() {
   const { profile, t } = useLocalizedContent();
+  const calendlyUrl = getCalendlyUrl();
+  const useCalendly = Boolean(calendlyUrl);
 
   const subjectOptions = useMemo(
     () => [
@@ -45,6 +50,7 @@ export default function Contact() {
     message: '',
   });
   const [wantMeeting, setWantMeeting] = useState(false);
+  const [meetingScheduled, setMeetingScheduled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submittedWithMeeting, setSubmittedWithMeeting] = useState(false);
@@ -129,6 +135,7 @@ export default function Contact() {
     if (!checked) {
       setSelectedDate(null);
       setSelectedTime(null);
+      setMeetingScheduled(false);
     }
   };
 
@@ -138,7 +145,12 @@ export default function Contact() {
     setFormError(null);
   };
 
-  const handleSubmitContactForm = (e: React.FormEvent) => {
+  const onCalendlyScheduled = useCallback(() => {
+    setMeetingScheduled(true);
+    setFormError(null);
+  }, []);
+
+  const handleSubmitContactForm = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
@@ -153,29 +165,58 @@ export default function Contact() {
     }
 
     if (wantMeeting) {
-      if (!selectedDate || !selectedTime) {
+      if (useCalendly) {
+        if (!meetingScheduled) {
+          setFormError(t.formErrorCalendly);
+          return;
+        }
+      } else if (!selectedDate || !selectedTime) {
         setFormError(t.formErrorMeetingSlot);
         return;
       }
     }
 
-    setIsSubmitting(true);
-    const meetingBooked = wantMeeting && !!selectedDate && !!selectedTime;
-    const summary =
-      meetingBooked && selectedDate && selectedTime
-        ? { date: selectedDate, time: selectedTime }
-        : null;
+    const subjectLabel =
+      subjectOptions.find((o) => o.value === formData.subject)?.label ?? formData.subject;
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setSubmittedWithMeeting(meetingBooked);
-      setBookedSummary(summary);
-      setFormData({ name: '', email: '', subject: 'collab', message: '' });
-      setWantMeeting(false);
-      setSelectedDate(null);
-      setSelectedTime(null);
-    }, 1200);
+    setIsSubmitting(true);
+    const result = await submitContactMessage(
+      {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        subjectLabel,
+        message: formData.message.trim(),
+        wantMeeting,
+        meetingViaCalendly: useCalendly && meetingScheduled,
+        preferredDate: selectedDate ? formatDateLabel(selectedDate) : null,
+        preferredTime: selectedTime,
+      },
+      profile.email
+    );
+    setIsSubmitting(false);
+
+    if (result.ok === false) {
+      const err = result.error;
+      if (err === 'activation') setFormError(t.formErrorActivation);
+      else if (err === 'network') setFormError(t.formErrorNetwork);
+      else setFormError(t.formErrorProvider);
+      return;
+    }
+
+    const meetingBooked =
+      wantMeeting && (useCalendly ? meetingScheduled : Boolean(selectedDate && selectedTime));
+    setIsSubmitted(true);
+    setSubmittedWithMeeting(meetingBooked);
+    setBookedSummary(
+      !useCalendly && selectedDate && selectedTime
+        ? { date: selectedDate, time: selectedTime }
+        : null
+    );
+    setFormData({ name: '', email: '', subject: 'collab', message: '' });
+    setWantMeeting(false);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setMeetingScheduled(false);
   };
 
   const resetForm = () => {
@@ -184,6 +225,8 @@ export default function Contact() {
     setBookedSummary(null);
     setFormError(null);
   };
+
+  const emailOk = Boolean(formData.email.trim() && isValidEmail(formData.email));
 
   return (
     <div className="space-y-12 py-2 md:py-6" id="contact-section-container">
@@ -226,19 +269,23 @@ export default function Contact() {
                 <p className="text-xs md:text-sm font-medium text-slate-800 leading-relaxed max-w-sm mx-auto">
                   {t.messageSuccessBody}
                 </p>
-                {submittedWithMeeting && bookedSummary ? (
+                {submittedWithMeeting ? (
                   <div className="rounded-xl border-2 border-black bg-[#bae6fd] px-4 py-3 text-left space-y-1 max-w-md mx-auto">
                     <p className="text-xs font-black flex items-center gap-2">
                       <Calendar size={14} />
                       {t.bookingSuccessTitle}
                     </p>
-                    <p className="text-[11px] font-medium leading-relaxed">
-                      {t.bookedFor}{' '}
-                      <strong className="font-black underline">
-                        {formatDateLabel(bookedSummary.date)} {t.atTime} {bookedSummary.time}
-                      </strong>
+                    {bookedSummary ? (
+                      <p className="text-[11px] font-medium leading-relaxed">
+                        {t.bookedFor}{' '}
+                        <strong className="font-black underline">
+                          {formatDateLabel(bookedSummary.date)} {t.atTime} {bookedSummary.time}
+                        </strong>
+                      </p>
+                    ) : null}
+                    <p className="text-[10px] font-sans italic">
+                      {useCalendly ? t.bookingInviteMeetLive : t.bookingInviteMeetFallback}
                     </p>
-                    <p className="text-[10px] font-sans italic">{t.bookingInviteMeet}</p>
                   </div>
                 ) : null}
                 <button
@@ -339,130 +386,167 @@ export default function Contact() {
                         {t.optionalMeetingTitle}
                       </span>
                       <span className="block text-xs font-medium text-slate-600 leading-relaxed">
-                        {t.optionalMeetingHint}
+                        {useCalendly ? t.optionalMeetingHintCalendly : t.optionalMeetingHint}
                       </span>
                     </span>
                   </label>
 
                   {wantMeeting ? (
                     <div className="space-y-4 pt-2 border-t-2 border-black/10" id="inline-booking-picker">
-                      {!formData.email.trim() || !isValidEmail(formData.email) ? (
+                      {!emailOk ? (
                         <p className="text-xs font-bold text-black rounded-lg border-2 border-black bg-[#fef08a] px-3 py-2">
                           {t.meetingNeedsEmail}
                         </p>
                       ) : null}
 
-                      <div className="space-y-2" id="date-picker-group">
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-[11px] font-black text-black uppercase tracking-wider">
-                            {t.selectDate}
-                          </span>
-                          <div className="flex items-center gap-1" id="month-nav">
-                            <button
-                              type="button"
-                              onClick={goPrevMonth}
-                              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
-                              aria-label={t.prevMonth}
-                              id="calendar-prev-month"
-                            >
-                              <ChevronLeft size={14} strokeWidth={2.5} />
-                            </button>
-                            <span className="min-w-[7.5rem] text-center text-[11px] font-black uppercase tracking-wider text-black">
-                              {t.months[viewMonth]} {viewYear}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={goNextMonth}
-                              className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
-                              aria-label={t.nextMonth}
-                              id="calendar-next-month"
-                            >
-                              <ChevronRight size={14} strokeWidth={2.5} />
-                            </button>
-                          </div>
-                        </div>
-
-                        <div className="rounded-xl border-2 border-black bg-white p-2" id="month-calendar">
-                          <div className="grid grid-cols-7 gap-1 mb-1" id="weekday-headers">
-                            {t.weekdays.map((wd) => (
-                              <span
-                                key={wd}
-                                className="text-center text-[9px] font-black uppercase text-slate-500 py-1"
-                              >
-                                {wd}
-                              </span>
-                            ))}
-                          </div>
-                          <div className="grid grid-cols-7 gap-1" id="days-grid">
-                            {calendarCells.map((cell, idx) => {
-                              if (cell.day === null || !cell.key) {
-                                return <div key={`empty-${idx}`} className="aspect-square" />;
-                              }
-
-                              const isSelected = selectedDate === cell.key;
-                              const isToday =
-                                cell.key ===
-                                toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
-
-                              return (
-                                <button
-                                  key={cell.key}
-                                  type="button"
-                                  disabled={cell.disabled}
-                                  onClick={() => selectDate(cell.key!)}
-                                  className={`aspect-square rounded-lg border-2 text-[11px] font-black transition-colors ${
-                                    cell.disabled
-                                      ? 'border-transparent text-slate-300 cursor-not-allowed'
-                                      : isSelected
-                                        ? 'border-black bg-[#8F9DE2] text-black cursor-pointer'
-                                        : 'border-black bg-white text-black hover:bg-slate-100 cursor-pointer'
-                                  } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
-                                  id={`date-btn-${cell.key}`}
-                                  aria-label={formatDateLabel(cell.key)}
-                                  aria-pressed={isSelected}
-                                >
-                                  {cell.day}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                        <p className="text-[10px] font-medium text-slate-500">{t.availabilityHint}</p>
-                      </div>
-
-                      {selectedDate ? (
-                        <div className="space-y-1.5 animate-fade-in" id="time-picker-group">
-                          <span className="text-[11px] font-black text-black uppercase tracking-wider">
-                            {t.selectTime}
-                          </span>
-                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" id="times-grid">
-                            {AVAILABLE_TIMES.map((time) => (
-                              <button
-                                key={time}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedTime(time);
-                                  setFormError(null);
-                                }}
-                                className={`px-3 py-1.5 rounded-xl border-2 border-black text-center text-xs font-black transition-colors cursor-pointer ${
-                                  selectedTime === time
-                                    ? 'bg-[#fbcfe8] text-black'
-                                    : 'bg-white hover:bg-slate-100 text-black'
-                                }`}
-                                id={`time-btn-${time.replace(/[:\s]/g, '-')}`}
-                              >
-                                {time}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                      {useCalendly && calendlyUrl && emailOk ? (
+                        <>
+                          <CalendlyEmbed
+                            calendlyUrl={calendlyUrl}
+                            name={formData.name}
+                            email={formData.email}
+                            onScheduled={onCalendlyScheduled}
+                            title={t.bookCoffee}
+                          />
+                          {meetingScheduled ? (
+                            <p className="text-xs font-bold text-black flex items-center gap-2 rounded-lg border-2 border-black bg-[#a7f3d0] px-3 py-2">
+                              <CheckCircle size={14} />
+                              {t.calendlyBookedReady}
+                            </p>
+                          ) : (
+                            <p className="text-[11px] font-medium text-slate-600">{t.calendlyPickSlot}</p>
+                          )}
+                          <a
+                            href={calendlyUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 text-xs font-black underline"
+                          >
+                            {t.openCalendlyNewTab}
+                            <ExternalLink size={12} />
+                          </a>
+                        </>
                       ) : null}
 
-                      {selectedDate && selectedTime ? (
-                        <p className="text-xs font-bold text-black flex items-center gap-2">
-                          <Clock size={14} />
-                          {t.meetingSummary(formatDateLabel(selectedDate), selectedTime)}
-                        </p>
+                      {!useCalendly ? (
+                        <>
+                          <p className="text-xs font-bold text-black rounded-lg border-2 border-black bg-[#fef08a] px-3 py-2">
+                            {t.calendlyNotConfigured}
+                          </p>
+
+                          <div className="space-y-2" id="date-picker-group">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-[11px] font-black text-black uppercase tracking-wider">
+                                {t.selectDate}
+                              </span>
+                              <div className="flex items-center gap-1" id="month-nav">
+                                <button
+                                  type="button"
+                                  onClick={goPrevMonth}
+                                  className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
+                                  aria-label={t.prevMonth}
+                                  id="calendar-prev-month"
+                                >
+                                  <ChevronLeft size={14} strokeWidth={2.5} />
+                                </button>
+                                <span className="min-w-[7.5rem] text-center text-[11px] font-black uppercase tracking-wider text-black">
+                                  {t.months[viewMonth]} {viewYear}
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={goNextMonth}
+                                  className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 cursor-pointer"
+                                  aria-label={t.nextMonth}
+                                  id="calendar-next-month"
+                                >
+                                  <ChevronRight size={14} strokeWidth={2.5} />
+                                </button>
+                              </div>
+                            </div>
+
+                            <div className="rounded-xl border-2 border-black bg-white p-2" id="month-calendar">
+                              <div className="grid grid-cols-7 gap-1 mb-1" id="weekday-headers">
+                                {t.weekdays.map((wd) => (
+                                  <span
+                                    key={wd}
+                                    className="text-center text-[9px] font-black uppercase text-slate-500 py-1"
+                                  >
+                                    {wd}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className="grid grid-cols-7 gap-1" id="days-grid">
+                                {calendarCells.map((cell, idx) => {
+                                  if (cell.day === null || !cell.key) {
+                                    return <div key={`empty-${idx}`} className="aspect-square" />;
+                                  }
+
+                                  const isSelected = selectedDate === cell.key;
+                                  const isToday =
+                                    cell.key ===
+                                    toDateKey(today.getFullYear(), today.getMonth(), today.getDate());
+
+                                  return (
+                                    <button
+                                      key={cell.key}
+                                      type="button"
+                                      disabled={cell.disabled}
+                                      onClick={() => selectDate(cell.key!)}
+                                      className={`aspect-square rounded-lg border-2 text-[11px] font-black transition-colors ${
+                                        cell.disabled
+                                          ? 'border-transparent text-slate-300 cursor-not-allowed'
+                                          : isSelected
+                                            ? 'border-black bg-[#8F9DE2] text-black cursor-pointer'
+                                            : 'border-black bg-white text-black hover:bg-slate-100 cursor-pointer'
+                                      } ${isToday && !isSelected && !cell.disabled ? 'ring-2 ring-[#bae6fd] ring-offset-0' : ''}`}
+                                      id={`date-btn-${cell.key}`}
+                                      aria-label={formatDateLabel(cell.key)}
+                                      aria-pressed={isSelected}
+                                    >
+                                      {cell.day}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                            <p className="text-[10px] font-medium text-slate-500">{t.availabilityHint}</p>
+                          </div>
+
+                          {selectedDate ? (
+                            <div className="space-y-1.5 animate-fade-in" id="time-picker-group">
+                              <span className="text-[11px] font-black text-black uppercase tracking-wider">
+                                {t.selectTime}
+                              </span>
+                              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" id="times-grid">
+                                {AVAILABLE_TIMES.map((time) => (
+                                  <button
+                                    key={time}
+                                    type="button"
+                                    onClick={() => {
+                                      setSelectedTime(time);
+                                      setFormError(null);
+                                    }}
+                                    className={`px-3 py-1.5 rounded-xl border-2 border-black text-center text-xs font-black transition-colors cursor-pointer ${
+                                      selectedTime === time
+                                        ? 'bg-[#fbcfe8] text-black'
+                                        : 'bg-white hover:bg-slate-100 text-black'
+                                    }`}
+                                    id={`time-btn-${time.replace(/[:\s]/g, '-')}`}
+                                  >
+                                    {time}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          ) : null}
+
+                          {selectedDate && selectedTime ? (
+                            <p className="text-xs font-bold text-black flex items-center gap-2">
+                              <Clock size={14} />
+                              {t.meetingSummary(formatDateLabel(selectedDate), selectedTime)}
+                            </p>
+                          ) : null}
+                        </>
                       ) : null}
                     </div>
                   ) : null}
@@ -519,7 +603,7 @@ export default function Contact() {
               <Calendar size={14} />
               {t.bookCoffee}
             </p>
-            <p>{t.optionalMeetingAside}</p>
+            <p>{useCalendly ? t.optionalMeetingAsideCalendly : t.optionalMeetingAside}</p>
           </div>
         </div>
       </div>

@@ -24,19 +24,12 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     kicker: 'Ownership',
     accent: 'white',
     itemsBorderless: true,
-    body: 'Como Product Designer única en el flujo, lideré el producto E2E: discovery, definición, arquitectura de información, UI, prototipo, validación y handoff a Frontend.',
+    itemsStacked: true,
+    body: 'Como Sr. Product Designer única en el flujo, lideré el producto E2E: discovery, definición, arquitectura de información, UI, prototipo, validación y handoff a Frontend.',
     items: [
       {
-        icon: 'target',
-        iconBg: '#FF8400',
         title: 'HMW',
-        text: '¿Cómo podríamos diseñar un flujo en el que el viajero confirme su reservación con confianza, sin depender de un agente?',
-      },
-      {
-        icon: 'lightbulb',
-        iconBg: '#FF8400',
-        title: 'Hipótesis',
-        text: 'Si ofrecemos una WebApp simple de self-service, aumentamos la completitud de datos críticos y reducimos tickets operativos.',
+        text: '¿Cómo podríamos diseñar un flujo en el que el viajero confirme su reservación con confianza, sin depender de un agente?\n\nHipótesis\nSi ofrecemos una WebApp simple de self-service, aumentamos la completitud de datos críticos y reducimos tickets operativos.',
       },
     ],
     groups: [
@@ -49,14 +42,6 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
           { icon: 'heart-handshake', title: 'Customer Experience', text: 'Tipología real de incidencias y tickets.' },
         ],
       },
-    ],
-    processLabel: 'Proceso',
-    processSteps: [
-      { title: 'Research', icon: 'search' },
-      { title: 'UX Design', icon: 'pen-tool' },
-      { title: 'UI Design', icon: 'palette' },
-      { title: 'Prototipar', icon: 'smartphone' },
-      { title: 'Validar', icon: 'check-circle' },
     ],
   },
   {
@@ -162,14 +147,14 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     body: 'Wizard con Edit / Confirm en cada paso, progress indicator y CTAs inequívocos. Branding de Shuttle Central preservado para continuidad con el servicio.',
     gallery: [
       '/images/shuttle_central_inicio.png',
-      '/images/shuttle_central_ticket.png',
       '/images/shuttle_central_schedule.png',
+      '/images/shuttle_central_ticket.png',
       '/images/shuttle_central_styleguide.png',
     ],
     items: [
       { icon: 'smartphone', title: 'Onboarding con propósito', text: 'Propósito claro desde el primer screen.' },
-      { icon: 'clipboard', title: 'Resumen de reserva', text: 'Shuttle Central + OTA en un solo vistazo.' },
       { icon: 'gauge', title: 'Pickup schedule seguro', text: 'Opciones calculadas, no time picker libre.' },
+      { icon: 'clipboard', title: 'Resumen de reserva', text: 'Shuttle Central + OTA en un solo vistazo.' },
       { icon: 'boxes', title: 'Base de design system', text: 'Componentes y estados para acelerar handoff y features post-MVP.' },
     ],
   },
@@ -199,8 +184,6 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
       { icon: 'shield-check', title: 'Pickup limitado', text: '3 horarios para prevenir incidencias operativas.' },
       { icon: 'message-square', title: 'Menos dependencia de CS', text: 'Confirmaciones y cambios dejan de ser el único camino vía agente.' },
     ],
-    footnote:
-      'Pendiente de reforzar en entrevista: % completitud de datos o ↓ tickets CS (si tienes número o rango).',
   },
   {
     number: '11',
@@ -209,24 +192,14 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     accent: 'white',
     items: [
       {
-        icon: 'route',
-        title: '01',
-        text: 'En un modelo B2B2C vía OTAs, la UX crítica puede ser post-compra: cerrar el gap entre partner y operación.',
-      },
-      {
         icon: 'gauge',
-        title: '02',
+        title: '01',
         text: 'Limitar opciones (3 horarios) puede generar más valor que dar “control total” al usuario.',
       },
       {
         icon: 'heart-handshake',
-        title: '03',
+        title: '02',
         text: 'Diseñar con CX y Logistics desde el inicio evita soluciones cosméticas a problemas operativos.',
-      },
-      {
-        icon: 'boxes',
-        title: '04',
-        text: 'Un design system temprano acelera la evolución del producto después del MVP.',
       },
     ],
     href: 'https://ride.shuttlecentral.com/login',

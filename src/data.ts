@@ -4,7 +4,7 @@ import { SORIANA_CASE_SECTIONS_ES } from './data/sorianaCaseStudy';
 
 export const VALERIA_PROFILE = {
   name: "Valeria",
-  title: "Product Designer",
+  title: "Sr. Product Designer",
   email: "Valechch05@gmail.com",
   avatar: "/images/valeria_avatar.jpg",
   bio: "Diseñando experiencias digitales intuitivas y sistemas escalables que conectan a las personas con la tecnología de manera significativa.",
@@ -30,19 +30,19 @@ export const PROJECTS: Project[] = [
     id: "findash-global",
     title: "Banco",
     description:
-      "Sanción de sublímites en Salesforce\nCómo rediseñé el flujo E2E de crédito mayorista para eliminar procesos manuales entre Ejecutivo, Riesgos y Comité.",
+      "Sanción de sublímites en Salesforce\nCómo diseñé el flujo para sublímites dentro del proceso de sanción de crédito para eliminar procesos manuales entre ejecutivo de cuenta y áreas de riesgos.",
     category: "Banca",
     tags: ["Banca", "Salesforce", "B2B", "Product Design"],
     image: "/images/bbva_mockup.jpg",
     images: ["/images/bbva_mockup.jpg"],
-    role: "Product Designer",
+    role: "Sr. Product Designer",
     challenge: "",
     process: [],
     solution: "",
     meta: [
-      { label: "Rol", value: "Product Designer" },
+      { label: "Rol", value: "Sr. Product Designer" },
       { label: "Empresa", value: "Banco" },
-      { label: "Foco", value: "Research · UX · UI · Validación" },
+      { label: "Foco", value: "Flujo E2E · Gobernanza · Salesforce" },
       { label: "Alcance", value: "Flujo E2E · Gobernanza · Salesforce" },
     ],
     caseStudySections: [
@@ -51,7 +51,7 @@ export const PROJECTS: Project[] = [
         title: "El problema de negocio",
         kicker: "Contexto",
         accent: "white",
-        body: "Dentro del proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar; uno de esos pasos es la gestión de límites y sublímites de crédito.\n\nTradicionalmente, la asignación y gestión de sublímites implicaba procesos manuales complejos, duplicidad en la captura, formatos físicos u obsoletos (anexos) y aprobaciones complejas por un comité de riesgos.\n\nConstraint: el rediseño debía respetar gobernanza de riesgo y medición del proceso al migrar a Salesforce.",
+        body: "El tiempo en el que un ejecutivo de cuenta otorga un crédito puede tardar de 3 a 6 meses aproximadamente dependiendo del tipo cliente. Dentro de ese proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar para reducir el tiempo en cuando menos un 50%; uno de esos pasos es la gestión de sublímites de crédito.\n\nTradicionalmente, la asignación y gestión de sublímites implicaba procesos manuales complejos (plantillas complejas de excel), duplicidad en la captura de datos en word (formatos del ejecutivo y del área de riesgos similares), y comunicación desestandarizada entre áreas que no eran medibles. Esto implicaba demoras para que el sublímite se sancionara y que el ejecutivo de cuenta pudiera seguir con el siguiente paso para liberar un crédito.\n\nConstraint: el rediseño debía respetar gobernanza de riesgo y medición del proceso al migrar a Salesforce.",
         itemsTitle: "Objetivos del producto",
         items: [
           {
@@ -67,7 +67,7 @@ export const PROJECTS: Project[] = [
           {
             icon: "bot",
             title: "Menos fricción técnica",
-            text: "Automatizar reglas y validaciones para estandarizar la captura (sin anexos dispersos).",
+            text: "Automatizar reglas y validaciones para estandarizar la captura en un solo sistema y destinar espacios de conversaciones medibles (Salesforce).",
           },
         ],
       },
@@ -77,8 +77,9 @@ export const PROJECTS: Project[] = [
         kicker: "Research",
         accent: "white",
         body: "Para diseñar una herramienta E2E, alineamos los perfiles del circuito operativo. El producto no es “una pantalla”: es un flujo con permisos, dictámenes y sanción.",
-        image: "/images/banco_story_interviews_es.png",
+        image: "/images/banco_story_proceso_credito_es.png",
         imagePlacement: "after",
+        imageContain: true,
         items: [
           {
             icon: "user-cog",
@@ -107,17 +108,17 @@ export const PROJECTS: Project[] = [
           {
             icon: "layout-panel",
             title: "Arquitectura por perfil",
-            text: "Navegación y IA segmentadas según permisos (EC, Riesgos, Comité).",
+            text: "Diseño del flujo E2E para sublímites acorde al perfil (EC, Riesgos).",
           },
           {
             icon: "users",
             title: "Colaboración transversal",
-            text: "Mesas con Stakeholders, POs, Arquitectura, usuarios (EC / Riesgos) y Content.",
+            text: "Mesas de definición con Stakeholders acotando las reglas y los must del flujo, definición de arquitectura con área de desarrollo, acercamiento y feedback con usuarios (EC / Riesgos).",
           },
           {
             icon: "message-square",
             title: "UX Writing operativo",
-            text: "Microcopia e instrucciones para notificaciones, registro de sublímites y lenguaje común entre áreas.",
+            text: "Implementación de instrucciones dentro del flujo, especificaciones y descripciones para cada sección y homologación de conceptos para las áreas.",
           },
         ],
       },
@@ -134,12 +135,12 @@ export const PROJECTS: Project[] = [
             text: "Migrar la sanción a Salesforce reuniendo la información necesaria en un solo front, manteniendo la medición del proceso.",
           },
           {
-            icon: "currency",
-            title: "Flujo según producto bancario",
-            text: "Parametrizar validaciones (ej. multidivisa) y auto-completar subfamilias/campos obligatorios según el producto.",
+            icon: "pen-tool",
+            title: "Flujo fácil de completar",
+            text: "Parametrizar validaciones y auto-completar campos obligatorios según lo llenado en procesos previos a los sublímites.",
           },
           {
-            icon: "list-checks",
+            icon: "message-square",
             title: "Chat transversal medible",
             text: "Espacio en el flujo para que las áreas ajusten datos sin chats fuera del sistema.",
           },
@@ -150,7 +151,6 @@ export const PROJECTS: Project[] = [
         title: "Solución en producto",
         kicker: "UI / Salesforce",
         accent: "white",
-        body: "Vista consolidada del cliente y sublímites en un flujo guiado. Pendiente de enriquecer con 2–3 pantallas adicionales del flujo (antes/después o estados clave EC → Riesgos → Comité).",
         image: "/images/bbva_mockup.jpg",
         items: [
           {
@@ -159,14 +159,14 @@ export const PROJECTS: Project[] = [
             text: "La captura vive en el sistema; la información queda transparente para cada perfil.",
           },
           {
-            icon: "zap",
-            title: "Ciclo de sanción más corto",
-            text: "Acceso a la información en un solo sistema reduce ida y vuelta entre áreas.",
-          },
-          {
             icon: "scan-eye",
             title: "Decisión con contexto",
             text: "Visión unificada de sublímites e información financiera para dictamen y sanción.",
+          },
+          {
+            icon: "message-square",
+            title: "Comunicación entre áreas",
+            text: "Chat unificado donde todos los involucrados estarán enterados de los avances y/o modificaciones de los sublímites.",
           },
         ],
       },
@@ -175,7 +175,6 @@ export const PROJECTS: Project[] = [
         title: "Resultados y aprendizajes",
         kicker: "Impacto",
         accent: "white",
-        body: "El valor del case está en operación y gobernanza. Refuerza en entrevista con 1 número (tiempo de ciclo, % digitalización o tickets) cuando lo tengas.",
         items: [
           {
             icon: "target",
@@ -183,14 +182,14 @@ export const PROJECTS: Project[] = [
             text: "Menos redundancia, más velocidad E2E y claridad para sancionar con el mismo control de riesgo.",
           },
           {
-            icon: "lightbulb",
-            title: "Aprendizaje",
-            text: "En banca, el diseño senior se mide en flujo multi-perfil + reglas de negocio + trazabilidad — no solo en pantallas bonitas.",
+            icon: "target",
+            title: "Resultados en pruebas",
+            text: "Los primeros acercamientos con EC demuestran una TSR de un 84%.",
           },
           {
-            icon: "alert",
-            title: "Siguiente mejora del case",
-            text: "Agregar diagrama EC → Riesgos → Comité y métrica real (baseline → after).",
+            icon: "sticky-note",
+            title: "Aprendizaje",
+            text: "A pesar de que Salesforce es una herramienta eficiente y poderosa, tuve ciertas limitantes a la hora de proponer elementos UI ya que la personalización puede ser limitada o implicaba demoras en desarrollo.",
           },
         ],
       },
@@ -217,12 +216,12 @@ export const PROJECTS: Project[] = [
       "/images/shuttle_central_styleguide.png"
     ],
     galleryLayout: "phone",
-    role: "Product Designer (end-to-end)",
+    role: "Sr. Product Designer (end-to-end)",
     challenge: "",
     process: [],
     solution: "",
     meta: [
-      { label: "Rol", value: "Product Designer · End-to-end" },
+      { label: "Rol", value: "Sr. Product Designer · End-to-end" },
       { label: "Empresa", value: "Shuttle Central (YC W22)" },
       { label: "Foco", value: "Research · UX · UI · Validación" },
     ],
@@ -244,12 +243,12 @@ export const PROJECTS: Project[] = [
     image: "/images/soriana_mockup.png",
     images: ["/images/soriana_mockup.png"],
     galleryLayout: "wide",
-    role: "Product Designer",
+    role: "Sr. Product Designer",
     challenge: "",
     process: [],
     solution: "",
     meta: [
-      { label: "Rol", value: "Product Designer · TS4" },
+      { label: "Rol", value: "Sr. Product Designer · TS4" },
       { label: "Cliente", value: "Soriana Ecommerce" },
       { label: "Foco", value: "Cards · Tracking · Combos · Design Sprint" },
     ],
@@ -266,7 +265,7 @@ export const PROJECTS: Project[] = [
 export const EXPERIENCE_HISTORY: Experience[] = [
   {
     id: "exp-1",
-    role: "Senior Product Designer",
+    role: "Sr. Product Designer",
     company: "Banco",
     duration: "2024 - Presente",
     description: [
@@ -277,7 +276,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
   },
   {
     id: "exp-2",
-    role: "Senior Product Designer",
+    role: "Sr. Product Designer",
     company: "TS4 Strategy",
     duration: "2022 - 2024",
     description: [
@@ -288,7 +287,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
   },
   {
     id: "exp-3",
-    role: "Product Designer",
+    role: "Sr. Product Designer",
     company: "Shuttle Central",
     duration: "2020 - 2022",
     description: [

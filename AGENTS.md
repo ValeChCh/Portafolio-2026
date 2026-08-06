@@ -29,7 +29,7 @@
 | I5 | Idioma ES/EN vía `LanguageProvider` (`src/i18n/`). Sin dark mode. |
 | I6 | No editar `node_modules/`. No tocar `diagrama-estructura-portfolio.html` salvo pedido. |
 | I7 | Copy/tono/contenido visual de Valeria: humano decide; IA propone, no cierra sin OK. |
-| I8 | Contact form + calendar booking = simulación local (`setTimeout` / state). No backend. |
+| I8 | Contact: mensaje vía FormSubmit/Formspree; Meet vía Calendly (`VITE_CALENDLY_URL`). Setup: `skills/contact-live.md`. Sin backend propio. |
 | I9 | `/demo-day` es presentación independiente (pathname en `main.tsx`). No usa `activeTab` ni altera el flujo principal. |
 
 ## Orden de lectura (mínimo → máximo)
@@ -48,7 +48,7 @@
 | Contenido / proyectos / CV | `src/data.ts`, `src/types.ts` |
 | Navegación / tabs / layout app | `src/App.tsx`, `src/components/Header.tsx` |
 | Feature Work / modal case study | `src/components/Projects.tsx`, `Sidebar.tsx` |
-| Contacto / form | `src/components/Contact.tsx` |
+| Contacto / form | `src/components/Contact.tsx` + `skills/contact-live.md` |
 | Demo Day presentación | `src/pages/DemoDay.tsx`, `src/main.tsx` (pathname) |
 | Bug conocido / entorno | `gotchas/README.md` |
 | Decisión histórica | `decisions/` (archivo por fecha) |
@@ -75,6 +75,7 @@ logs/              ← resúmenes de sesión comprimidos
 | Arrancar / reiniciar local | `skills/dev-server.md` |
 | Cambiar UI respetando sistema | `skills/ui-change.md` |
 | Añadir/editar proyecto o perfil | `skills/edit-content.md` |
+| Contact live (email + Meet) | `skills/contact-live.md` |
 | Cerrar sesión / persistir memoria | `skills/session-close.md` |
 | Investigar bug de conexión/build | `gotchas/README.md` primero |
 

@@ -39,8 +39,9 @@ export const SORIANA_CASE_SECTIONS_EN: CaseStudySection[] = [
     accent: 'white',
     image: '/images/soriana_story_02.png',
     imageContain: true,
-    body: 'As Product Designer at TS4, I led discovery, definition, UX/UI, prototyping, user testing, and technical handoff — in sprints, with scope negotiated with the PO and Salesforce development.',
+    body: 'As Sr. Product Designer at TS4, I led discovery, definition, UX/UI, prototyping, user testing, and technical handoff — in sprints, with scope negotiated with the PO and Salesforce development.',
     itemsBorderless: true,
+    itemsStacked: true,
     items: [
       {
         icon: 'target',
@@ -62,17 +63,9 @@ export const SORIANA_CASE_SECTIONS_EN: CaseStudySection[] = [
           { icon: 'building', title: 'Product Owner — Soriana', text: 'Business priority, story scope, and trade-offs.' },
           { icon: 'users', title: 'Scrum Master — TS4', text: 'Sprint cadence and team facilitation.' },
           { icon: 'smartphone', title: 'Developer — TS4', text: 'Salesforce feasibility, environments, and handoff.' },
-          { icon: 'pen-tool', title: 'Product Designer — TS4', text: 'Research, UX/UI, prototype, and validation (my role).' },
+          { icon: 'pen-tool', title: 'Sr. Product Designer — TS4', text: 'Research, UX/UI, prototype, and validation (my role).' },
         ],
       },
-    ],
-    processLabel: 'Process',
-    processSteps: [
-      { title: 'Research', icon: 'search' },
-      { title: 'UX Design', icon: 'pen-tool' },
-      { title: 'UI Design', icon: 'palette' },
-      { title: 'Prototype', icon: 'smartphone' },
-      { title: 'Validate', icon: 'check-circle' },
     ],
   },
   {

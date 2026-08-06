@@ -15,9 +15,10 @@ Ideal largo plazo: instalar Node LTS vía Homebrew y usar `npm run dev`.
 **Causa:** Aún documenta hard shadows; código ya no las usa.  
 **Fix:** Confiar en `contexto/design.md` + `src/index.css`. Actualizar raíz cuando haya tiempo.
 
-## G4 — Contact “enviado” / booking “confirmado”
-**Causa:** Simulación `setTimeout` / state local.  
-**No es bug.** No buscar API key Gemini para esto (README AI Studio es boilerplate).
+## G4 — Contact no llega / Meet no se crea
+**Mensaje:** FormSubmit exige **confirmar el email una vez** (revisar inbox). Alternativa: `VITE_FORMSPREE_ENDPOINT`.  
+**Meet:** hace falta `VITE_CALENDLY_URL` con evento 15 min + Location = Google Meet. Reiniciar Vite tras `.env.local`.  
+Ver `skills/contact-live.md`.
 
 ## G5 — Paths de imágenes `/src/assets/images/...`
 **Causa:** Vite serve `src/` en dev; en build esos paths no existen en `dist/`.  
