@@ -38,8 +38,8 @@ Narrativa Behance puntos 1–5 vía `caseStudySections` en `src/data.ts` (+ EN e
 ## Nota Soriana case study senior (2026-08-05)
 Reescrito desde Behance (cards · tracking · combos). 8 slides en `src/data/sorianaCaseStudy.ts` (+ EN). Quitado copy Lumina / métricas inventadas. Métrica citada: +10% CSAT.
 
-## Nota Contact booking inline (2026-08-05)
-Agendar Meet es opcional dentro de `SEND_MESSAGE.EXE` (checkbox). Requiere email válido + día + hora. Columna derecha = info rápida. Sigue siendo simulación local (I8).
+## Nota Contact live (2026-08-05)
+Mensaje → FormSubmit (o Formspree). Meet → Calendly (`VITE_CALENDLY_URL`). Setup: `skills/contact-live.md`. Sin Calendly: horario preferido por email (Meet manual).
 
 ## Nota dark mode (2026-08-03)
 Modo nocturno desactivado: `@custom-variant dark` solo con clase `.dark` (nunca se aplica) + estilos `dark:` / `html.dark` limpiados. Solo tema claro.

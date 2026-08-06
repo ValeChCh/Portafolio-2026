@@ -39,7 +39,7 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     accent: 'white',
     image: '/images/soriana_story_02.png',
     imageContain: true,
-    body: 'Como Product Designer en TS4, lideré discovery, definición, UX/UI, prototipo, pruebas con usuarios y handoff técnico — en sprints, con alcance negociado con PO y desarrollo Salesforce.',
+    body: 'Como Sr. Product Designer en TS4, lideré discovery, definición, UX/UI, prototipo, pruebas con usuarios y handoff técnico — en sprints, con alcance negociado con PO y desarrollo Salesforce.',
     itemsBorderless: true,
     items: [
       {
@@ -62,7 +62,7 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
           { icon: 'building', title: 'Product Owner — Soriana', text: 'Prioridad de negocio, alcance de HU y trade-offs.' },
           { icon: 'users', title: 'Scrum Master — TS4', text: 'Ritmo de sprint y facilitación del equipo.' },
           { icon: 'smartphone', title: 'Developer — TS4', text: 'Viabilidad Salesforce, ambientes y handoff.' },
-          { icon: 'pen-tool', title: 'Product Designer — TS4', text: 'Research, UX/UI, prototipo y validación (mi rol).' },
+          { icon: 'pen-tool', title: 'Sr. Product Designer — TS4', text: 'Research, UX/UI, prototipo y validación (mi rol).' },
         ],
       },
     ],

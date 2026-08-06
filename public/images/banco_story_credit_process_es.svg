@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" fill="none" role="img" aria-labelledby="title">
+  <title id="title">Proceso de Crédito  Sublímites y sanción</title>
+  <rect width="1200" height="380" fill="#FFFFFF"/>
+
+  <!-- Bracket + title -->
+  <path d="M80 48 H1120" stroke="#9CA3AF" stroke-width="2"/>
+  <path d="M80 48 V68" stroke="#9CA3AF" stroke-width="2"/>
+  <path d="M1120 48 V68" stroke="#9CA3AF" stroke-width="2"/>
+  <rect x="470" y="28" width="260" height="36" rx="4" fill="#FFFFFF"/>
+  <text x="600" y="52" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="800" fill="#111111">Proceso de Crédito</text>
+
+  <!-- Top process bar -->
+  <rect x="80" y="88" width="220" height="64" fill="#D9D9D9" stroke="#000000" stroke-width="3"/>
+  <rect x="300" y="88" width="360" height="64" fill="#75D5FF" stroke="#000000" stroke-width="3"/>
+  <text x="480" y="128" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="800" fill="#111111">Sublímites y sanción</text>
+  <rect x="660" y="88" width="460" height="64" fill="#D9D9D9" stroke="#000000" stroke-width="3"/>
+  <text x="890" y="128" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="800" fill="#111111">Siguiente etapa para liberar el crédito</text>
+
+  <!-- Zoom connectors -->
+  <path d="M300 152 L220 220" stroke="#75D5FF" stroke-width="2.5"/>
+  <path d="M660 152 L980 220" stroke="#75D5FF" stroke-width="2.5"/>
+  <line x1="220" y1="220" x2="980" y2="220" stroke="#75D5FF" stroke-width="2.5"/>
+
+  <!-- Detail row -->
+  <!-- EC -->
+  <g transform="translate(250, 245)">
+    <circle cx="40" cy="28" r="16" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M18 70c6-18 38-18 44 0" stroke="#111111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M28 48h24" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="40" y="98" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="800" fill="#111111">EC</text>
+  </g>
+
+  <path d="M360 290 H420" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M410 282 L424 290 L410 298" fill="#111111"/>
+
+  <!-- Riesgos (3 people) -->
+  <g transform="translate(460, 245)">
+    <circle cx="22" cy="30" r="11" stroke="#111111" stroke-width="2.2" fill="none"/>
+    <path d="M6 62c4-12 28-12 32 0" stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <circle cx="56" cy="24" r="13" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M36 64c6-16 34-16 40 0" stroke="#111111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <circle cx="90" cy="30" r="11" stroke="#111111" stroke-width="2.2" fill="none"/>
+    <path d="M74 62c4-12 28-12 32 0" stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <text x="56" y="98" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="800" fill="#111111">Riesgos</text>
+  </g>
+
+  <path d="M610 290 H670" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M660 282 L674 290 L660 298" fill="#111111"/>
+
+  <!-- Sanción (desk) -->
+  <g transform="translate(710, 245)">
+    <circle cx="40" cy="22" r="12" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M28 38h24v10H28z" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M12 56h56v8H12z" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M18 64v12M62 64v12" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="40" y="98" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="800" fill="#111111">Sanción</text>
+  </g>
+
+  <path d="M830 290 H890" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M880 282 L894 290 L880 298" fill="#111111"/>
+
+  <!-- EC final -->
+  <g transform="translate(920, 245)">
+    <circle cx="40" cy="28" r="16" stroke="#111111" stroke-width="2.5" fill="none"/>
+    <path d="M18 70c6-18 38-18 44 0" stroke="#111111" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M28 48h24" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="40" y="98" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif" font-size="18" font-weight="800" fill="#111111">EC</text>
+  </g>
+</svg>

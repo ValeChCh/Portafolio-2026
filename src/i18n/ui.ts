@@ -20,7 +20,7 @@ const ui = {
     aboutValeria: 'Sobre Valeria',
     greeting: 'Hola,',
     greetingName: 'soy Valeria!',
-    productDesigner: 'Product designer',
+    productDesigner: 'Sr. Product Designer',
     coreSkills: '★ Core Skills',
     sidebarCta: '¿Buscando una diseñadora para tu próximo reto digital? Conversemos.',
     seeContact: 'Ver Contacto →',
@@ -102,14 +102,28 @@ const ui = {
     formErrorRequired: 'Completa tu nombre y el mensaje para continuar.',
     formErrorEmail: 'Ingresa un email válido: lo usaré para el Meet y para responderte.',
     formErrorMeetingSlot: 'Para agendar, elige un día y un horario disponibles.',
+    formErrorCalendly: 'Agenda tu horario en el calendario (Calendly) antes de enviar el mensaje.',
+    formErrorNetwork: 'No pude enviar el mensaje. Revisa tu conexión e inténtalo de nuevo.',
+    formErrorProvider: 'El servicio de correo no pudo recibir el mensaje. Inténtalo más tarde.',
+    formErrorActivation:
+      'Revisa tu bandeja (Valechch05@gmail.com): FormSubmit pide confirmar el email la primera vez. Luego vuelve a enviar.',
     optionalMeetingTitle: 'También quiero agendar un café virtual (15 min)',
     optionalMeetingHint:
-      'Opcional. Si lo marcas, elige día y hora; te enviaré la invitación de Google Meet al email del formulario.',
+      'Opcional. Elige día y hora preferidos; te enviaré el Google Meet al email del formulario.',
+    optionalMeetingHintCalendly:
+      'Opcional. Reserva en Calendly (crea Google Meet automáticamente) y luego envía el mensaje.',
     meetingNeedsEmail: 'Primero escribe un email válido arriba: ahí llega el enlace de Google Meet.',
     meetingSummary: (dateLabel: string, time: string) =>
       `Sesión: ${dateLabel} · ${time} · Google Meet`,
     optionalMeetingAside:
-      'Marca la opción dentro del formulario, elige día y hora, y te envío el Meet al email que indiques.',
+      'Marca la opción, elige día y hora, y te envío el Meet al email que indiques.',
+    optionalMeetingAsideCalendly:
+      'Marca la opción, reserva en Calendly (Meet incluido) y envía el mensaje. Te llega la invitación al email del formulario.',
+    calendlyBookedReady: 'Horario reservado. Ya puedes enviar el mensaje.',
+    calendlyPickSlot: 'Elige un horario disponible abajo. Calendly te enviará el Meet al email del formulario.',
+    calendlyNotConfigured:
+      'Elige un horario preferido abajo. Te enviaré el enlace de Google Meet a tu email después de recibir el mensaje.',
+    openCalendlyNewTab: 'Abrir Calendly en otra pestaña',
     bookCoffee: 'Agendar Café Virtual (15 min)',
     bookIntro:
       'Selecciona una fecha y hora disponibles para conversar informalmente sobre tu producto digital por Google Meet.',
@@ -118,7 +132,11 @@ const ui = {
     atTime: 'a las',
     bookingInvite: 'Te hemos enviado la invitación de calendario y enlace Meet.',
     bookingInviteMeet:
-      'Simulación local: en un flujo real, la invitación de Google Meet llegaría a tu email de contacto.',
+      'La invitación de Google Meet llega al email de contacto.',
+    bookingInviteMeetLive:
+      'Calendly envió (o enviará) la invitación de Google Meet al email que indicaste.',
+    bookingInviteMeetFallback:
+      'Recibí tu horario preferido por email y te enviaré el enlace de Google Meet a tu correo.',
     bookAnother: 'Agendar otra fecha',
     selectDate: 'Selecciona Fecha',
     selectTime: 'Selecciona Hora (UTC-4) · 10:00–16:00',
@@ -163,7 +181,7 @@ const ui = {
     aboutValeria: 'About Valeria',
     greeting: 'Hi,',
     greetingName: "I'm Valeria!",
-    productDesigner: 'Product designer',
+    productDesigner: 'Sr. Product Designer',
     coreSkills: '★ Core Skills',
     sidebarCta: 'Looking for a designer for your next digital challenge? Let’s talk.',
     seeContact: 'See Contact →',
@@ -245,14 +263,28 @@ const ui = {
     formErrorRequired: 'Please fill in your name and message to continue.',
     formErrorEmail: 'Enter a valid email — I’ll use it for Meet and to reply.',
     formErrorMeetingSlot: 'To book a session, pick an available day and time.',
+    formErrorCalendly: 'Book a time in the Calendly calendar before sending the message.',
+    formErrorNetwork: 'Couldn’t send the message. Check your connection and try again.',
+    formErrorProvider: 'The email service couldn’t accept the message. Please try again later.',
+    formErrorActivation:
+      'Check your inbox (Valechch05@gmail.com): FormSubmit asks you to confirm the email once. Then submit again.',
     optionalMeetingTitle: 'I’d also like to book a virtual coffee (15 min)',
     optionalMeetingHint:
-      'Optional. If checked, pick a day and time; I’ll send the Google Meet invite to the email in this form.',
+      'Optional. Pick a preferred day and time; I’ll send the Google Meet invite to the email in this form.',
+    optionalMeetingHintCalendly:
+      'Optional. Book in Calendly (creates Google Meet automatically), then send the message.',
     meetingNeedsEmail: 'Add a valid email above first — that’s where the Google Meet link goes.',
     meetingSummary: (dateLabel: string, time: string) =>
       `Session: ${dateLabel} · ${time} · Google Meet`,
     optionalMeetingAside:
-      'Check the option in the form, pick a day and time, and I’ll send the Meet invite to the email you provide.',
+      'Check the option, pick a day and time, and I’ll send the Meet invite to your email.',
+    optionalMeetingAsideCalendly:
+      'Check the option, book in Calendly (Meet included), and send the message. The invite goes to the form email.',
+    calendlyBookedReady: 'Slot booked. You can send the message now.',
+    calendlyPickSlot: 'Pick an available time below. Calendly will email the Meet link to the form address.',
+    calendlyNotConfigured:
+      'Pick a preferred time below. I’ll email you the Google Meet link after I receive your message.',
+    openCalendlyNewTab: 'Open Calendly in a new tab',
     bookCoffee: 'Book a Virtual Coffee (15 min)',
     bookIntro:
       'Pick an available date and time for an informal chat about your digital product over Google Meet.',
@@ -260,8 +292,11 @@ const ui = {
     bookedFor: 'Scheduled for:',
     atTime: 'at',
     bookingInvite: 'We’ve sent you the calendar invite and Meet link.',
-    bookingInviteMeet:
-      'Local simulation: in a real flow, the Google Meet invite would go to your contact email.',
+    bookingInviteMeet: 'The Google Meet invite goes to the contact email.',
+    bookingInviteMeetLive:
+      'Calendly sent (or will send) the Google Meet invite to the email you provided.',
+    bookingInviteMeetFallback:
+      'I received your preferred time by email and will send you the Google Meet link.',
     bookAnother: 'Book another date',
     selectDate: 'Select a Date',
     selectTime: 'Select a Time (UTC-4) · 10:00–16:00',

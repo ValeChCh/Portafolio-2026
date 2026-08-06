@@ -467,12 +467,13 @@ export default function Projects() {
                                     referrerPolicy="no-referrer"
                                   />
                                 </div>
-                              ) : (
+                              ) : section.imagePlaceholder ? (
                                 <div
-                                  className="w-full aspect-[21/9] border-2 border-dashed border-black/30 bg-transparent"
-                                  aria-hidden
+                                  className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                  id={`case-study-img-placeholder-${section.number}`}
+                                  aria-label="Espacio para imagen"
                                 />
-                              )
+                              ) : null
                             ) : null}
 
                             {section.gallery?.length ? (

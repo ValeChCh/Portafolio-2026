@@ -21,15 +21,15 @@ const projectsEn: Project[] = [
   {
     ...PROJECTS[0],
     description:
-      'Sub-limit approval in Salesforce\nHow I redesigned the wholesale credit E2E flow to remove manual processes across Account Executive, Risk, and Committee.',
-    role: 'Product Designer',
+      'Sub-limit approval in Salesforce\nHow I designed the sub-limits flow within the credit sanctioning process to remove manual work between the account executive and risk areas.',
+    role: 'Sr. Product Designer',
     challenge: '',
     process: [],
     solution: '',
     meta: [
-      { label: 'Role', value: 'Product Designer' },
+      { label: 'Role', value: 'Sr. Product Designer' },
       { label: 'Company', value: 'Banco' },
-      { label: 'Focus', value: 'Research · UX · UI · Validation' },
+      { label: 'Focus', value: 'E2E flow · Governance · Salesforce' },
       { label: 'Scope', value: 'E2E flow · Governance · Salesforce' },
     ],
     caseStudySections: [
@@ -38,7 +38,7 @@ const projectsEn: Project[] = [
         title: 'The business problem',
         kicker: 'Context',
         accent: 'white',
-        body: 'Within the credit process, several steps need to be sped up, standardized, and automated; one of those steps is managing credit limits and sub-limits.\n\nTraditionally, assigning and managing sub-limits meant complex manual processes, duplicated capture, physical or obsolete formats (annexes), and complex approvals by a risk committee.\n\nConstraint: the redesign had to respect risk governance and process measurement while migrating to Salesforce.',
+        body: 'An account executive can take roughly 3 to 6 months to grant a credit, depending on the client type. Within that credit process, several steps need to be sped up, standardized, and automated to cut the time by at least 50%; one of those steps is managing credit sub-limits.\n\nTraditionally, assigning and managing sub-limits meant complex manual processes (heavy Excel templates), duplicated data capture in Word (similar formats for the account executive and the risk area), and non-standardized communication across teams that could not be measured. That caused delays before the sub-limit could be sanctioned and before the account executive could move on to the next step to release a credit.\n\nConstraint: the redesign had to respect risk governance and process measurement while migrating to Salesforce.',
         itemsTitle: 'Product goals',
         items: [
           {
@@ -54,7 +54,7 @@ const projectsEn: Project[] = [
           {
             icon: 'bot',
             title: 'Less technical friction',
-            text: 'Automate rules and validations to standardize capture (no scattered annexes).',
+            text: 'Automate rules and validations to standardize capture in a single system and create measurable conversation spaces (Salesforce).',
           },
         ],
       },
@@ -64,8 +64,9 @@ const projectsEn: Project[] = [
         kicker: 'Research',
         accent: 'white',
         body: 'To design an E2E tool, we aligned the profiles across the operational circuit. This product is not “one screen”: it is a flow with permissions, opinions, and sanctioning.',
-        image: '/images/banco_story_interviews_en.png',
+        image: '/images/banco_story_credit_process_en.svg',
         imagePlacement: 'after',
+        imageContain: true,
         items: [
           {
             icon: 'user-cog',
@@ -187,10 +188,10 @@ const projectsEn: Project[] = [
     ...PROJECTS[1],
     description:
       'Self-service for travelers / How I designed the portal that confirms critical transfer data booked via OTAs and reduces operational friction',
-    role: 'Product Designer · End-to-end',
+    role: 'Sr. Product Designer · End-to-end',
     challenge: '',
     meta: [
-      { label: 'Role', value: 'Product Designer · End-to-end' },
+      { label: 'Role', value: 'Sr. Product Designer · End-to-end' },
       { label: 'Company', value: 'Shuttle Central (YC W22)' },
       { label: 'Focus', value: 'Research · UX · UI · Validation' },
     ],
@@ -202,12 +203,12 @@ const projectsEn: Project[] = [
     ...PROJECTS[2],
     description:
       'Retail ecommerce · cards, tracking & combos\nHow I designed catalog and post-purchase features in Salesforce to improve clarity, trust, and CSAT.',
-    role: 'Product Designer',
+    role: 'Sr. Product Designer',
     challenge: '',
     process: [],
     solution: '',
     meta: [
-      { label: 'Role', value: 'Product Designer · TS4' },
+      { label: 'Role', value: 'Sr. Product Designer · TS4' },
       { label: 'Client', value: 'Soriana Ecommerce' },
       { label: 'Focus', value: 'Cards · Tracking · Combos · Design Sprint' },
     ],

@@ -24,7 +24,7 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     kicker: 'Ownership',
     accent: 'white',
     itemsBorderless: true,
-    body: 'Como Product Designer única en el flujo, lideré el producto E2E: discovery, definición, arquitectura de información, UI, prototipo, validación y handoff a Frontend.',
+    body: 'Como Sr. Product Designer única en el flujo, lideré el producto E2E: discovery, definición, arquitectura de información, UI, prototipo, validación y handoff a Frontend.',
     items: [
       {
         icon: 'target',
