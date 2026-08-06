@@ -13,7 +13,7 @@ const profileEn = {
   ...VALERIA_PROFILE,
   bio: 'Designing intuitive digital experiences and scalable systems that meaningfully connect people with technology.',
   aboutDetailed:
-    'I focus especially on the visual and functional side of digital products. I like applying agile methodologies to optimize project development and better understand stakeholder requirements—and above all, the users. I look to bring my ideas into dynamic projects and work with fun teams.',
+    'I design digital products end to end: discovery, opportunity framing, and UI that holds up in delivery. I partner with Product Owners, business, and engineering to align stakeholder requirements with real user needs — and turn them into measurable decisions. I look for teams where design owns outcomes, moves with agile cadence, and focuses on impact, not just screens.',
   location: 'Mexico City, Mexico (Remote worldwide)',
 };
 

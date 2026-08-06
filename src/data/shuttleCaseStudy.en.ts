@@ -201,6 +201,11 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
         title: '02',
         text: 'Designing with CX and Logistics from the start prevents cosmetic solutions to operational problems.',
       },
+      {
+        icon: 'lightbulb',
+        title: '03',
+        text: 'Key takeaway — describe the insight or trade-off you take from this project.',
+      },
     ],
     href: 'https://ride.shuttlecentral.com/login',
     hrefLabel: 'ride.shuttlecentral.com/login',
