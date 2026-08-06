@@ -6,6 +6,7 @@ import {
   VALERIA_PROFILE,
 } from '../data';
 import { SHUTTLE_CASE_SECTIONS_EN } from '../data/shuttleCaseStudy.en';
+import { SORIANA_CASE_SECTIONS_EN } from '../data/sorianaCaseStudy.en';
 import type { Lang } from './LanguageContext';
 
 const profileEn = {
@@ -20,142 +21,163 @@ const projectsEn: Project[] = [
   {
     ...PROJECTS[0],
     description:
-      'Migration of manual processes to digital platforms and Salesforce',
-    role: 'UX Designer',
+      'Sub-limit approval in Salesforce\nHow I redesigned the wholesale credit E2E flow to remove manual processes across Account Executive, Risk, and Committee.',
+    role: 'Product Designer',
     challenge: '',
     process: [],
     solution: '',
     meta: [
-      { label: 'Role', value: 'UX Designer' },
+      { label: 'Role', value: 'Product Designer' },
       { label: 'Company', value: 'Banco' },
-      { label: 'Program', value: 'Wholesale Transformation' },
+      { label: 'Focus', value: 'Research · UX · UI · Validation' },
+      { label: 'Scope', value: 'E2E flow · Governance · Salesforce' },
     ],
     caseStudySections: [
       {
         number: '01',
-        title: 'The business challenge',
-        body:
-          'Within the credit process, several steps need to be sped up, standardized, and automated; one of those steps is the management of credit limits and sub-limits. Traditionally, assigning and managing financial sub-limits involved complex manual processes, duplicated data entry, physical or obsolete formats (such as information annexes), and complex approvals by a risk committee.',
-        imagePlacement: 'after',
-        itemsTitle: 'Expected Impact',
+        title: 'The business problem',
+        kicker: 'Context',
         accent: 'white',
+        body: 'Within the credit process, several steps need to be sped up, standardized, and automated; one of those steps is managing credit limits and sub-limits.\n\nTraditionally, assigning and managing sub-limits meant complex manual processes, duplicated capture, physical or obsolete formats (annexes), and complex approvals by a risk committee.\n\nConstraint: the redesign had to respect risk governance and process measurement while migrating to Salesforce.',
+        itemsTitle: 'Product goals',
         items: [
           {
             icon: 'timer',
-            title: 'Reduced contracting times',
-            text: 'Free up the account executive’s operations so they can spend more time on client service.',
+            title: 'Faster contracting',
+            text: 'Free up Account Executive operations so they can spend more time with clients.',
           },
           {
             icon: 'shield-check',
             title: 'Operational autonomy',
-            text: 'Enable operations under a previously sanctioned credit limit.',
+            text: 'Operate under a previously sanctioned credit limit, with risk control intact.',
           },
           {
             icon: 'bot',
-            title: 'Removal of technical friction',
-            text: 'Automate rules and validations that standardize and simplify the drafting of annexes.',
+            title: 'Less technical friction',
+            text: 'Automate rules and validations to standardize capture (no scattered annexes).',
           },
         ],
       },
       {
         number: '02',
-        title: 'User Understanding',
-        body:
-          'To design a holistic end-to-end tool, the key profiles across the project’s operational circuit were identified and aligned:',
+        title: 'Users and governance',
+        kicker: 'Research',
+        accent: 'white',
+        body: 'To design an E2E tool, we aligned the profiles across the operational circuit. This product is not “one screen”: it is a flow with permissions, opinions, and sanctioning.',
         image: '/images/banco_story_interviews_en.png',
         imagePlacement: 'after',
-        accent: 'white',
         items: [
           {
             icon: 'user-cog',
             title: 'Account Executive (AE)',
-            text: 'Needs to quickly create the credit and, with that, detail the sub-limit linked to that credit.',
+            text: 'Quickly create the credit and detail the sub-limit linked to it.',
           },
           {
             icon: 'scale',
             title: 'Technical Secretariat & Risk Advisor',
-            text: 'Need to assess the credit-limit proposal, review its annexes, and issue a clear opinion (approve/reject).',
+            text: 'Assess the proposal, review annexes, and issue a clear opinion (approve / reject).',
           },
           {
             icon: 'landmark',
             title: 'Committee / Sanctioning Authority',
-            text: 'Needs a unified, structured view to approve risk (detailed credit view).',
+            text: 'A unified, structured view to approve risk.',
           },
         ],
       },
       {
         number: '03',
-        title: 'My role as Product and my cross-functional collaboration',
+        title: 'My role and ownership',
+        kicker: 'Product Design',
         accent: 'white',
+        body: 'I led the product experience for the sub-limits and sanctioning flow: information architecture by profile/permissions, working sessions with business and technology, and standardized UI language.',
         items: [
           {
             icon: 'layout-panel',
-            title: 'Information architecture & navigation',
-            text: 'I led the information architecture and navigation, segmenting the experience according to each user’s profile and permissions.',
+            title: 'Architecture by profile',
+            text: 'Navigation and IA segmented by permissions (AE, Risk, Committee).',
           },
           {
             icon: 'users',
             title: 'Cross-functional collaboration',
-            text: 'I worked in ongoing sessions with stakeholders, Product Owners, Technology Architecture, users (Account Executive and Risk Area), and Content teams.',
+            text: 'Sessions with stakeholders, POs, Architecture, users (AE / Risk), and Content.',
           },
           {
             icon: 'message-square',
-            title: 'UX Writing standardization',
-            text: 'I aligned microcopy and clear interface instructions (notification messages, guidance for sub-limit registration, and standardized language for the teams).',
+            title: 'Operational UX writing',
+            text: 'Microcopy and instructions for notifications, sub-limit registration, and shared language across teams.',
           },
         ],
       },
       {
         number: '04',
-        title: 'Process & Architecture',
+        title: 'Key product decisions',
+        kicker: 'Trade-offs',
         accent: 'white',
-        groups: [
+        body: 'Three decisions that define product value — not just “better UI,” but measurable operations inside Salesforce.',
+        items: [
           {
-            title: 'Redesign for sub-limit approval',
-            items: [
-              {
-                icon: 'boxes',
-                title: 'Elimination of manual processes',
-                text: 'The current approval process was migrated to Salesforce, bringing the required information into a single front end while keeping process measurement in place.',
-              },
-            ],
+            icon: 'boxes',
+            title: 'One measurable front end',
+            text: 'Migrate sanctioning to Salesforce, gathering required information in a single front while keeping process measurement.',
           },
           {
-            title: 'Managing Technical Complexity and Business Rules',
-            items: [
-              {
-                icon: 'currency',
-                title: 'Flow variation depending on banking products',
-                text: 'The system was configured to validate conversions (for example, multi-currency in dollars) and auto-complete required subfamilies and fields based on the selected product.',
-              },
-              {
-                icon: 'list-checks',
-                title: 'Measurable cross-cutting chat',
-                text: 'Provide a space within the flow so different areas can communicate to adjust data, avoiding chats outside the system.',
-              },
-            ],
+            icon: 'currency',
+            title: 'Flow by banking product',
+            text: 'Parameterize validations (e.g. multi-currency) and auto-complete required subfamilies/fields by product.',
+          },
+          {
+            icon: 'list-checks',
+            title: 'Measurable cross-cutting chat',
+            text: 'In-flow space for teams to adjust data without chats outside the system.',
           },
         ],
       },
       {
         number: '05',
-        title: 'Results',
+        title: 'Solution in product',
+        kicker: 'UI / Salesforce',
         accent: 'white',
+        body: 'A consolidated client and sub-limit view in a guided flow. Next improvement: add 2–3 more screens of the flow (before/after or AE → Risk → Committee states).',
+        image: '/images/bbva_mockup.jpg',
         items: [
           {
             icon: 'eraser',
-            title: 'Eliminated redundancies',
-            text: 'Manual capture formats were replaced, avoiding duplication and making information transparent for different profiles.',
+            title: 'No duplicated manual formats',
+            text: 'Capture lives in the system; information stays transparent for each profile.',
           },
           {
             icon: 'zap',
-            title: 'Accelerated end-to-end flow',
-            text: 'The credit sanctioning and contracting lifecycle was significantly reduced by enabling access to information in a single system.',
+            title: 'Shorter sanctioning cycle',
+            text: 'Access to information in one system reduces back-and-forth between teams.',
           },
           {
             icon: 'scan-eye',
-            title: 'Clearer decision-making',
-            text: 'Sub-limit and financial information was unified through a standardized component system.',
+            title: 'Decisions with context',
+            text: 'Unified view of sub-limits and financial information for opinion and sanctioning.',
+          },
+        ],
+      },
+      {
+        number: '06',
+        title: 'Outcomes and learnings',
+        kicker: 'Impact',
+        accent: 'white',
+        body: 'This case’s value is in operations and governance. Strengthen it in interviews with one number (cycle time, digitization %, or tickets) when you have it.',
+        items: [
+          {
+            icon: 'target',
+            title: 'Intended outcome',
+            text: 'Less redundancy, faster E2E, and clearer sanctioning with the same risk control.',
+          },
+          {
+            icon: 'lightbulb',
+            title: 'Learning',
+            text: 'In banking, senior design is measured in multi-profile flow + business rules + traceability — not only polished screens.',
+          },
+          {
+            icon: 'alert',
+            title: 'Next case improvement',
+            text: 'Add an AE → Risk → Committee diagram and a real metric (baseline → after).',
           },
         ],
       },
@@ -179,23 +201,17 @@ const projectsEn: Project[] = [
   {
     ...PROJECTS[2],
     description:
-      'Transformation of the online shopping experience for a premium lighting brand, focused on reducing checkout friction.',
-    role: 'Lead UX/UI Designer',
-    challenge:
-      'Lumina, a high-end lighting and furniture brand, had strong traffic but low mobile conversion. Checkout required too many required fields across slow successive pages.',
-    process: [
-      'Mobile heuristic audit and session recordings with analytics tools.',
-      'Design of a single-screen collapsible checkout flow with fast load times.',
-      'Implementation of smart address autocomplete and express payment gateways (Apple Pay, Google Pay).',
-      'Weekly A/B tests of the new flow against the legacy checkout.',
+      'Retail ecommerce · cards, tracking & combos\nHow I designed catalog and post-purchase features in Salesforce to improve clarity, trust, and CSAT.',
+    role: 'Product Designer',
+    challenge: '',
+    process: [],
+    solution: '',
+    meta: [
+      { label: 'Role', value: 'Product Designer · TS4' },
+      { label: 'Client', value: 'Soriana Ecommerce' },
+      { label: 'Focus', value: 'Cards · Tracking · Combos · Design Sprint' },
     ],
-    solution:
-      'A minimalist cart and checkout redesign where delivery, shipping, and payment information consolidates into one interactive, intelligent column with real-time error validation.',
-    metrics: [
-      { label: 'Mobile conversion rate', value: '+32%' },
-      { label: 'Cart abandonment', value: '-25%' },
-      { label: 'Average checkout time', value: '1.5 min' },
-    ],
+    caseStudySections: SORIANA_CASE_SECTIONS_EN,
   },
 ];
 
@@ -229,6 +245,28 @@ const experienceEn: Experience[] = [
     duration: '2020 - 2021',
     description: [
       'I collaborated on interface design for various Banpro Promérica banking services (wallets, corporate banking, ATMs). I also ran usability tests and analyzed results to present to stakeholders.',
+      'I mapped end-to-end journeys and flows across digital and physical channels (ATM, corporate banking, and wallets) to surface friction and propose prioritized experience improvements.',
+      'I prototyped high-fidelity solutions and documented research findings to align product, business, and engineering on design decisions.',
+    ],
+  },
+  {
+    ...EXPERIENCE_HISTORY[4],
+    role: 'UX/UI Designer',
+    company: 'Universidad Nacional Autónoma de México',
+    duration: '2017 - 2020',
+    description: [
+      'As User Experience Designer, I worked at UNAM’s Educational Guidance Center on the SEIVOC vocational guidance platform. I led the full visual proposal for the 2018 web version and ran user testing.',
+      'We digitized the vocation and aptitude exam to reach more UNAM high-school students and, by expanding scope, students from Bachilleres, CECyT, IEMS, CONALEP, and DGETI.',
+    ],
+  },
+  {
+    ...EXPERIENCE_HISTORY[5],
+    role: 'Freelance Visual Designer',
+    company: 'VERITest - Hertz',
+    duration: '2016 - 2018',
+    description: [
+      'I led content design for social media, mailing, and advertising materials (business cards, brochures, banners, posters) for Centro VERITest Marketing, helping expand their reach and better connect with their target audience.',
+      'I designed and conceptualized Hertz advertising materials for metropolitan-area offices (business cards, flyers, and banners). With that advertising, Hertz could reach new clients and better promote its products.',
     ],
   },
 ];

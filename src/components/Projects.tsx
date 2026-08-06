@@ -6,7 +6,6 @@ import {
   Eye,
   Trophy,
   ChevronRight,
-  ChevronLeft,
   X,
   Timer,
   ShieldCheck,
@@ -98,7 +97,6 @@ export default function Projects() {
   const { projects, t, lang } = useLocalizedContent();
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [filter, setFilter] = useState<string>('All');
-  const [carouselIndex, setCarouselIndex] = useState(0);
 
   const categoryLabel = (cat: string) => {
     if (cat === 'All') return t.filterAll;
@@ -147,20 +145,10 @@ export default function Projects() {
     : null;
 
   const openProject = (project: Project) => {
-    setCarouselIndex(0);
     setSelectedProjectId(project.id);
   };
 
   const closeProject = () => setSelectedProjectId(null);
-
-  const gallery = selectedProject
-    ? (selectedProject.images?.length ? selectedProject.images : [selectedProject.image])
-    : [];
-
-  const goToSlide = (index: number) => {
-    if (!gallery.length) return;
-    setCarouselIndex((index + gallery.length) % gallery.length);
-  };
 
   return (
     <div className="space-y-10 pt-0 pb-2 md:pb-6" id="projects-section-container">
@@ -324,66 +312,23 @@ export default function Projects() {
             <div id="modal-body">
               <div className="flex flex-col" id="modal-grid-top">
                 <div
-                  className="relative overflow-hidden border-b-2 border-black group/carousel bg-slate-100"
+                  className={`relative overflow-hidden border-b-2 border-black bg-slate-100 ${
+                    selectedProject.galleryLayout === 'phone'
+                      ? 'flex justify-center items-center py-6 md:py-8'
+                      : ''
+                  }`}
                   id="modal-hero-img-wrapper"
                 >
                   <img
-                    key={gallery[carouselIndex]}
-                    src={gallery[carouselIndex]}
-                    alt={t.captureAlt(selectedProject.title, carouselIndex + 1)}
-                    className="w-full aspect-[16/10] md:aspect-[21/9] object-cover"
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    className={
+                      selectedProject.galleryLayout === 'phone'
+                        ? 'h-[min(70vh,667px)] w-auto max-w-full object-contain'
+                        : 'w-full aspect-[16/10] md:aspect-[21/9] object-cover'
+                    }
                     referrerPolicy="no-referrer"
                   />
-
-                  {gallery.length > 1 && (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() => goToSlide(carouselIndex - 1)}
-                        className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 transition-colors cursor-pointer"
-                        aria-label={t.prevImage}
-                        id="carousel-prev-btn"
-                      >
-                        <ChevronLeft size={22} strokeWidth={2.5} />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => goToSlide(carouselIndex + 1)}
-                        className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-white text-black hover:bg-slate-100 transition-colors cursor-pointer"
-                        aria-label={t.nextImage}
-                        id="carousel-next-btn"
-                      >
-                        <ChevronRight size={22} strokeWidth={2.5} />
-                      </button>
-
-                      <div
-                        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2"
-                        id="carousel-dots"
-                      >
-                        {gallery.map((_, idx) => (
-                          <button
-                            key={idx}
-                            type="button"
-                            onClick={() => goToSlide(idx)}
-                            aria-label={t.goToSlide(idx + 1)}
-                            className={`h-2.5 rounded-full border-2 border-black transition-all cursor-pointer ${
-                              idx === carouselIndex
-                                ? 'w-7 bg-[#8F9DE2]'
-                                : 'w-2.5 bg-white hover:bg-slate-200'
-                            }`}
-                            id={`carousel-dot-${idx}`}
-                          />
-                        ))}
-                      </div>
-
-                      <span
-                        className="absolute top-4 right-4 font-sans text-[10px] font-bold border-2 border-black bg-white text-black px-2.5 py-1 rounded-full"
-                        id="carousel-counter"
-                      >
-                        {carouselIndex + 1} / {gallery.length}
-                      </span>
-                    </>
-                  )}
                 </div>
 
                 <div className="py-10 md:py-14 space-y-10 md:space-y-12 w-full">
@@ -415,21 +360,6 @@ export default function Projects() {
                             </div>
                           );
                         })}
-                      </div>
-                      <div>
-                        <span className="block text-xs font-black uppercase tracking-wider text-black mb-1">
-                          {t.specialties}
-                        </span>
-                        <div className="flex flex-wrap gap-1.5 mt-1">
-                          {selectedProject.tags.map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider text-black ${tagPillClass(tag)}`}
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     </div>
 
@@ -502,10 +432,19 @@ export default function Projects() {
                                 <img
                                   src={section.image}
                                   alt=""
-                                  className="w-full aspect-[16/9] object-cover object-top"
+                                  className={
+                                    section.imageContain
+                                      ? 'w-full h-auto object-contain'
+                                      : `w-full aspect-[16/9] object-cover ${section.imageObjectPosition ?? 'object-top'}`
+                                  }
                                   referrerPolicy="no-referrer"
                                 />
                               </div>
+                            ) : section.imagePlaceholder && section.imagePlacement !== 'after' ? (
+                              <div
+                                className="w-full aspect-[16/9] border-2 border-dashed border-black/30 bg-transparent"
+                                aria-hidden
+                              />
                             ) : null}
 
                             {section.body ? (
@@ -520,44 +459,93 @@ export default function Projects() {
 
                             {section.imagePlacement === 'after' ? (
                               section.image ? (
-                                <div className="overflow-hidden border-2 border-black bg-white">
+                                <div className="overflow-hidden">
                                   <img
                                     src={section.image}
                                     alt=""
-                                    className="w-full aspect-[16/9] object-cover object-top"
+                                    className="w-full h-auto object-contain"
                                     referrerPolicy="no-referrer"
                                   />
                                 </div>
                               ) : (
                                 <div
-                                  className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                  className="w-full aspect-[21/9] border-2 border-dashed border-black/30 bg-transparent"
                                   aria-hidden
                                 />
                               )
                             ) : null}
 
                             {section.gallery?.length ? (
-                              <div
-                                className={`grid gap-3 ${
-                                  section.gallery.length >= 4
-                                    ? 'grid-cols-2 md:grid-cols-4'
-                                    : 'grid-cols-1 md:grid-cols-3'
-                                }`}
-                              >
-                                {section.gallery.map((src) => (
+                              section.galleryUnified ? (
+                                <div
+                                  className={`overflow-hidden bg-white ${
+                                    section.galleryBorderless ? '' : 'border-2 border-black'
+                                  }`}
+                                >
                                   <div
-                                    key={src}
-                                    className="overflow-hidden border-2 border-black bg-white"
+                                    className={`grid gap-2 p-3 md:p-4 ${
+                                      section.gallery.length >= 4
+                                        ? 'grid-cols-2 md:grid-cols-4'
+                                        : section.gallery.length === 3
+                                          ? 'grid-cols-1 md:grid-cols-3'
+                                          : section.gallery.length === 2
+                                            ? 'grid-cols-2'
+                                            : 'grid-cols-1'
+                                    }`}
                                   >
-                                    <img
-                                      src={src}
-                                      alt=""
-                                      className="w-full aspect-[4/5] object-cover object-top"
-                                      referrerPolicy="no-referrer"
-                                    />
+                                    {section.gallery.map((src) => (
+                                      <img
+                                        key={src}
+                                        src={src}
+                                        alt=""
+                                        className="w-full h-auto object-contain"
+                                        referrerPolicy="no-referrer"
+                                      />
+                                    ))}
                                   </div>
-                                ))}
-                              </div>
+                                </div>
+                              ) : (
+                                <div
+                                  className={`grid gap-3 ${
+                                    section.gallery.length >= 4
+                                      ? 'grid-cols-2 md:grid-cols-4'
+                                      : section.gallery.length === 2
+                                        ? 'grid-cols-2'
+                                        : section.gallery.length === 3
+                                          ? 'grid-cols-1 md:grid-cols-3'
+                                          : section.galleryFullWidthIndexes?.includes(0)
+                                            ? 'grid-cols-1'
+                                            : 'grid-cols-1 max-w-xs'
+                                  }`}
+                                >
+                                  {section.gallery.map((src, galleryIdx) => {
+                                    const fullWidth =
+                                      section.galleryFullWidthIndexes?.includes(galleryIdx) ??
+                                      false;
+                                    return (
+                                      <div
+                                        key={src}
+                                        className={`overflow-hidden bg-white ${
+                                          section.galleryBorderless
+                                            ? ''
+                                            : 'border-2 border-black'
+                                        } ${fullWidth && section.gallery.length > 1 ? 'col-span-2' : ''}`}
+                                      >
+                                        <img
+                                          src={src}
+                                          alt=""
+                                          className={
+                                            fullWidth
+                                              ? 'w-full max-h-[360px] object-contain object-center bg-white'
+                                              : 'w-full h-auto object-contain'
+                                          }
+                                          referrerPolicy="no-referrer"
+                                        />
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )
                             ) : null}
 
                             {section.itemsTitle ? (
@@ -579,11 +567,16 @@ export default function Projects() {
                                   return (
                                     <article
                                       key={`${item.title}-${itemIdx}`}
-                                      className="border-2 border-black bg-white p-5 space-y-4"
+                                      className={`bg-white p-5 space-y-4 ${
+                                        section.itemsBorderless
+                                          ? ''
+                                          : 'border-2 border-black'
+                                      }`}
                                     >
                                       {Icon ? (
                                         <span
                                           className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-black bg-[#8F9DE2]"
+                                          style={item.iconBg ? { backgroundColor: item.iconBg } : undefined}
                                           aria-hidden
                                         >
                                           <Icon size={23} strokeWidth={2.25} />
@@ -654,19 +647,19 @@ export default function Projects() {
                             ) : null}
 
                             {section.processSteps?.length ? (
-                              <div className="border-2 border-black bg-white px-4 py-5 md:px-6 space-y-4">
+                              <div className="bg-transparent px-0 py-2 md:py-3 space-y-4">
                                 {section.processLabel ? (
-                                  <p className="text-xs font-black uppercase tracking-wider">
+                                  <p className="text-center text-xs font-black uppercase tracking-wider">
                                     {section.processLabel}
                                   </p>
                                 ) : null}
-                                <ol className="flex flex-col gap-3 md:flex-row md:items-stretch md:gap-0">
+                                <ol className="flex flex-col items-center gap-3 md:flex-row md:flex-wrap md:justify-center md:items-center md:gap-x-2 md:gap-y-3">
                                   {section.processSteps.map((step, idx) => {
                                     const StepIcon = CASE_ICONS[step.icon];
                                     return (
                                       <li
                                         key={`${step.title}-${idx}`}
-                                        className="flex items-center gap-2 md:flex-1 md:min-w-0"
+                                        className="flex items-center gap-2"
                                       >
                                         <div className="flex items-center gap-2.5 min-w-0">
                                           <span
