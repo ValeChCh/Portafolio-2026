@@ -305,8 +305,8 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "Banco",
     duration: "2024 - Presente",
     description: [
-      "Diseñé 2 flujos principales dentro del crédito de la banca mayorísta para ejecutivos de cuenta dentro del banco, para migrar procesos manuales a plataformas conectadas entre sí para reducir los procesos en un 50%.",
-      "Colaboro estrechamente con ingenieros, gerentes de producto y directivos para conceptualizar, diseñar y validar soluciones escalables dentro de Salesforce como para aplicativos propios del banco."
+      "Lideré el diseño E2E de 2 flujos de crédito en banca mayorista (incl. sanción de sublímites) para migrar trabajo manual entre Ejecutivo de Cuenta y Riesgos a Salesforce, con meta de reducir el proceso en ~50%.",
+      "Facilité definición con negocio, riesgos y engineering: arquitectura por permisos, validaciones y handoff listo para build en Salesforce y apps internas del banco.",
     ],
     current: true
   },
@@ -316,9 +316,9 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "TS4 Strategy",
     duration: "2022 - 2024",
     description: [
-      "Bestel - Colaboré en las primeras etapas con stakeholders para el mapeo de su proceso ASIS y Costumer Journeys detectando áreas de mejora para migrar procesos aislados y desconectados a Salesforce.",
-      "Interceramic- Rediseñé el sitio web detectando mejoras de accesibilidad y destacando el diferenciador que fue llevar la experiencia de tienda a la web aumentándo las visitas al sitio en un 12%.",
-      "Soriana- Diseñé la implementación de nuevos features como el rediseño de las cards, optimización del carrito y seguimiento de envío. Se aumento en un 10% el CSAT."
+      "Bestel — Discovery temprano con stakeholders: mapeo AS-IS y journeys para priorizar la migración de procesos aislados a Salesforce.",
+      "Interceramic — Rediseñé la web con foco en accesibilidad y en traducir la experiencia de tienda al canal digital; +12% visitas al sitio.",
+      "Soriana — Diseñé y validé features de ecommerce (cards, carrito, tracking de envío y combos) en Salesforce; +10% CSAT.",
     ]
   },
   {
@@ -327,43 +327,32 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "Shuttle Central",
     duration: "2020 - 2022",
     description: [
-      "Diseñé la Web App de reservación aumentando la conversión en un 20%",
-      "Desarrollé prototipos de alta fidelidad interactivos de micro-interacciones clave para aumentar el enganche emocional del comprador.",
-      "Colaboré en flujos de optimización de conversión (CRO) mediante mapas de calor y grabaciones del comportamiento de los usuarios."
+      "Lideré el producto self-service para viajeros (OTA → confirmación de datos críticos): research, UX/UI, validación y handoff; −43% llamadas a Call Center por temas de reservación.",
+      "Diseñé la Web App de reservación y colaboré en CRO con heatmaps y session recordings; +20% conversión.",
     ]
   },
   {
     id: "exp-4",
     role: "UX/UI Designer",
     company: "Tech&Design",
-    duration: "2020 - 2021",
+    duration: "2019 - 2020",
     description: [
-      "Colaboré en el diseño de interfaces para diversos servicios bancarios de Banpro Promérica (billeteras, banca empresarial, cajeros automáticos). De igual manera realicé pruebas de usabilidad así como el análisis de los resultados para presentar a Stakeholders.",
-      "Mapeé journeys y flujos end-to-end entre canales digitales y físicos (ATM, banca empresarial y billeteras) para detectar fricciones y proponer mejoras de experiencia priorizadas.",
-      "Prototipé soluciones de alta fidelidad y documenté hallazgos de research para alinear a producto, negocio y desarrollo en la toma de decisiones de diseño.",
+      "Diseñé interfaces multi-canal para Banpro Promérica (billeteras, banca empresarial, ATM) y conduje pruebas de usabilidad para stakeholders.",
+      "Mapeé journeys E2E entre canales digitales y físicos para priorizar fricciones y alinear producto, negocio y desarrollo.",
     ]
   },
   {
     id: "exp-5",
     role: "UX/UI Designer",
     company: "Universidad Nacional Autónoma de México",
-    duration: "2017 - 2020",
+    duration: "2017 - 2019",
     description: [
-      "Como User Experience Designer, trabajé en el Centro de Orientación Educativa de la UNAM en la plataforma de orientación vocacional SEIVOC. Estuve a cargo de toda la propuesta visual para la versión web 2018 así como de las pruebas con usuarios.",
-      "Logramos digitalizar el examen de vocación y aptitudes para llegar a más alumnos de bachillerato UNAM y, al expandir el alcance, a alumnos de Bachilleres, CECyT, IEMS, CONALEP y DGETI.",
-    ],
-  },
-  {
-    id: "exp-6",
-    role: "Diseñadora Visual Freelance",
-    company: "VERITest - Hertz",
-    duration: "2016 - 2018",
-    description: [
-      "Estuve a cargo del diseño de contenido para redes sociales, mailing y material publicitario (tarjetas de presentación, folletos, lonas, carteles) para el Marketing del Centro VERITest, ayudando a ampliar su alcance y conectar mejor con su público meta.",
-      "Diseñé y conceptualicé el material publicitario de Hertz para las oficinas del área metropolitana (tarjetas de presentación, flyers y banners). Con esa publicidad, Hertz pudo buscar nuevos clientes y ofrecer mejor sus productos.",
+      "Diseñé la propuesta visual y validé con usuarios la plataforma SEIVOC (orientación vocacional) del Centro de Orientación Educativa UNAM — web 2018.",
+      "Digitalicé el examen de vocación y aptitudes para ampliar alcance a bachillerato UNAM y a Bachilleres, CECyT, IEMS, CONALEP y DGETI.",
     ],
   },
 ];
+
 
 export const EDUCATION_HISTORY = [
   {

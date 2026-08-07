@@ -176,9 +176,15 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Resultados e iteración',
     kicker: 'Impacto',
     accent: 'white',
-    image: '/images/shuttle_story_results_impact.png',
-    imageContain: true,
     body: 'Self-service en producción para que el viajero complete y confirme datos críticos sin agente.\n\nPost-launch: check-in, QR, tracking, perfil y extras — la siguiente capa resolvió confianza en el día del viaje y revenue incremental.',
+    gallery: [
+      '/images/shuttle_story_results_cc_metric.png',
+      '/images/shuttle_selfservice_demo.gif',
+    ],
+    galleryBorderless: true,
+    galleryCenteredIndexes: [0],
+    galleryScaleByIndex: { 1: 50 },
+    galleryJustifyByIndex: { 0: 'end', 1: 'start' },
     href: 'https://ride.shuttlecentral.com',
     hrefLabel: 'Live: ride.shuttlecentral.com',
     items: [
