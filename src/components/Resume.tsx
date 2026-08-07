@@ -1,8 +1,12 @@
-import { Briefcase, GraduationCap, Printer } from 'lucide-react';
+import { Briefcase, GraduationCap, Languages, Printer } from 'lucide-react';
 import { useLocalizedContent } from '../i18n/useI18n';
 
 export default function Resume() {
   const { profile, experience, education, t } = useLocalizedContent();
+  const languages = [
+    { name: t.langSpanish, level: t.langSpanishLevel },
+    { name: t.langEnglish, level: t.langEnglishLevel },
+  ];
 
   const handlePrint = () => {
     window.print();
@@ -110,6 +114,39 @@ export default function Resume() {
                     ) : null}
                     <span className="inline-block text-[10px] font-sans font-bold bg-black text-white px-2 py-0.5 rounded-full">
                       {edu.duration}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="neo-window" id="cv-languages-section">
+            <div className="neo-window-bar">
+              <div className="flex space-x-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400 border border-black inline-block" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-400 border border-black inline-block" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 border border-black inline-block" />
+              </div>
+              <span>IDIOMAS.LANG</span>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <h3 className="font-display text-xl font-black text-black flex items-center space-x-2 pb-2 border-b-2 border-black">
+                <Languages size={20} className="text-black" />
+                <span>{t.languages}</span>
+              </h3>
+
+              <div className="space-y-3" id="language-items">
+                {languages.map((lang) => (
+                  <div
+                    key={lang.name}
+                    className="flex items-center justify-between gap-3 p-3 rounded-xl border-2 border-black bg-[#e9d5ff] text-black"
+                    id={`lang-item-${lang.name.toLowerCase()}`}
+                  >
+                    <h4 className="text-sm md:text-base font-black leading-tight">{lang.name}</h4>
+                    <span className="inline-block shrink-0 text-[10px] font-sans font-bold bg-black text-white px-2 py-0.5 rounded-full">
+                      {lang.level}
                     </span>
                   </div>
                 ))}

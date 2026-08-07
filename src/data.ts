@@ -1,6 +1,7 @@
 import { Project, Experience, Skill } from './types';
 import { SHUTTLE_CASE_SECTIONS_ES } from './data/shuttleCaseStudy';
 import { SORIANA_CASE_SECTIONS_ES } from './data/sorianaCaseStudy';
+import { VIVA_CASE_SECTIONS_ES } from './data/vivaCaseStudy';
 
 export const VALERIA_PROFILE = {
   name: "Valeria",
@@ -12,8 +13,8 @@ export const VALERIA_PROFILE = {
     "Diseño producto digital de punta a punta: discovery, definición de oportunidades y UI que se sostiene en delivery. Colaboro con Product Owners, negocio y desarrollo para alinear requerimientos de stakeholders con necesidades reales de usuarios — y convertirlas en decisiones medibles. Busco entornos donde el diseño opera con ownership, ritmo ágil y foco en impacto, no solo en pantallas.",
   location: "Ciudad de México, México (Remoto para todo el mundo)",
   socials: [
-    { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
-    { name: "Behance", url: "https://behance.net", icon: "ExternalLink" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/valechch/", icon: "Linkedin" },
+    { name: "Behance", url: "https://www.behance.net/valechch", icon: "ExternalLink" },
   ]
 };
 
@@ -209,14 +210,15 @@ export const PROJECTS: Project[] = [
       "Self-service para viajeros\nCómo diseñé el portal que confirma datos críticos de transfers reservados vía OTAs y reduce fricción operativa.",
     category: "Traveltech",
     tags: ["Traveltech", "Web App", "UX Research", "Design System"],
-    image: "/images/shuttle_central_inicio.png",
+    image: "/images/shuttle_central_hero.png",
     images: [
+      "/images/shuttle_central_hero.png",
       "/images/shuttle_central_inicio.png",
       "/images/shuttle_central_ticket.png",
       "/images/shuttle_central_schedule.png",
       "/images/shuttle_central_styleguide.png"
     ],
-    galleryLayout: "phone",
+    galleryLayout: "wide",
     role: "Sr. Product Designer (end-to-end)",
     challenge: "",
     process: [],
@@ -235,14 +237,47 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    id: "viva-white-label",
+    title: "Viva Aerobus",
+    description:
+      "White label de transfers\nCómo adapté la plataforma de ventas de Shuttle Central al design system de Viva Aerobus para fortalecer la alianza comercial.",
+    category: "Traveltech",
+    tags: ["Traveltech", "White Label", "Design System", "Product Design"],
+    image: "/images/viva_wl_hero.png",
+    images: [
+      "/images/viva_wl_hero.png",
+      "/images/viva_wl_live.png",
+      "/images/viva_wl_ui.png",
+      "/images/viva_wl_flow.png",
+      "/images/viva_wl_cover.png",
+    ],
+    galleryLayout: "wide",
+    role: "Sr. Product Designer",
+    challenge: "",
+    process: [],
+    solution: "",
+    meta: [
+      { label: "Rol", value: "Sr. Product Designer · Shuttle Central" },
+      { label: "Partner", value: "Viva Aerobus" },
+      { label: "Foco", value: "White Label · Brand System · Booking" },
+    ],
+    caseStudySections: VIVA_CASE_SECTIONS_ES,
+    color: {
+      bg: "bg-lime-50/50",
+      text: "text-lime-800",
+      border: "border-lime-100",
+      accent: "bg-lime-600 hover:bg-lime-700 text-white",
+    },
+  },
+  {
     id: "lumina-store",
     title: "Soriana",
     description:
       "Ecommerce retail · cards, tracking y combos\nCómo diseñé features de catálogo y post-compra en Salesforce para subir claridad, confianza y CSAT.",
     category: "E-Commerce",
     tags: ["E-Commerce", "Retail", "Salesforce", "Product Design"],
-    image: "/images/soriana_mockup.png",
-    images: ["/images/soriana_mockup.png"],
+    image: "/images/soriana_hero.png",
+    images: ["/images/soriana_hero.png", "/images/soriana_demo.gif"],
     galleryLayout: "wide",
     role: "Sr. Product Designer",
     challenge: "",
@@ -299,7 +334,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
   },
   {
     id: "exp-4",
-    role: "User Experience Designer Consultant",
+    role: "UX/UI Designer",
     company: "Tech&Design",
     duration: "2020 - 2021",
     description: [

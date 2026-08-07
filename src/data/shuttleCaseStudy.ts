@@ -49,7 +49,8 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Entender el problema desde negocio, soporte y viajero',
     kicker: 'Investigación',
     accent: 'white',
-    imagePlaceholder: true,
+    image: '/images/shuttle_story_interview_remote.png',
+    imageContain: true,
     items: [
       {
         icon: 'clipboard',
@@ -165,9 +166,9 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     accent: 'white',
     body: 'Método: usabilidad moderada Think Aloud · 15 pruebas remotas · guion estructurado · análisis cualitativo + cuantitativo.',
     items: [
+      { icon: 'flask', title: 'Think Aloud', text: '15 sesiones remotas con guion estructurado.' },
       { icon: 'gauge', title: 'SUS 87.5', text: 'Flujo comprensible y accionable incluso para usuarios que llegaban desde una reserva externa.' },
       { icon: 'timer', title: 'Métricas observadas', text: 'Tiempo de tareas, flujo completo, éxito/fracaso, adaptabilidad y reconocimiento de marca.' },
-      { icon: 'flask', title: 'Think Aloud', text: '15 sesiones remotas con guion estructurado.' },
     ],
   },
   {
@@ -175,14 +176,15 @@ export const SHUTTLE_CASE_SECTIONS_ES: CaseStudySection[] = [
     title: 'Resultados e iteración',
     kicker: 'Impacto',
     accent: 'white',
-    imagePlaceholder: true,
+    image: '/images/shuttle_story_results_impact.png',
+    imageContain: true,
     body: 'Self-service en producción para que el viajero complete y confirme datos críticos sin agente.\n\nPost-launch: check-in, QR, tracking, perfil y extras — la siguiente capa resolvió confianza en el día del viaje y revenue incremental.',
     href: 'https://ride.shuttlecentral.com',
     hrefLabel: 'Live: ride.shuttlecentral.com',
     items: [
       { icon: 'search', title: '23 + 15', text: '23 sesiones de research + 15 pruebas de usabilidad.' },
       { icon: 'shield-check', title: 'Pickup limitado', text: '3 horarios para prevenir incidencias operativas.' },
-      { icon: 'message-square', title: 'Menos dependencia de CS', text: 'Confirmaciones y cambios dejan de ser el único camino vía agente.' },
+      { icon: 'message-square', title: '−43% llamadas a CC', text: 'Disminución de llamadas a CC para temas de reservación en un 43%.' },
     ],
   },
   {

@@ -7,6 +7,7 @@ import {
 } from '../data';
 import { SHUTTLE_CASE_SECTIONS_EN } from '../data/shuttleCaseStudy.en';
 import { SORIANA_CASE_SECTIONS_EN } from '../data/sorianaCaseStudy.en';
+import { VIVA_CASE_SECTIONS_EN } from '../data/vivaCaseStudy.en';
 import type { Lang } from './LanguageContext';
 
 const profileEn = {
@@ -199,6 +200,21 @@ const projectsEn: Project[] = [
   },
   {
     ...PROJECTS[2],
+    description:
+      'Transfer white label\nHow I adapted Shuttle Central’s sales platform to Viva Aerobus’s design system to strengthen the commercial alliance.',
+    role: 'Sr. Product Designer',
+    challenge: '',
+    process: [],
+    solution: '',
+    meta: [
+      { label: 'Role', value: 'Sr. Product Designer · Shuttle Central' },
+      { label: 'Partner', value: 'Viva Aerobus' },
+      { label: 'Focus', value: 'White Label · Brand System · Booking' },
+    ],
+    caseStudySections: VIVA_CASE_SECTIONS_EN,
+  },
+  {
+    ...PROJECTS[3],
     description:
       'Retail ecommerce · cards, tracking & combos\nHow I designed catalog and post-purchase features in Salesforce to improve clarity, trust, and CSAT.',
     role: 'Sr. Product Designer',

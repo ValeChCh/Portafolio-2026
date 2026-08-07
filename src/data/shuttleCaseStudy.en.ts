@@ -49,7 +49,8 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
     title: 'Understanding the problem from the business, support, and traveler perspectives',
     kicker: 'Research',
     accent: 'white',
-    imagePlaceholder: true,
+    image: '/images/shuttle_story_interview_remote.png',
+    imageContain: true,
     items: [
       {
         icon: 'clipboard',
@@ -165,9 +166,9 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
     accent: 'white',
     body: 'Method: moderated Think Aloud usability testing · 15 remote tests · structured guide · qualitative + quantitative analysis.',
     items: [
+      { icon: 'flask', title: 'Think Aloud', text: '15 remote sessions with a structured guide.' },
       { icon: 'gauge', title: 'SUS 87.5', text: 'The flow was understandable and actionable even for users arriving from an external booking.' },
       { icon: 'timer', title: 'Observed metrics', text: 'Task time, flow completion, success/failure, adaptability, and brand recognition.' },
-      { icon: 'flask', title: 'Think Aloud', text: '15 remote sessions with a structured guide.' },
     ],
   },
   {
@@ -175,14 +176,15 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
     title: 'Results and iteration',
     kicker: 'Impact',
     accent: 'white',
-    imagePlaceholder: true,
+    image: '/images/shuttle_story_results_impact.png',
+    imageContain: true,
     body: 'Self-service in production so travelers can complete and confirm critical data without an agent.\n\nPost-launch: check-in, QR, tracking, profile, and extras — the next layer built confidence on the day of travel and incremental revenue.',
     href: 'https://ride.shuttlecentral.com',
     hrefLabel: 'Live: ride.shuttlecentral.com',
     items: [
       { icon: 'search', title: '23 + 15', text: '23 research sessions + 15 usability tests.' },
       { icon: 'shield-check', title: 'Limited pickup options', text: '3 schedules to prevent operational incidents.' },
-      { icon: 'message-square', title: 'Less CS dependency', text: 'Confirmations and changes are no longer agent-only paths.' },
+      { icon: 'message-square', title: '−43% CC calls', text: '43% fewer Call Center calls related to reservation issues.' },
     ],
   },
   {

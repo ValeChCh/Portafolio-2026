@@ -15,9 +15,8 @@ export default function Footer() {
         <span className="font-sans text-xs font-black bg-black text-white px-2 py-0.5 rounded-full shrink-0">
           © {currentYear}
         </span>
-        <div className="font-sans text-xs font-extrabold tracking-wider flex flex-col gap-0.5 text-center md:text-left" id="footer-credits">
+        <div className="font-sans text-xs font-extrabold tracking-wider text-center md:text-left" id="footer-credits">
           <span>{t.footerRights}</span>
-          <span>{t.footerAiNote}</span>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4" id="footer-social-links">
