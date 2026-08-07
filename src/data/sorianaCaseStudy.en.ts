@@ -141,10 +141,7 @@ export const SORIANA_CASE_SECTIONS_EN: CaseStudySection[] = [
     kicker: 'Solution',
     accent: 'white',
     body: 'Three concrete deliverables, ready to build in Salesforce and coherent with Soriana’s brand.',
-    gallery: [
-      '/images/soriana_mockup.png',
-      '/images/soriana_screenshot.png',
-    ],
+    gallery: ['/images/soriana_demo.gif'],
     galleryBorderless: true,
     galleryUnified: true,
     items: [

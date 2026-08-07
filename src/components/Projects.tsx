@@ -481,19 +481,19 @@ export default function Projects() {
                             {section.gallery?.length ? (
                               section.galleryUnified ? (
                                 <div
-                                  className={`overflow-hidden bg-white ${
+                                  className={`bg-white ${
                                     section.galleryBorderless ? '' : 'border-2 border-black'
                                   }`}
                                 >
                                   <div
-                                    className={`grid gap-2 p-3 md:p-4 ${
+                                    className={`flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth p-3 md:grid md:gap-2 md:overflow-visible md:snap-none md:p-4 ${
                                       section.gallery.length >= 4
-                                        ? 'grid-cols-2 md:grid-cols-4'
+                                        ? 'md:grid-cols-4'
                                         : section.gallery.length === 3
-                                          ? 'grid-cols-1 md:grid-cols-3'
+                                          ? 'md:grid-cols-3'
                                           : section.gallery.length === 2
-                                            ? 'grid-cols-2'
-                                            : 'grid-cols-1'
+                                            ? 'md:grid-cols-2'
+                                            : 'md:grid-cols-1'
                                     }`}
                                   >
                                     {section.gallery.map((src) => (
@@ -501,7 +501,7 @@ export default function Projects() {
                                         key={src}
                                         src={src}
                                         alt=""
-                                        className="w-full h-auto object-contain"
+                                        className="w-[72%] max-w-[280px] shrink-0 snap-center h-auto object-contain md:w-full md:max-w-none"
                                         referrerPolicy="no-referrer"
                                       />
                                     ))}

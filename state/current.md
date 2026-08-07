@@ -38,6 +38,9 @@ Narrativa Behance puntos 1–5 vía `caseStudySections` en `src/data.ts` (+ EN e
 ## Nota Soriana case study senior (2026-08-05)
 Reescrito desde Behance (cards · tracking · combos). 8 slides en `src/data/sorianaCaseStudy.ts` (+ EN). Quitado copy Lumina / métricas inventadas. Métrica citada: +10% CSAT.
 
+## Nota Viva Aerobus white label (2026-08-07)
+Nuevo proyecto Traveltech desde Behance. 6 secciones en `src/data/vivaCaseStudy.ts` (+ EN). Foco: alianza comercial, brand system Viva + funnel Shuttle. Live: shuttles.vivaaerobus.com. Sin KPIs inventados.
+
 ## Nota Contact live (2026-08-05)
 Mensaje → FormSubmit (o Formspree). Meet → Calendly (`VITE_CALENDLY_URL`). Setup: `skills/contact-live.md`. Sin Calendly: horario preferido por email (Meet manual).
 
