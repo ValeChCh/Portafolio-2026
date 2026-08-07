@@ -12,9 +12,9 @@ import type { Lang } from './LanguageContext';
 
 const profileEn = {
   ...VALERIA_PROFILE,
-  bio: 'Designing intuitive digital experiences and scalable systems that meaningfully connect people with technology.',
+  bio: 'Sr. Product Designer · end-to-end flows in B2B banking, traveltech, and retail. Ownership from discovery to measurable delivery.',
   aboutDetailed:
-    'I design digital products end to end: discovery, opportunity framing, and UI that holds up in delivery. I partner with Product Owners, business, and engineering to align stakeholder requirements with real user needs — and turn them into measurable decisions. I look for teams where design owns outcomes, moves with agile cadence, and focuses on impact, not just screens.',
+    'I design digital products end to end across B2B banking, traveltech, and retail: discovery, opportunity framing, and UI that holds up in delivery. I have led E2E flows where design negotiates with business, risk, and operations — not just screens. I partner with Product Owners, engineering, and stakeholders to align requirements with real needs and turn them into measurable decisions (operational friction, adoption, CSAT). I look for teams where design owns outcomes and moves with agile cadence.',
   location: 'Mexico City, Mexico (Remote worldwide)',
 };
 

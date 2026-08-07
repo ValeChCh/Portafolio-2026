@@ -25,9 +25,6 @@ export default function Sidebar({ setActiveTab }: SidebarProps) {
             {t.greeting} <br className="hidden md:inline" />
             {t.greetingName}
           </h1>
-          <h2 className="font-sans text-sm font-extrabold text-slate-700" id="intro-profession">
-            {profile.title}
-          </h2>
           <p className="font-sans text-sm md:text-base leading-relaxed text-slate-800" id="intro-description">
             {profile.bio}
           </p>
