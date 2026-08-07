@@ -8,9 +8,9 @@ export const VALERIA_PROFILE = {
   title: "Sr. Product Designer",
   email: "Valechch05@gmail.com",
   avatar: "/images/valeria_avatar.jpg",
-  bio: "Diseñando experiencias digitales intuitivas y sistemas escalables que conectan a las personas con la tecnología de manera significativa.",
+  bio: "Sr. Product Designer · flujos E2E en banca B2B, traveltech y retail. Ownership desde discovery hasta delivery medible.",
   aboutDetailed:
-    "Diseño producto digital de punta a punta: discovery, definición de oportunidades y UI que se sostiene en delivery. Colaboro con Product Owners, negocio y desarrollo para alinear requerimientos de stakeholders con necesidades reales de usuarios — y convertirlas en decisiones medibles. Busco entornos donde el diseño opera con ownership, ritmo ágil y foco en impacto, no solo en pantallas.",
+    "Diseño producto digital de punta a punta en banca B2B, traveltech y retail: discovery, definición de oportunidades y UI que se sostiene en delivery. He liderado flujos E2E donde el diseño negocia con negocio, riesgo y operación — no solo pantallas. Trabajo con Product Owners, ingeniería y stakeholders para alinear requerimientos con necesidades reales y convertirlos en decisiones medibles (fricción operativa, adopción, CSAT). Busco equipos donde el diseño tiene ownership de outcomes y ritmo ágil.",
   location: "Ciudad de México, México (Remoto para todo el mundo)",
   socials: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/valechch/", icon: "Linkedin" },
