@@ -235,56 +235,43 @@ const experienceEn: Experience[] = [
     ...EXPERIENCE_HISTORY[0],
     duration: '2024 - Present',
     description: [
-      'I designed 2 main flows within wholesale banking credit for account executives inside the bank, to migrate manual processes to interconnected platforms and reduce processes by 50%.',
-      'I partner closely with engineers, product managers, and leadership to conceptualize, design, and validate scalable solutions within Salesforce as well as for the bank’s own applications.',
+      'Led end-to-end design of 2 wholesale credit flows (including sub-limit sanctioning) to move manual Account Executive ↔ Risk work into Salesforce, targeting ~50% process reduction.',
+      'Facilitated definition with business, risk, and engineering: permission-based architecture, validations, and build-ready handoff for Salesforce and internal bank apps.',
     ],
   },
   {
     ...EXPERIENCE_HISTORY[1],
     description: [
-      'Bestel — Collaborated in early stages with stakeholders to map their AS-IS process and Customer Journeys, identifying improvement areas to migrate isolated, disconnected processes to Salesforce.',
-      'Interceramic — Redesigned the website by identifying accessibility improvements and highlighting the differentiator of bringing the in-store experience to the web, increasing site visits by 12%.',
-      'Soriana — Designed the implementation of new features such as card redesign, cart optimization, and shipment tracking. CSAT increased by 10%.',
+      'Bestel — Early discovery with stakeholders: AS-IS mapping and journeys to prioritize migrating disconnected processes into Salesforce.',
+      'Interceramic — Redesigned the website for accessibility and a stronger digital store experience; +12% site visits.',
+      'Soriana — Designed and validated ecommerce features (cards, cart, shipment tracking, and combos) in Salesforce; +10% CSAT.',
     ],
   },
   {
     ...EXPERIENCE_HISTORY[2],
     description: [
-      'I designed the reservation Web App, increasing conversion by 20%.',
-      'I built high-fidelity interactive prototypes of key micro-interactions to increase emotional engagement.',
-      'I collaborated on conversion-rate optimization (CRO) flows using heatmaps and session recordings.',
+      'Led traveler self-service (OTA → critical data confirmation): research, UX/UI, validation, and handoff; −43% Call Center calls related to reservations.',
+      'Designed the booking Web App and partnered on CRO using heatmaps and session recordings; +20% conversion.',
     ],
   },
   {
     ...EXPERIENCE_HISTORY[3],
-    duration: '2020 - 2021',
+    duration: '2019 - 2020',
     description: [
-      'I collaborated on interface design for various Banpro Promérica banking services (wallets, corporate banking, ATMs). I also ran usability tests and analyzed results to present to stakeholders.',
-      'I mapped end-to-end journeys and flows across digital and physical channels (ATM, corporate banking, and wallets) to surface friction and propose prioritized experience improvements.',
-      'I prototyped high-fidelity solutions and documented research findings to align product, business, and engineering on design decisions.',
+      'Designed multi-channel interfaces for Banpro Promérica (wallets, corporate banking, ATMs) and ran usability tests for stakeholders.',
+      'Mapped end-to-end journeys across digital and physical channels to prioritize friction and align product, business, and engineering.',
     ],
   },
   {
     ...EXPERIENCE_HISTORY[4],
-    role: 'UX/UI Designer',
-    company: 'Universidad Nacional Autónoma de México',
-    duration: '2017 - 2020',
+    duration: '2017 - 2019',
     description: [
-      'As User Experience Designer, I worked at UNAM’s Educational Guidance Center on the SEIVOC vocational guidance platform. I led the full visual proposal for the 2018 web version and ran user testing.',
-      'We digitized the vocation and aptitude exam to reach more UNAM high-school students and, by expanding scope, students from Bachilleres, CECyT, IEMS, CONALEP, and DGETI.',
-    ],
-  },
-  {
-    ...EXPERIENCE_HISTORY[5],
-    role: 'Freelance Visual Designer',
-    company: 'VERITest - Hertz',
-    duration: '2016 - 2018',
-    description: [
-      'I led content design for social media, mailing, and advertising materials (business cards, brochures, banners, posters) for Centro VERITest Marketing, helping expand their reach and better connect with their target audience.',
-      'I designed and conceptualized Hertz advertising materials for metropolitan-area offices (business cards, flyers, and banners). With that advertising, Hertz could reach new clients and better promote its products.',
+      'Designed the visual system and ran user testing for SEIVOC (vocational guidance) at UNAM’s Educational Guidance Center — 2018 web release.',
+      'Digitized the vocation and aptitude exam to expand reach to UNAM high schools and Bachilleres, CECyT, IEMS, CONALEP, and DGETI.',
     ],
   },
 ];
+
 
 const educationEn = [
   {

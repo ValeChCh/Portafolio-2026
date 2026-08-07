@@ -525,6 +525,20 @@ export default function Projects() {
                                     const fullWidth =
                                       section.galleryFullWidthIndexes?.includes(galleryIdx) ??
                                       false;
+                                    const scalePercent =
+                                      section.galleryScaleByIndex?.[galleryIdx] ??
+                                      (section.galleryCenteredIndexes?.includes(galleryIdx)
+                                        ? 40
+                                        : undefined);
+                                    const centered = scalePercent != null;
+                                    const justify =
+                                      section.galleryJustifyByIndex?.[galleryIdx] ?? 'center';
+                                    const justifyClass =
+                                      justify === 'end'
+                                        ? 'justify-end'
+                                        : justify === 'start'
+                                          ? 'justify-start'
+                                          : 'justify-center';
                                     return (
                                       <div
                                         key={src}
@@ -532,7 +546,9 @@ export default function Projects() {
                                           section.galleryBorderless
                                             ? ''
                                             : 'border-2 border-black'
-                                        } ${fullWidth && section.gallery.length > 1 ? 'col-span-2' : ''}`}
+                                        } ${fullWidth && section.gallery.length > 1 ? 'col-span-2' : ''} ${
+                                          centered ? `flex items-center ${justifyClass}` : ''
+                                        }`}
                                       >
                                         <img
                                           src={src}
@@ -540,7 +556,14 @@ export default function Projects() {
                                           className={
                                             fullWidth
                                               ? 'w-full max-h-[360px] object-contain object-center bg-white'
-                                              : 'w-full h-auto object-contain'
+                                              : centered
+                                                ? 'h-auto object-contain'
+                                                : 'w-full h-auto object-contain'
+                                          }
+                                          style={
+                                            centered
+                                              ? { width: `${scalePercent}%` }
+                                              : undefined
                                           }
                                           referrerPolicy="no-referrer"
                                         />

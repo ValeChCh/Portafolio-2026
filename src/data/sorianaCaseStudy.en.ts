@@ -53,7 +53,6 @@ export const SORIANA_CASE_SECTIONS_EN: CaseStudySection[] = [
           { icon: 'building', title: 'Product Owner — Soriana', text: 'Business priority, story scope, and trade-offs.' },
           { icon: 'users', title: 'Scrum Master — TS4', text: 'Sprint cadence and team facilitation.' },
           { icon: 'smartphone', title: 'Developer — TS4', text: 'Salesforce feasibility, environments, and handoff.' },
-          { icon: 'pen-tool', title: 'Sr. Product Designer — TS4', text: 'Research, UX/UI, prototype, and validation (my role).' },
         ],
       },
     ],
@@ -148,7 +147,7 @@ export const SORIANA_CASE_SECTIONS_EN: CaseStudySection[] = [
       {
         icon: 'route',
         title: 'Embedded tracking',
-        text: 'Shipment status in the order detail + follow-up emails.',
+        text: 'Shipment status in the order detail + follow-up emails. Salesforce had no native tracking tool, so the module was embedded from an external system.',
       },
       {
         icon: 'layout-panel',

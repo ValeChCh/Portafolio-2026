@@ -80,6 +80,12 @@ export interface CaseStudySection {
   galleryBorderless?: boolean;
   /** Si true, todas las imágenes van en un solo contenedor (no celdas separadas) */
   galleryUnified?: boolean;
+  /** Índices (0-based) centrados en su celda al 40% del ancho (reduce ~60%) */
+  galleryCenteredIndexes?: number[];
+  /** Escala por índice (0-based → % de ancho). Si existe, centra la imagen en la celda. */
+  galleryScaleByIndex?: Record<number, number>;
+  /** Alineación horizontal en celdas con escala: start | center | end */
+  galleryJustifyByIndex?: Record<number, 'start' | 'center' | 'end'>;
   accent?: 'white' | 'pink' | 'cyan' | 'mint' | 'lilac';
   items?: CaseStudyItem[];
   /** Si true, las cards de `items` no llevan borde negro */
