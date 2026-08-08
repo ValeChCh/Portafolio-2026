@@ -1,11 +1,12 @@
 import { Printer } from 'lucide-react';
 import { CORE_SKILLS, DESIGN_TOOLS, METHODOLOGIES } from '../data';
 import { useLocalizedContent } from '../i18n/useI18n';
+import { printHarvardCv } from '../lib/printHarvardCv';
 
 const FULL_NAME = 'Valeria Charco';
 
 export default function Resume() {
-  const { profile, experience, education, t } = useLocalizedContent();
+  const { lang, profile, experience, education, t } = useLocalizedContent();
   const languages = [
     { name: t.langSpanish, level: t.langSpanishLevel },
     { name: t.langEnglish, level: t.langEnglishLevel },
@@ -18,7 +19,30 @@ export default function Resume() {
   ].join(' · ');
 
   const handlePrint = () => {
-    window.print();
+    const el = document.getElementById('harvard-cv');
+    if (!el) return;
+
+    const previousTitle = document.title;
+    const documentTitle =
+      lang === 'en' ? 'Valeria_Charco_Resume_EN' : 'Valeria_Charco_CV_ES';
+
+    // Suggested filename when the user chooses “Save as PDF”.
+    document.title = documentTitle;
+
+    printHarvardCv({
+      html: el.outerHTML,
+      documentTitle,
+      lang,
+      onPopupBlocked: () => {
+        window.print();
+        document.title = previousTitle;
+      },
+    });
+
+    // Restore tab title after print dialog opens in the popup path.
+    window.setTimeout(() => {
+      document.title = previousTitle;
+    }, 1000);
   };
 
   return (
@@ -45,7 +69,12 @@ export default function Resume() {
         </div>
       </div>
 
-      <article className="harvard-cv" id="harvard-cv" aria-label="Curriculum Vitae">
+      <article
+        className="harvard-cv"
+        id="harvard-cv"
+        aria-label={lang === 'en' ? 'Resume' : 'Curriculum Vitae'}
+        lang={lang}
+      >
         <header className="harvard-cv-header">
           <h1 className="harvard-cv-name">{FULL_NAME}</h1>
           <p className="harvard-cv-title">{profile.title}</p>
@@ -121,7 +150,7 @@ export default function Resume() {
         <section className="harvard-cv-section" id="cv-languages-section">
           <h2 className="harvard-cv-section-title">{t.languages}</h2>
           <p className="harvard-cv-skills">
-            {languages.map((lang) => `${lang.name} (${lang.level})`).join(' · ')}
+            {languages.map((item) => `${item.name} (${item.level})`).join(' · ')}
           </p>
         </section>
       </article>
