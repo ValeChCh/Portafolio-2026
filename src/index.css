@@ -143,15 +143,179 @@
   @apply bg-[#8F9DE2];
 }
 
-/* Print layout optimizations for Resume */
+/* Harvard CV (screen + print) */
+.harvard-cv {
+  max-width: 8.5in;
+  margin: 0 auto;
+  padding: 2rem 2.25rem;
+  background: #fff;
+  color: #111;
+  border: 2px solid #000;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 11pt;
+  line-height: 1.35;
+}
+
+.harvard-cv-header {
+  text-align: center;
+  margin-bottom: 1.1rem;
+}
+
+.harvard-cv-name {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.harvard-cv-title {
+  margin-top: 0.25rem;
+  font-size: 11pt;
+  font-style: italic;
+}
+
+.harvard-cv-contact {
+  margin-top: 0.45rem;
+  font-size: 9.5pt;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.harvard-cv-contact a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.harvard-cv-sep {
+  opacity: 0.55;
+}
+
+.harvard-cv-section {
+  margin-top: 0.9rem;
+}
+
+.harvard-cv-section-title {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid #111;
+  padding-bottom: 0.15rem;
+  margin-bottom: 0.45rem;
+}
+
+.harvard-cv-summary,
+.harvard-cv-skills {
+  font-size: 10pt;
+  text-align: justify;
+}
+
+.harvard-cv-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.harvard-cv-entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.harvard-cv-org {
+  font-size: 10.5pt;
+  font-weight: 700;
+}
+
+.harvard-cv-dates {
+  font-size: 10pt;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.harvard-cv-role {
+  font-size: 10.5pt;
+  font-style: italic;
+  margin-top: 0.05rem;
+}
+
+.harvard-cv-detail {
+  font-size: 9.5pt;
+  margin-top: 0.1rem;
+}
+
+.harvard-cv-bullets {
+  margin: 0.25rem 0 0;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+
+.harvard-cv-bullets li {
+  font-size: 10pt;
+  margin-top: 0.15rem;
+}
+
+.harvard-cv-bullets li::marker {
+  font-size: 0.85em;
+}
+
+/* Print: Harvard CV only */
+@page {
+  size: letter;
+  margin: 0.55in 0.65in;
+}
+
 @media print {
+  html,
   body {
     background: white !important;
+    background-image: none !important;
     color: black !important;
   }
+
   .no-print {
     display: none !important;
   }
+
+  #portfolio-app-root {
+    background: white !important;
+    min-height: 0 !important;
+  }
+
+  #main-content-container {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #resume-section-container {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .harvard-cv {
+    border: none !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 10.5pt;
+  }
+
+  .harvard-cv-name {
+    font-size: 18pt;
+  }
+
+  .harvard-cv a {
+    text-decoration: none;
+  }
+
   .print-full {
     width: 100% !important;
     max-width: 100% !important;
