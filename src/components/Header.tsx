@@ -35,7 +35,7 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
             <span className="h-3 w-3 rounded-full bg-emerald-400 border border-black inline-block" />
           </div>
           <span className="font-display text-lg font-black tracking-tight text-black group-hover:text-[#7A8AD9] transition-colors">
-            sdadasd
+            !=!=!=!=!=
           </span>
         </div>
 
