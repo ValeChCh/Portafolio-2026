@@ -48,4 +48,5 @@ Mensaje → FormSubmit (o Formspree). Meet → Calendly (`VITE_CALENDLY_URL`). S
 Modo nocturno desactivado: `@custom-variant dark` solo con clase `.dark` (nunca se aplica) + estilos `dark:` / `html.dark` limpiados. Solo tema claro.
 
 ## Nota CV Harvard (2026-08-08)
-Tab Resume = formato Harvard (serif, secciones caps, fechas a la derecha). **Imprimir CV** abre `window.print()` con layout letter limpio (sin chrome neo).
+Tab Resume = UI neo original (timeline + ventanas).
+**Imprimir CV** genera PDF Harvard aparte (`src/lib/printHarvardCv.ts`), ES/EN según idioma activo.
