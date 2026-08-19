@@ -181,6 +181,8 @@ export type HarvardCvData = {
   location: string;
   email: string;
   linkedInUrl?: string;
+  /** Live portfolio URL shown as “Portfolio” in the contact line */
+  portfolioUrl?: string;
   bio: string;
   experience: Experience[];
   education: HarvardEducation[];
@@ -192,6 +194,9 @@ export type HarvardCvData = {
 export function buildHarvardCvHtml(data: HarvardCvData): string {
   const linkedIn = data.linkedInUrl
     ? `<span class="harvard-cv-sep" aria-hidden="true">|</span><a href="${escapeHtml(data.linkedInUrl)}" target="_blank" rel="noreferrer">LinkedIn</a>`
+    : '';
+  const portfolio = data.portfolioUrl
+    ? `<span class="harvard-cv-sep" aria-hidden="true">|</span><a href="${escapeHtml(data.portfolioUrl)}" target="_blank" rel="noreferrer">Portfolio</a>`
     : '';
 
   const experienceHtml = data.experience
@@ -234,6 +239,7 @@ export function buildHarvardCvHtml(data: HarvardCvData): string {
       <span class="harvard-cv-sep" aria-hidden="true">|</span>
       <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a>
       ${linkedIn}
+      ${portfolio}
     </p>
   </header>
 
