@@ -4,6 +4,7 @@ import { useLocalizedContent } from '../i18n/useI18n';
 import { printHarvardCv } from '../lib/printHarvardCv';
 
 const FULL_NAME = 'Valeria Charco';
+const PORTFOLIO_URL = 'https://valeria-product-designer.vercel.app/';
 
 export default function Resume() {
   const { lang, profile, experience, education, t } = useLocalizedContent();
@@ -34,6 +35,7 @@ export default function Resume() {
         location: profile.location,
         email: profile.email,
         linkedInUrl: linkedIn,
+        portfolioUrl: PORTFOLIO_URL,
         bio: profile.bio,
         experience,
         education,
