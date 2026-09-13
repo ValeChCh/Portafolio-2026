@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
   <title id="title">Proceso de Credito</title>
-  <desc id="desc">Sublimites y sancion dentro del proceso de credito: EC, Riesgos, Sancion, EC</desc>
+  <desc id="desc">Limites y sancion dentro del proceso de credito: EC, Riesgos, Sancion, EC</desc>
   <defs>
     <style>
       .label { font-family: Helvetica, Arial, sans-serif; font-weight: 900; fill: #000000; }
@@ -17,8 +17,10 @@
   <text x="600" y="85" text-anchor="middle" class="label" font-size="20">Proceso de Cr&#233;dito</text>
   <g transform="translate(80, 130)">
     <rect width="260" height="72" rx="14" fill="#E5E7EB" stroke="#000000" stroke-width="3"/>
+    <text x="130" y="38" text-anchor="middle" class="body" font-size="14">Solicitud y oferta</text>
+    <text x="130" y="58" text-anchor="middle" class="body" font-size="14">de cr&#233;dito</text>
     <rect x="270" width="360" height="72" rx="14" fill="#75D5FF" stroke="#000000" stroke-width="3"/>
-    <text x="450" y="44" text-anchor="middle" class="label" font-size="22">Subl&#237;mites y sanci&#243;n</text>
+    <text x="450" y="44" text-anchor="middle" class="label" font-size="22">L&#237;mites y sanci&#243;n</text>
     <rect x="640" width="400" height="72" rx="14" fill="#E5E7EB" stroke="#000000" stroke-width="3"/>
     <text x="840" y="38" text-anchor="middle" class="body" font-size="15">Siguiente etapa para</text>
     <text x="840" y="58" text-anchor="middle" class="body" font-size="15">liberar el cr&#233;dito</text>
@@ -63,5 +65,5 @@
     <path d="M42 62c6-12 30-12 36 0" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round"/>
     <text x="60" y="112" text-anchor="middle" class="label" font-size="18">EC</text>
   </g>
-  <text x="600" y="470" text-anchor="middle" class="body" font-size="13">Flujo operativo dentro de Subl&#237;mites y sanci&#243;n</text>
+  <text x="600" y="470" text-anchor="middle" class="body" font-size="13">Flujo operativo dentro de L&#237;mites y sanci&#243;n</text>
 </svg>

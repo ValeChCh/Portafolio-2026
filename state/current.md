@@ -26,14 +26,8 @@
 Primario de marca: `#8F9DE2` (antes amarillo). Form Contact: focus neutro + submit negro.
 Imágenes en `public/images/` (`/images/...`) — fix prod (G5).
 
-## Nota case study Banco (2026-08-03)
-Narrativa Behance puntos 1–5 vía `caseStudySections` en `src/data.ts` (+ EN en `content.ts`). Render en `Projects.tsx`.
-
-## Nota Shuttle Behance (2026-08-03 → 2026-08-05)
-11 slides storytelling en `src/data/shuttleCaseStudy.ts` (+ EN). Compactado para lectura senior.
-
-## Nota Banco skeleton senior (2026-08-05)
-6 secciones: problema → users → rol → decisiones → UI → impacto. Pendiente: más pantallas + 1 métrica real.
+## Nota case study Banco (2026-09-05)
+Cierre Sr.: estado (validado + handoff), TSR 84%, outcome, aprendizaje. Meta: «Banco mayorista (NDA)». Quitado placeholder vacío en §03.
 
 ## Nota Soriana case study senior (2026-08-05)
 Reescrito desde Behance (cards · tracking · combos). 8 slides en `src/data/sorianaCaseStudy.ts` (+ EN). Quitado copy Lumina / métricas inventadas. Métrica citada: +10% CSAT.

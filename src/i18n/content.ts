@@ -15,23 +15,23 @@ const profileEn = {
   bio: 'Sr. Product Designer · end-to-end flows in B2B banking, traveltech, and retail. Ownership from discovery to measurable delivery.',
   aboutDetailed:
     'I design digital products end to end across B2B banking, traveltech, and retail: discovery, opportunity framing, and UI that holds up in delivery. I have led E2E flows where design negotiates with business, risk, and operations — not just screens. I partner with Product Owners, engineering, and stakeholders to align requirements with real needs and turn them into measurable decisions (operational friction, adoption, CSAT). I look for teams where design owns outcomes and moves with agile cadence.',
-  location: 'Mexico City, Mexico (Remote worldwide)',
+  location: 'Mexico City, Mexico (remote, available worldwide)',
 };
 
 const projectsEn: Project[] = [
   {
     ...PROJECTS[0],
     description:
-      'Sub-limit approval in Salesforce\nHow I designed the sub-limits flow within the credit sanctioning process to remove manual work between the account executive and risk areas.',
+      'Limit approval in Salesforce\nHow I designed the limits flow within the credit sanctioning process to remove manual work between the account executive and risk areas.',
     role: 'Sr. Product Designer',
     challenge: '',
     process: [],
     solution: '',
     meta: [
       { label: 'Role', value: 'Sr. Product Designer' },
-      { label: 'Company', value: 'Banco' },
+      { label: 'Company', value: 'Wholesale bank (NDA)' },
       { label: 'Focus', value: 'E2E flow · Governance · Salesforce' },
-      { label: 'Scope', value: 'E2E flow · Governance · Salesforce' },
+      { label: 'Scope', value: 'Limits within credit sanctioning' },
     ],
     caseStudySections: [
       {
@@ -39,13 +39,13 @@ const projectsEn: Project[] = [
         title: 'The business problem',
         kicker: 'Context',
         accent: 'white',
-        body: 'An account executive can take roughly 3 to 6 months to grant a credit, depending on the client type. Within that credit process, several steps need to be sped up, standardized, and automated to cut the time by at least 50%; one of those steps is managing credit sub-limits.\n\nTraditionally, assigning and managing sub-limits meant complex manual processes (heavy Excel templates), duplicated data capture in Word (similar formats for the account executive and the risk area), and non-standardized communication across teams that could not be measured. That caused delays before the sub-limit could be sanctioned and before the account executive could move on to the next step to release a credit.\n\nConstraint: the redesign had to respect risk governance and process measurement while migrating to Salesforce.',
+        body: 'An account executive can take approximately between 3 and 6 months to grant a credit, depending on the client type. Within that credit process, several steps need to be sped up, standardized, and automated to cut the time by at least 50%; one of those steps is managing credit limits.\n\nTraditionally, assigning and managing limits meant manual processes (heavy Excel templates), duplicated data capture in Word (formats for the account executive and the risk area), and non-standardized communication across teams that could not be measured. That caused delays before the limit could be sanctioned and before the account executive could move on to the next step to release a credit.\n\nNon-negotiables: the redesign had to respect risk governance and process measurement while migrating to Salesforce.',
         itemsTitle: 'Product goals',
         items: [
           {
             icon: 'timer',
             title: 'Faster contracting',
-            text: 'Free up Account Executive operations so they can spend more time with clients.',
+            text: 'Free up Account Executive operations so they can spend more time on client acquisition.',
           },
           {
             icon: 'shield-check',
@@ -64,19 +64,19 @@ const projectsEn: Project[] = [
         title: 'Users and governance',
         kicker: 'Research',
         accent: 'white',
-        body: 'To design an E2E tool, we aligned the profiles across the operational circuit. This product is not “one screen”: it is a flow with permissions, opinions, and sanctioning.',
-        image: '/images/banco_story_proceso_credito_en.png',
+        body: 'To design an E2E tool, we aligned the profiles that participate throughout the entire process. This product is not “one screen”: it is a flow with rules, opinions, and sanctioning.',
+        image: '/images/banco_story_proceso_credito_en.svg',
         imagePlacement: 'after',
         imageContain: true,
         items: [
           {
             icon: 'user-cog',
             title: 'Account Executive (AE)',
-            text: 'Quickly create the credit and detail the sub-limit linked to it.',
+            text: 'Quickly create the credit and detail the limit linked to it.',
           },
           {
             icon: 'scale',
-            title: 'Technical Secretariat & Risk Advisor',
+            title: 'Risk profiles',
             text: 'Assess the proposal, review annexes, and issue a clear opinion (approve / reject).',
           },
           {
@@ -91,12 +91,16 @@ const projectsEn: Project[] = [
         title: 'My role and ownership',
         kicker: 'Product Design',
         accent: 'white',
-        body: 'I led the product experience for the sub-limits and sanctioning flow: information architecture by profile/permissions, working sessions with business and technology, and standardized UI language.',
+        body: 'I led the product experience for the limits flow: information architecture by profile/permissions, working sessions with business and technology, and standardized UI language, respecting the Salesforce design system. I also worked closely with the sibling \"proposal\" project, where limits are visualized and managed.',
+        image: '/images/banco_story_ownership_monitor.jpg',
+        imagePlacement: 'afterItems',
+        imageContain: true,
+        imageCaption: 'Salesforce UI — bank-office context; the flow lives inside the bank’s operational CRM.',
         items: [
           {
             icon: 'layout-panel',
             title: 'Architecture by profile',
-            text: 'E2E sub-limits flow design tailored to each profile (AE, Risk).',
+            text: 'E2E limits flow design tailored to each profile (AE, Risk).',
           },
           {
             icon: 'users',
@@ -112,31 +116,7 @@ const projectsEn: Project[] = [
       },
       {
         number: '04',
-        title: 'Key product decisions',
-        kicker: 'Trade-offs',
-        accent: 'white',
-        body: 'Three decisions that define product value — not just “better UI,” but measurable operations inside Salesforce.',
-        items: [
-          {
-            icon: 'boxes',
-            title: 'One measurable front end',
-            text: 'Migrate sanctioning to Salesforce, gathering required information in a single front while keeping process measurement.',
-          },
-          {
-            icon: 'pen-tool',
-            title: 'Easy-to-complete flow',
-            text: 'Parameterize validations and auto-complete required fields based on data captured in processes prior to sub-limits.',
-          },
-          {
-            icon: 'message-square',
-            title: 'Measurable cross-cutting chat',
-            text: 'In-flow space for teams to adjust data without chats outside the system.',
-          },
-        ],
-      },
-      {
-        number: '05',
-        title: 'Solution in product',
+        title: 'Key decisions for the solution',
         kicker: 'UI / Salesforce',
         accent: 'white',
         image: '/images/bbva_mockup.jpg',
@@ -149,35 +129,41 @@ const projectsEn: Project[] = [
           {
             icon: 'scan-eye',
             title: 'Decisions with context',
-            text: 'Unified view of sub-limits and financial information for opinion and sanctioning.',
+            text: 'Unified view of limits and financial information for opinion and sanctioning.',
           },
           {
             icon: 'message-square',
             title: 'Cross-team communication',
-            text: 'A unified chat where everyone involved stays informed of sub-limit progress and/or changes.',
+            text: 'A unified chat where everyone involved stays informed of limit progress and/or changes.',
           },
         ],
       },
       {
-        number: '06',
+        number: '05',
         title: 'Outcomes and learnings',
         kicker: 'Impact',
         accent: 'white',
+        body: 'The limits flow was validated with users and handed off ready for Salesforce build. The −50% credit-process time target is a program-level goal; this case documents the limits step’s contribution and the usability evidence before go-live.',
         items: [
           {
-            icon: 'target',
-            title: 'Intended outcome',
-            text: 'Less redundancy, faster E2E, and clearer sanctioning with the same risk control.',
+            icon: 'rocket',
+            title: 'Status',
+            text: 'Design validated (AE / Risk) and specified for engineering. Salesforce build and implementation owned by development.',
           },
           {
-            icon: 'target',
-            title: 'Test results',
-            text: 'Early sessions with account executives show an 84% TSR.',
+            icon: 'flask',
+            title: 'Evidence from testing',
+            text: '8 sessions with Account Executives (usability + conceptual): 84% TSR (Task Success Rate).',
+          },
+          {
+            icon: 'check-circle',
+            title: 'Product outcome',
+            text: 'Single-system capture, opinion with context, and measurable cross-team communication — without breaking risk governance.',
           },
           {
             icon: 'sticky-note',
             title: 'Learning',
-            text: 'Although Salesforce is an efficient and powerful tool, I faced constraints when proposing UI elements because customization can be limited or imply development delays.',
+            text: 'In Salesforce, every custom UI fights build cost and time: I prioritized rules, clarity, and handoff over ornamentation.',
           },
         ],
       },
@@ -235,7 +221,7 @@ const experienceEn: Experience[] = [
     ...EXPERIENCE_HISTORY[0],
     duration: '2024 - Present',
     description: [
-      'Led end-to-end design of 2 wholesale credit flows (including sub-limit sanctioning) to move manual Account Executive ↔ Risk work into Salesforce, targeting ~50% process reduction.',
+      'Led end-to-end design of 2 wholesale credit flows (including limit sanctioning) to move manual Account Executive ↔ Risk work into Salesforce, targeting ~50% process reduction.',
       'Facilitated definition with business, risk, and engineering: permission-based architecture, validations, and build-ready handoff for Salesforce and internal bank apps.',
     ],
   },
@@ -250,7 +236,7 @@ const experienceEn: Experience[] = [
   {
     ...EXPERIENCE_HISTORY[2],
     description: [
-      'Led traveler self-service (OTA → critical data confirmation): research, UX/UI, validation, and handoff; −43% Call Center calls related to reservations.',
+      'Led traveler self-service (OTA → critical data confirmation): research, UX/UI, validation, and handoff; −43% Customer Service calls related to reservations.',
       'Designed the booking Web App and partnered on CRO using heatmaps and session recordings; +20% conversion.',
     ],
   },
