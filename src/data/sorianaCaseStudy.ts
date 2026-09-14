@@ -43,7 +43,7 @@ export const SORIANA_CASE_SECTIONS_ES: CaseStudySection[] = [
     items: [
       {
         title: 'HMW',
-        text: '¿Cómo podríamos dar claridad y confianza en el journey de compra (catálogo → carrito → post-compra) sin romper el ecosistema Salesforce existente?\n\nHipótesis\nSi redesignamos cards, integramos tracking en el detalle de pedido y habilitamos combos en PDP, subimos claridad, confianza y ticket promedio — y con ello CSAT.',
+        text: '¿Cómo podríamos dar claridad y confianza en el journey de compra (catálogo → carrito → post-compra) sin romper el ecosistema Salesforce existente?\n\nHipótesis\nSi rediseñamos cards, integramos tracking en el detalle de pedido y habilitamos combos en PDP, subimos claridad, confianza y ticket promedio — y con ello CSAT.',
       },
     ],
     groups: [

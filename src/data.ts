@@ -11,7 +11,7 @@ export const VALERIA_PROFILE = {
   bio: "Sr. Product Designer · flujos E2E en banca B2B, traveltech y retail. Ownership desde discovery hasta delivery medible.",
   aboutDetailed:
     "Diseño producto digital de punta a punta en banca B2B, traveltech y retail: discovery, definición de oportunidades y UI que se sostiene en delivery. He liderado flujos E2E donde el diseño negocia con negocio, riesgo y operación — no solo pantallas. Trabajo con Product Owners, ingeniería y stakeholders para alinear requerimientos con necesidades reales y convertirlos en decisiones medibles (fricción operativa, adopción, CSAT). Busco equipos donde el diseño tiene ownership de outcomes y ritmo ágil.",
-  location: "Ciudad de México, México (Remoto para todo el mundo)",
+  location: "Ciudad de México, México (remoto, disponible worldwide)",
   socials: [
     { name: "LinkedIn", url: "https://www.linkedin.com/in/valechch/", icon: "Linkedin" },
     { name: "Behance", url: "https://www.behance.net/valechch", icon: "ExternalLink" },
@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     id: "findash-global",
     title: "Banco",
     description:
-      "Sanción de sublímites en Salesforce\nCómo diseñé el flujo para sublímites dentro del proceso de sanción de crédito para eliminar procesos manuales entre ejecutivo de cuenta y áreas de riesgos.",
+      "Sanción de límites en Salesforce\nCómo diseñé el flujo para límites dentro del proceso de sanción de crédito para eliminar procesos manuales entre ejecutivo de cuenta y áreas de riesgos.",
     category: "Banca",
     tags: ["Banca", "Salesforce", "B2B", "Product Design"],
     image: "/images/bbva_mockup.jpg",
@@ -43,9 +43,9 @@ export const PROJECTS: Project[] = [
     solution: "",
     meta: [
       { label: "Rol", value: "Sr. Product Designer" },
-      { label: "Empresa", value: "Banco" },
+      { label: "Empresa", value: "Banco mayorista (NDA)" },
       { label: "Foco", value: "Flujo E2E · Gobernanza · Salesforce" },
-      { label: "Alcance", value: "Flujo E2E · Gobernanza · Salesforce" },
+      { label: "Alcance", value: "Límites dentro de sanción de crédito" },
     ],
     caseStudySections: [
       {
@@ -53,13 +53,13 @@ export const PROJECTS: Project[] = [
         title: "El problema de negocio",
         kicker: "Contexto",
         accent: "white",
-        body: "El tiempo en el que un ejecutivo de cuenta otorga un crédito puede tardar de 3 a 6 meses aproximadamente dependiendo del tipo cliente. Dentro de ese proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar para reducir el tiempo en cuando menos un 50%; uno de esos pasos es la gestión de sublímites de crédito.\n\nTradicionalmente, la asignación y gestión de sublímites implicaba procesos manuales complejos (plantillas complejas de excel), duplicidad en la captura de datos en word (formatos del ejecutivo y del área de riesgos similares), y comunicación desestandarizada entre áreas que no eran medibles. Esto implicaba demoras para que el sublímite se sancionara y que el ejecutivo de cuenta pudiera seguir con el siguiente paso para liberar un crédito.\n\nConstraint: el rediseño debía respetar gobernanza de riesgo y medición del proceso al migrar a Salesforce.",
+        body: "El tiempo en el que un ejecutivo de cuenta otorga un crédito puede tardar aproximadamente entre 3 y 6 meses, dependiendo del tipo de cliente. Dentro de ese proceso de crédito, hay una serie de pasos que se requieren agilizar, estandarizar y automatizar para reducir el tiempo en al menos un 50%; uno de esos pasos es la gestión de límites de crédito.\n\nTradicionalmente, la asignación y gestión de límites implicaba procesos manuales (plantillas complejas de Excel), duplicidad en la captura de datos en Word (formatos del ejecutivo y del área de riesgos), y comunicación poco estandarizada entre áreas que no era medible. Esto implicaba demoras para que el límite se sancionara y que el ejecutivo de cuenta pudiera seguir con el siguiente paso para liberar un crédito.\n\nNo negociables: el rediseño debía respetar la gobernanza de riesgo y la medición del proceso al migrar a Salesforce.",
         itemsTitle: "Objetivos del producto",
         items: [
           {
             icon: "timer",
             title: "Acelerar contratación",
-            text: "Liberar operación del Ejecutivo de Cuenta para enfocar más tiempo en el cliente.",
+            text: "Liberar operación del Ejecutivo de Cuenta para enfocar más tiempo en captación de clientes.",
           },
           {
             icon: "shield-check",
@@ -78,19 +78,19 @@ export const PROJECTS: Project[] = [
         title: "Usuarios y gobernanza",
         kicker: "Research",
         accent: "white",
-        body: "Para diseñar una herramienta E2E, alineamos los perfiles del circuito operativo. El producto no es “una pantalla”: es un flujo con permisos, dictámenes y sanción.",
-        image: "/images/banco_story_proceso_credito_es.png",
+        body: "Para diseñar una herramienta E2E, alineamos los perfiles que participan dentro de todo el proceso. El producto no es “una pantalla”: es un flujo con reglas, dictámenes y sanción.",
+        image: "/images/banco_story_proceso_credito_es.svg",
         imagePlacement: "after",
         imageContain: true,
         items: [
           {
             icon: "user-cog",
             title: "Ejecutivo de Cuenta (EC)",
-            text: "Alta rápida del crédito y detalle del sublímite ligado a ese crédito.",
+            text: "Alta rápida del crédito y detalle del límite ligado a ese crédito.",
           },
           {
             icon: "scale",
-            title: "Secretaría Técnica y Asesor de Riesgos",
+            title: "Perfiles de riesgos",
             text: "Evaluar propuesta, revisar anexos y emitir dictamen claro (aprobar / rechazar).",
           },
           {
@@ -105,52 +105,32 @@ export const PROJECTS: Project[] = [
         title: "Mi rol y ownership",
         kicker: "Product Design",
         accent: "white",
-        body: "Lideré la experiencia de producto en el flujo de sublímites y sanción: arquitectura de información por perfil/permisos, mesas con negocio y tecnología, y estandarización de lenguaje en UI.",
+        body: "Lideré la experiencia de producto en el flujo de límites: arquitectura de información por perfil/permisos, mesas con negocio y tecnología, y estandarización de lenguaje en UI, respetando el design system de Salesforce. Además trabajé de la mano con el proyecto hermano \"propuesta\", donde se visualizan y gestionan los límites.",
+        image: "/images/banco_story_ownership_monitor.jpg",
+        imagePlacement: "afterItems",
+        imageContain: true,
+        imageCaption: "UI en Salesforce — contexto de oficina bancaria; el flujo vive dentro del CRM operativo del banco.",
         items: [
           {
             icon: "layout-panel",
             title: "Arquitectura por perfil",
-            text: "Diseño del flujo E2E para sublímites acorde al perfil (EC, Riesgos).",
+            text: "Diseño del flujo E2E para límites acorde al perfil (EC, Riesgos).",
           },
           {
             icon: "users",
             title: "Colaboración transversal",
-            text: "Mesas de definición con Stakeholders acotando las reglas y los must del flujo, definición de arquitectura con área de desarrollo, acercamiento y feedback con usuarios (EC / Riesgos).",
+            text: "Mesas de definición con stakeholders para acotar las reglas y los must del flujo; definición de arquitectura con desarrollo; acercamiento y feedback con usuarios (EC / Riesgos).",
           },
           {
             icon: "message-square",
             title: "UX Writing operativo",
-            text: "Implementación de instrucciones dentro del flujo, especificaciones y descripciones para cada sección y homologación de conceptos para las áreas.",
+            text: "Instrucciones dentro del flujo, especificaciones y descripciones por sección, y homologación de conceptos entre áreas.",
           },
         ],
       },
       {
         number: "04",
-        title: "Decisiones de producto clave",
-        kicker: "Trade-offs",
-        accent: "white",
-        body: "Tres decisiones que definen el valor del producto — no solo “mejor UI”, sino operación medible dentro de Salesforce.",
-        items: [
-          {
-            icon: "boxes",
-            title: "Un solo frontal medible",
-            text: "Migrar la sanción a Salesforce reuniendo la información necesaria en un solo front, manteniendo la medición del proceso.",
-          },
-          {
-            icon: "pen-tool",
-            title: "Flujo fácil de completar",
-            text: "Parametrizar validaciones y auto-completar campos obligatorios según lo llenado en procesos previos a los sublímites.",
-          },
-          {
-            icon: "message-square",
-            title: "Chat transversal medible",
-            text: "Espacio en el flujo para que las áreas ajusten datos sin chats fuera del sistema.",
-          },
-        ],
-      },
-      {
-        number: "05",
-        title: "Solución en producto",
+        title: "Decisiones clave para la solución",
         kicker: "UI / Salesforce",
         accent: "white",
         image: "/images/bbva_mockup.jpg",
@@ -163,35 +143,41 @@ export const PROJECTS: Project[] = [
           {
             icon: "scan-eye",
             title: "Decisión con contexto",
-            text: "Visión unificada de sublímites e información financiera para dictamen y sanción.",
+            text: "Visión unificada de límites e información financiera para dictamen y sanción.",
           },
           {
             icon: "message-square",
             title: "Comunicación entre áreas",
-            text: "Chat unificado donde todos los involucrados estarán enterados de los avances y/o modificaciones de los sublímites.",
+            text: "Chat unificado donde todos los involucrados quedan al tanto de avances y modificaciones de los límites.",
           },
         ],
       },
       {
-        number: "06",
+        number: "05",
         title: "Resultados y aprendizajes",
         kicker: "Impacto",
         accent: "white",
+        body: "El flujo de límites quedó validado con usuarios y con handoff listo para build en Salesforce. El −50% de tiempo en el proceso de crédito es un objetivo de programa; este case documenta el aporte del paso de límites y la evidencia de usabilidad previa al go-live.",
         items: [
           {
-            icon: "target",
-            title: "Outcome buscado",
-            text: "Menos redundancia, más velocidad E2E y claridad para sancionar con el mismo control de riesgo.",
+            icon: "rocket",
+            title: "Estado",
+            text: "Diseño validado (EC / Riesgos) y especificado para engineering. Build e implementación en Salesforce a cargo de desarrollo.",
           },
           {
-            icon: "target",
-            title: "Resultados en pruebas",
-            text: "Los primeros acercamientos con EC demuestran una TSR de un 84%.",
+            icon: "flask",
+            title: "Evidencia en pruebas",
+            text: "8 sesiones con Ejecutivos de Cuenta (usabilidad + conceptual): TSR (Task Success Rate) del 84%.",
+          },
+          {
+            icon: "check-circle",
+            title: "Outcome de producto",
+            text: "Una sola captura en sistema, dictamen con contexto y comunicación medible entre áreas — sin romper gobernanza de riesgo.",
           },
           {
             icon: "sticky-note",
             title: "Aprendizaje",
-            text: "A pesar de que Salesforce es una herramienta eficiente y poderosa, tuve ciertas limitantes a la hora de proponer elementos UI ya que la personalización puede ser limitada o implicaba demoras en desarrollo.",
+            text: "En Salesforce, cada custom UI pelea con costo y tiempo de build: prioricé reglas, claridad y handoff sobre ornamentación.",
           },
         ],
       },
@@ -305,7 +291,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "Banco",
     duration: "2024 - Presente",
     description: [
-      "Lideré el diseño E2E de 2 flujos de crédito en banca mayorista (incl. sanción de sublímites) para migrar trabajo manual entre Ejecutivo de Cuenta y Riesgos a Salesforce, con meta de reducir el proceso en ~50%.",
+      "Lideré el diseño E2E de 2 flujos de crédito en banca mayorista (incl. sanción de límites) para migrar trabajo manual entre Ejecutivo de Cuenta y Riesgos a Salesforce, con meta de reducir el proceso en ~50%.",
       "Facilité definición con negocio, riesgos y engineering: arquitectura por permisos, validaciones y handoff listo para build en Salesforce y apps internas del banco.",
     ],
     current: true
@@ -327,7 +313,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     company: "Shuttle Central",
     duration: "2020 - 2022",
     description: [
-      "Lideré el producto self-service para viajeros (OTA → confirmación de datos críticos): research, UX/UI, validación y handoff; −43% llamadas a Call Center por temas de reservación.",
+      "Lideré el producto self-service para viajeros (OTA → confirmación de datos críticos): research, UX/UI, validación y handoff; −43% llamadas a CS por temas de reservación.",
       "Diseñé la Web App de reservación y colaboré en CRO con heatmaps y session recordings; +20% conversión.",
     ]
   },

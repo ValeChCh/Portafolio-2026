@@ -51,6 +51,7 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
     accent: 'white',
     image: '/images/shuttle_story_interview_remote.png',
     imageContain: true,
+    imageScale: 70,
     items: [
       {
         icon: 'clipboard',
@@ -190,7 +191,7 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
     items: [
       { icon: 'search', title: '23 + 15', text: '23 research sessions + 15 usability tests.' },
       { icon: 'shield-check', title: 'Limited pickup options', text: '3 schedules to prevent operational incidents.' },
-      { icon: 'message-square', title: '−43% CC calls', text: '43% fewer Call Center calls related to reservation issues.' },
+      { icon: 'message-square', title: '−43% CS calls', text: '43% fewer Customer Service calls related to reservation issues.' },
     ],
   },
   {
@@ -212,7 +213,7 @@ export const SHUTTLE_CASE_SECTIONS_EN: CaseStudySection[] = [
       {
         icon: 'lightbulb',
         title: '03',
-        text: 'Key takeaway — describe the insight or trade-off you take from this project.',
+        text: 'Working in a startup as the sole product design owner let me go deep into the business and ship more products for the company.',
       },
     ],
     href: 'https://ride.shuttlecentral.com/login',

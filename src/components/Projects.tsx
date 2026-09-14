@@ -429,24 +429,50 @@ export default function Projects() {
                               </h4>
                             </div>
 
-                            {section.image && section.imagePlacement !== 'after' ? (
-                              <div className="overflow-hidden bg-white">
+                            {section.image &&
+                            (!section.imagePlacement || section.imagePlacement === 'before') ? (
+                              <div className="overflow-hidden bg-white space-y-2">
                                 <img
                                   src={section.image}
                                   alt=""
                                   className={
                                     section.imageContain
-                                      ? 'w-full h-auto object-contain'
+                                      ? 'h-auto object-contain mx-auto'
                                       : `w-full aspect-[16/9] object-cover ${section.imageObjectPosition ?? 'object-top'}`
+                                  }
+                                  style={
+                                    section.imageScale != null
+                                      ? { width: `${section.imageScale}%` }
+                                      : section.imageContain
+                                        ? { width: '100%' }
+                                        : undefined
                                   }
                                   referrerPolicy="no-referrer"
                                 />
+                                {section.imageCaption ? (
+                                  <p className="text-xs md:text-sm font-medium leading-relaxed text-slate-700">
+                                    {section.imageCaption}
+                                  </p>
+                                ) : null}
                               </div>
-                            ) : section.imagePlaceholder && section.imagePlacement !== 'after' ? (
-                              <div
-                                className="w-full aspect-[16/9] border-2 border-dashed border-black/30 bg-transparent"
-                                aria-hidden
-                              />
+                            ) : section.imagePlaceholder &&
+                              (!section.imagePlacement || section.imagePlacement === 'before') ? (
+                              <figure className="space-y-2" aria-label="Espacio para imagen">
+                                <div
+                                  className="w-full aspect-[16/9] border-2 border-dashed border-black/30 bg-transparent"
+                                  aria-hidden
+                                />
+                                {section.imageCaption ? (
+                                  <figcaption className="text-xs md:text-sm font-medium leading-relaxed text-slate-700 border-t border-dashed border-black/20 pt-2">
+                                    {section.imageCaption}
+                                  </figcaption>
+                                ) : (
+                                  <div
+                                    className="h-8 border-t border-dashed border-black/20"
+                                    aria-hidden
+                                  />
+                                )}
+                              </figure>
                             ) : null}
 
                             {section.body ? (
@@ -461,20 +487,40 @@ export default function Projects() {
 
                             {section.imagePlacement === 'after' ? (
                               section.image ? (
-                                <div className="overflow-hidden">
+                                <figure className="space-y-2 overflow-hidden">
                                   <img
                                     src={section.image}
                                     alt=""
                                     className="w-full h-auto object-contain"
                                     referrerPolicy="no-referrer"
                                   />
-                                </div>
+                                  {section.imageCaption ? (
+                                    <figcaption className="text-xs md:text-sm font-medium leading-relaxed text-slate-700">
+                                      {section.imageCaption}
+                                    </figcaption>
+                                  ) : null}
+                                </figure>
                               ) : section.imagePlaceholder ? (
-                                <div
-                                  className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                <figure
+                                  className="space-y-2"
                                   id={`case-study-img-placeholder-${section.number}`}
                                   aria-label="Espacio para imagen"
-                                />
+                                >
+                                  <div
+                                    className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                    aria-hidden
+                                  />
+                                  {section.imageCaption ? (
+                                    <figcaption className="text-xs md:text-sm font-medium leading-relaxed text-slate-700 border-t border-dashed border-black/25 pt-2">
+                                      {section.imageCaption}
+                                    </figcaption>
+                                  ) : (
+                                    <div
+                                      className="h-8 border-t border-dashed border-black/25"
+                                      aria-hidden
+                                    />
+                                  )}
+                                </figure>
                               ) : null
                             ) : null}
 
@@ -646,6 +692,49 @@ export default function Projects() {
                                   );
                                 })}
                               </div>
+                            ) : null}
+
+                            {section.imagePlacement === 'afterItems' ? (
+                              section.image ? (
+                                <figure className="space-y-2 overflow-hidden">
+                                  <img
+                                    src={section.image}
+                                    alt=""
+                                    className={
+                                      section.imageContain
+                                        ? 'w-full h-auto object-contain'
+                                        : `w-full aspect-[16/9] object-cover ${section.imageObjectPosition ?? 'object-top'}`
+                                    }
+                                    referrerPolicy="no-referrer"
+                                  />
+                                  {section.imageCaption ? (
+                                    <figcaption className="text-xs md:text-sm font-medium leading-relaxed text-slate-700">
+                                      {section.imageCaption}
+                                    </figcaption>
+                                  ) : null}
+                                </figure>
+                              ) : section.imagePlaceholder ? (
+                                <figure
+                                  className="space-y-2"
+                                  id={`case-study-img-placeholder-${section.number}`}
+                                  aria-label="Espacio para imagen"
+                                >
+                                  <div
+                                    className="w-full aspect-[16/9] border-2 border-dashed border-black/40 bg-white"
+                                    aria-hidden
+                                  />
+                                  {section.imageCaption ? (
+                                    <figcaption className="text-xs md:text-sm font-medium leading-relaxed text-slate-700 border-t border-dashed border-black/25 pt-2 px-1">
+                                      {section.imageCaption}
+                                    </figcaption>
+                                  ) : (
+                                    <div
+                                      className="min-h-8 border-t border-dashed border-black/25 pt-2"
+                                      aria-hidden
+                                    />
+                                  )}
+                                </figure>
+                              ) : null
                             ) : null}
 
                             {section.groups?.map((group) => (

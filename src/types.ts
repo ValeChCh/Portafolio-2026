@@ -64,14 +64,18 @@ export interface CaseStudySection {
   hrefLabel?: string;
   /** Imagen full-bleed alusiva o UI */
   image?: string;
-  /** Posición de la imagen respecto al body. Default: before */
-  imagePlacement?: 'before' | 'after';
+  /** Posición de la imagen respecto al body/items. Default: before */
+  imagePlacement?: 'before' | 'after' | 'afterItems';
   /** object-position Tailwind (p. ej. object-right). Default: object-top */
   imageObjectPosition?: string;
   /** Si true, la imagen usa h-auto object-contain (sin crop 16:9) */
   imageContain?: boolean;
+  /** Ancho de la imagen como % del contenedor (default 100). Ej: 70 = −30% */
+  imageScale?: number;
   /** Reserva un slot vacío (borde punteado) para colocar imagen después */
   imagePlaceholder?: boolean;
+  /** Pie de imagen debajo de `image` / `imagePlaceholder` */
+  imageCaption?: string;
   /** Galería de pantallas / wireframes */
   gallery?: string[];
   /** Índices (0-based) de la galería que ocupan todo el ancho del grid */
