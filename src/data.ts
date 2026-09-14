@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
         image: "/images/banco_story_ownership_monitor.jpg",
         imagePlacement: "afterItems",
         imageContain: true,
-        imageCaption: "UI en Salesforce — contexto de oficina bancaria; el flujo vive dentro del CRM operativo del banco.",
+        imageCaption: "Ejemplo ilustrativo del front para ejecutivo de cuenta — implementación del Design System de Salesforce.",
         items: [
           {
             icon: "layout-panel",
@@ -157,7 +157,7 @@ export const PROJECTS: Project[] = [
         title: "Resultados y aprendizajes",
         kicker: "Impacto",
         accent: "white",
-        body: "El flujo de límites quedó validado con usuarios y con handoff listo para desarrollar en Salesforce. El −50% de tiempo en el proceso de crédito es un objetivo de programa; este proyecto documenta el aporte del paso de límites y la evidencia de usabilidad previa al go-live.",
+        body: "El flujo de límites quedó validado con usuarios y con handoff listo para desarrollar en Salesforce. La reducción de tiempo en el proceso de crédito es un objetivo de programa; este proyecto documenta el aporte del paso de límites y la evidencia de usabilidad previa al desarrollo.",
         items: [
           {
             icon: "rocket",

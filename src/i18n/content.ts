@@ -95,7 +95,7 @@ const projectsEn: Project[] = [
         image: '/images/banco_story_ownership_monitor.jpg',
         imagePlacement: 'afterItems',
         imageContain: true,
-        imageCaption: 'Salesforce UI — bank-office context; the flow lives inside the bank’s operational CRM.',
+        imageCaption: 'Illustrative Account Executive front-end example — Salesforce Design System implementation.',
         items: [
           {
             icon: 'layout-panel',
@@ -143,7 +143,7 @@ const projectsEn: Project[] = [
         title: 'Outcomes and learnings',
         kicker: 'Impact',
         accent: 'white',
-        body: 'The limits flow was validated with users and handed off ready to develop in Salesforce. The −50% credit-process time target is a program-level goal; this project documents the limits step’s contribution and the usability evidence before go-live.',
+        body: 'The limits flow was validated with users and handed off ready to develop in Salesforce. Reducing time in the credit process is a program-level goal; this project documents the limits step’s contribution and the usability evidence prior to development.',
         items: [
           {
             icon: 'rocket',
