@@ -40,7 +40,7 @@ export const VIVA_CASE_SECTIONS_ES: CaseStudySection[] = [
     accent: 'white',
     itemsBorderless: true,
     itemsStacked: true,
-    body: 'Como Sr. Product Designer en Shuttle Central, lideré el white label E2E: análisis del flujo de venta, mapeo del design system de Viva y aplicación UI coherente en la Web App de reservas.',
+    body: 'Como Sr. Product Designer en Shuttle Central, lideré el white label E2E: análisis del flujo de venta, implementación del design system de Viva y aplicación UI coherente en la Web App de reservas.',
     items: [
       {
         title: 'HMW',
@@ -70,11 +70,11 @@ export const VIVA_CASE_SECTIONS_ES: CaseStudySection[] = [
       {
         icon: 'search',
         title: 'Auditoría del funnel',
-        text: 'Qué pantallas y decisiones del flow de Shuttle eran non-negotiable para la venta.',
+        text: 'Qué pantallas y decisiones del flow de Shuttle eran no negociables para la venta.',
       },
       {
         icon: 'layers',
-        title: 'Inventario de marca Viva',
+        title: 'Implementación de Design System Viva',
         text: 'Color, tipografía, logo lockup, CTAs y tono visual para landing y booking.',
       },
       {

@@ -109,7 +109,7 @@ export const PROJECTS: Project[] = [
         image: "/images/banco_story_ownership_monitor.jpg",
         imagePlacement: "afterItems",
         imageContain: true,
-        imageCaption: "UI en Salesforce — contexto de oficina bancaria; el flujo vive dentro del CRM operativo del banco.",
+        imageCaption: "Ejemplo ilustrativo del front para ejecutivo de cuenta — implementación del Design System de Salesforce.",
         items: [
           {
             icon: "layout-panel",
@@ -157,12 +157,12 @@ export const PROJECTS: Project[] = [
         title: "Resultados y aprendizajes",
         kicker: "Impacto",
         accent: "white",
-        body: "El flujo de límites quedó validado con usuarios y con handoff listo para build en Salesforce. El −50% de tiempo en el proceso de crédito es un objetivo de programa; este case documenta el aporte del paso de límites y la evidencia de usabilidad previa al go-live.",
+        body: "El flujo de límites quedó validado con usuarios y con handoff listo para desarrollar en Salesforce. La reducción de tiempo en el proceso de crédito es un objetivo de programa; este proyecto documenta el aporte del paso de límites y la evidencia de usabilidad previa al desarrollo.",
         items: [
           {
             icon: "rocket",
             title: "Estado",
-            text: "Diseño validado (EC / Riesgos) y especificado para engineering. Build e implementación en Salesforce a cargo de desarrollo.",
+            text: "Diseño validado (EC / Riesgos) y especificado para engineering. Implementación en Salesforce a cargo del equipo de desarrollo.",
           },
           {
             icon: "flask",
@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
           {
             icon: "sticky-note",
             title: "Aprendizaje",
-            text: "En Salesforce, cada custom UI pelea con costo y tiempo de build: prioricé reglas, claridad y handoff sobre ornamentación.",
+            text: "En Salesforce, cada custom UI pelea con costo y tiempo de desarrollo: prioricé reglas, claridad y handoff sobre ornamentación.",
           },
         ],
       },
@@ -292,7 +292,7 @@ export const EXPERIENCE_HISTORY: Experience[] = [
     duration: "2024 - Presente",
     description: [
       "Lideré el diseño E2E de 2 flujos de crédito en banca mayorista (incl. sanción de límites) para migrar trabajo manual entre Ejecutivo de Cuenta y Riesgos a Salesforce, con meta de reducir el proceso en ~50%.",
-      "Facilité definición con negocio, riesgos y engineering: arquitectura por permisos, validaciones y handoff listo para build en Salesforce y apps internas del banco.",
+      "Facilité definición con negocio, riesgos y engineering: arquitectura por permisos, validaciones y handoff listo para desarrollar en Salesforce y apps internas del banco.",
     ],
     current: true
   },

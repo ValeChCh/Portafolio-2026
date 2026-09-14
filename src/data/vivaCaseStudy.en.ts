@@ -39,7 +39,7 @@ export const VIVA_CASE_SECTIONS_EN: CaseStudySection[] = [
     accent: 'white',
     itemsBorderless: true,
     itemsStacked: true,
-    body: 'As Sr. Product Designer at Shuttle Central, I led the white label end to end: sales-flow analysis, mapping Viva’s design system, and coherent UI application on the booking Web App.',
+    body: 'As Sr. Product Designer at Shuttle Central, I led the white label end to end: sales-flow analysis, implementing Viva’s design system, and coherent UI application on the booking Web App.',
     items: [
       {
         title: 'HMW',
@@ -73,7 +73,7 @@ export const VIVA_CASE_SECTIONS_EN: CaseStudySection[] = [
       },
       {
         icon: 'layers',
-        title: 'Viva brand inventory',
+        title: 'Viva Design System implementation',
         text: 'Color, type, logo lockup, CTAs, and visual tone for landing and booking.',
       },
       {
