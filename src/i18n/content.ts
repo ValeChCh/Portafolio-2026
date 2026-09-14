@@ -143,12 +143,12 @@ const projectsEn: Project[] = [
         title: 'Outcomes and learnings',
         kicker: 'Impact',
         accent: 'white',
-        body: 'The limits flow was validated with users and handed off ready for Salesforce build. The −50% credit-process time target is a program-level goal; this case documents the limits step’s contribution and the usability evidence before go-live.',
+        body: 'The limits flow was validated with users and handed off ready to develop in Salesforce. The −50% credit-process time target is a program-level goal; this project documents the limits step’s contribution and the usability evidence before go-live.',
         items: [
           {
             icon: 'rocket',
             title: 'Status',
-            text: 'Design validated (AE / Risk) and specified for engineering. Salesforce build and implementation owned by development.',
+            text: 'Design validated (AE / Risk) and specified for engineering. Salesforce implementation owned by the development team.',
           },
           {
             icon: 'flask',
@@ -163,7 +163,7 @@ const projectsEn: Project[] = [
           {
             icon: 'sticky-note',
             title: 'Learning',
-            text: 'In Salesforce, every custom UI fights build cost and time: I prioritized rules, clarity, and handoff over ornamentation.',
+            text: 'In Salesforce, every custom UI fights development cost and time: I prioritized rules, clarity, and handoff over ornamentation.',
           },
         ],
       },
@@ -222,7 +222,7 @@ const experienceEn: Experience[] = [
     duration: '2024 - Present',
     description: [
       'Led end-to-end design of 2 wholesale credit flows (including limit sanctioning) to move manual Account Executive ↔ Risk work into Salesforce, targeting ~50% process reduction.',
-      'Facilitated definition with business, risk, and engineering: permission-based architecture, validations, and build-ready handoff for Salesforce and internal bank apps.',
+      'Facilitated definition with business, risk, and engineering: permission-based architecture, validations, and development-ready handoff for Salesforce and internal bank apps.',
     ],
   },
   {
